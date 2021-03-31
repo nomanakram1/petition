@@ -1,0 +1,126 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_AdminLayout";
+
+}
+@model createBatchVM
+<div class="content-wrapper">
+    <div class="content-body">
+        <!-- Basic Vertical form layout section start -->
+        <section id="basic-vertical-layouts">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                Create Batch
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label>Choose a Petition before adding the batch</label>
+                                </div>
+                                <div class="col-sm-4 mt-1">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <label class="customHalfMargin text-right float-right">Select a Petition :</label>
+                                        </div>
+                                        <div class="col-7">
+                                            <select class="form-control form-control-sm Selectpetition" id="basicSelect">
+                                                @if (Model.petitons != null)
+                                                {
+                                                    foreach (var p in Model.petitons)
+                                                    {
+                                                        <option value="@p.PetitionId">@p.Petitionname</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 mt-1">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <label class="customHalfMargin text-right float-right">Select a Coordinator :</label>
+                                        </div>
+                                        <div class="col-7">
+                                            <select class="form-control form-control-sm coordinator" id="basicSelect">
+                                                @if (Model.users != null)
+                                                {
+                                                    foreach (var u in Model.users)
+                                                    {
+                                                        <option value="@u.userId">@u.userName</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 mt-1">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <label class="customHalfMargin text-right float-right">Signature Value :</label>
+                                        </div>
+                                        <div class="col-7">
+                                            <input type="text" id="signValue" class="form-control form-control-sm" name="name" value="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 mt-1 mt-1">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <label class="customHalfMargin text-right float-right">Assigned Date :</label>
+                                        </div>
+                                        <div class="col-7">
+                                            <input type="text" id="fp-default" class="form-control form-control-sm flatpickr-basic flatpickr-input" placeholder="2021-03-19" readonly="readonly">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 mt-1">
+                                    <button type="button" id="add" class="btn btn-sm btn-primary float-right ml-1">Add a Batches</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- Basic Vertical form layout section end -->
+
+
+
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $("#add").click(function () {
+            console.log("addfunction");
+            var petetionId = $(".Selectpetition").find(":selected").val();
+            petetionId = parseInt(petetionId);
+            var data = {
+                'kpmuserId': $(".coordinator").find(":selected").val(),
+                'kpmuserName': $('.coordinator').find(":selected").text(),
+                'petitionId': petetionId,
+                'sigValue': parseInt($('#signValue').val()),
+                'dateAssgBatch': $('#fp-default').val(),
+            }
+            console.log(JSON.stringify(data));
+            $.ajax({
+                url: "/batches/addBatches",
+                type: "Post",
+                data: data,
+                success: function (res) {
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
+}

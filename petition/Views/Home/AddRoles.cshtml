@@ -1,0 +1,275 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_AdminLayout";
+}
+@model RolesUserRolesVM
+<!-- BEGIN: Content-->
+<div>
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-body">
+            <!-- Basic Vertical form layout section start -->
+            <section id="basic-vertical-layouts">
+                <div class="row">
+                    <div class="col-md-4 col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Manage Roles for User: @Model.UserData.userName</h4>
+                            </div>
+                            <div class="card-body  ">
+                                <form class="form form-vertical" method="post" asp-action="AddRole" asp-controller="home">
+                                    <input type="text" name="userId" value="@Model.UserData.userId" hidden />
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="select-country1">
+                                                    Security Role
+                                                </label>
+                                                <fieldset class="form-group ">
+                                                    <select name="roleId" class="form-control bg-light" id="basicSelect">
+                                                        @if (Model.Roles.Any())
+                                                        {
+                                                            foreach (var role in Model.Roles)
+                                                            {
+                                                                <option value="@role.roleId,@role.roleName">@role.roleName</option>
+                                                            }
+
+                                                        }
+                                                    </select>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="email-id-vertical">	Effective Date</label>
+                                                <input type="datetime" name="effectiveDate" class="form-control flatpickr-basic flatpickr-input active" placeholder="YYYY-MM-DD" readonly="readonly" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="email-id-vertical">	Expiry Date</label>
+                                                <input type="datetime" name="expiryDate" class="form-control flatpickr-basic flatpickr-input active" placeholder="YYYY-MM-DD" readonly="readonly" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 pt-2">
+                                            <button type="submit" class="btn btn-primary mr-1">Add Role To User</button>
+                                            <button type="reset" class="btn btn-danger">Cancel</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">User Roles</h4>
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row" id="table-striped">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="card-title">Striped rows</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <!-- <p class="card-text">
+                                                    Use <code class="highlighter-rouge">.table-striped</code> to add zebra-striping to any table row within the
+                                                    <code class="highlighter-rouge">&lt;tbody&gt;</code>. This styling doesn't work in IE8 and below as
+                                                    <code>:nth-child</code> CSS selector isn't supported.
+                                                </p> -->
+                                            </div>
+                                            <div class="table-responsive">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Security Role</th>
+                                                            <th>Effective Date</th>
+                                                            <th>Expiry Date</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @if (Model.UserRoles.Any())
+                                                        {
+                                                            foreach (var userRole in Model.UserRoles)
+                                                            {
+                                                        <tr>
+                                                            <td>@userRole.roleName</td>
+                                                            <td>@userRole.effectiveDate</td>
+                                                            <td>@userRole.expiryDate</td>
+                                                            <td>
+                                                                <a href="/home/deleteRole/?roleId=@userRole.roleId&userId=@userRole.userId" >
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                            }
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="/home/userList" class="btn btn-primary float-right">Close</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Basic Vertical form layout section end -->
+
+
+
+        </div>
+    </div>
+</div>
+<!-- END: Content-->
+
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
+
+<!-----------Modal start-------->
+<div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel33"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="#">
+                <div class="modal-body">
+                    <!-- <label>Email: </label>
+                    <div class="form-group">
+                        <input type="text" placeholder="Email Address" class="form-control" />
+                    </div>
+
+                    <label>Password: </label>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" class="form-control" />
+                    </div> -->
+                    <div class="card-body">
+
+                        <div class="row" id="table-striped">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">User Roles Edit</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <!-- <p class="card-text">
+                                            Use <code class="highlighter-rouge">.table-striped</code> to add zebra-striping to any table row within the
+                                            <code class="highlighter-rouge">&lt;tbody&gt;</code>. This styling doesn't work in IE8 and below as
+                                            <code>:nth-child</code> CSS selector isn't supported.
+                                        </p> -->
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Batch</th>
+                                                    <th>Coordinator</th>
+                                                    <th>petition</th>
+                                                    <th>Date submitted</th>
+                                                    <th>Sig Value</th>
+                                                    <th>Date Recieved</th>
+                                                    <th>Submitted Count</th>
+                                                    <th>CB Date</th>
+                                                    <th>CB Count</th>
+                                                    <th>Total Sigs</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        1
+                                                    </td>
+                                                    <td>Harvig</td>
+                                                    <td>
+                                                        KDP
+                                                    </td>
+                                                    <td>3/30/2020</td>
+                                                    <td>4.00</td>
+                                                    <td>3/30/2020</td>
+                                                    <td>79</td>
+                                                    <td>4/9/2020</td>
+                                                    <td>0</td>
+                                                    <td>79</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button type="button" class="btn btn-sm dropdown-toggle hide-arrow waves-effect waves-float waves-light" data-toggle="dropdown">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#inlineForm">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                                                                    <span>Edit</span>
+                                                                </a>
+                                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                                                    <span>Delete</span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        2
+                                                    </td>
+                                                    <td>Harvig</td>
+                                                    <td>
+                                                        KDP
+                                                    </td>
+                                                    <td>3/30/2020</td>
+                                                    <td>4.00</td>
+                                                    <td>3/30/2020</td>
+                                                    <td>79</td>
+                                                    <td>4/9/2020</td>
+                                                    <td>0</td>
+                                                    <td>79</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button type="button" class="btn btn-sm dropdown-toggle hide-arrow waves-effect waves-float waves-light" data-toggle="dropdown">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#inlineForm">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                                                                    <span>Update</span>
+                                                                </a>
+                                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                                                    <span>Delete</span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-----------Modal End-------->

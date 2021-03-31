@@ -1,0 +1,203 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_AdminLayout";
+}
+@model IEnumerable<UserListVM>
+<!-- BEGIN: Content-->
+<div>
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-body">
+            <!-- Basic table -->
+            <section id="basic-datatable">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">User Roles</h4>
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <table class="datatables-basic table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>User Name</th>
+                                                <th>Display Name</th>
+                                                <th>Address</th>
+                                                <th>Telephone</th>
+                                                <th>Authorize</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.Any())
+                                            {
+                                                foreach (var user in Model)
+                                                {
+                                                    <tr>
+                                                        <td class="@user.userId">@user.userName</td>
+                                                        <td class="@user.firstName">@user.firstName @user.lastName</td>
+                                                        <td>@user.address,@user.state,@user.city,@user.zipCode</td>
+                                                        <td>@user.phoneNumber</td>
+                                                        <td>@user.authorize</td>
+                                                        <td>
+
+                                                            <div class="dropdown">
+                                                                <button type="button" class="btn btn-sm dropdown-toggle hide-arrow waves-effect waves-float waves-light" data-toggle="dropdown">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#inlineForm" id="editUser">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                                                                        <span>Edit</span>
+                                                                    </a>
+                                                                    <a class="dropdown-item" href="/home/deleteUser/?userId=@user.userId">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                                                        <span>Delete</span>
+                                                                    </a>
+                                                                    <a class="dropdown-item" href="/home/addRoles/@user.userId">
+
+                                                                        <span>Manage Roles</span>
+                                                                    </a>
+
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal to add new record -->
+            </section>
+            <!--/ Basic table -->
+            <div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header " style="background-color: #2FA4E7;">
+                            <h4 class="modal-title text-white" id="myModalLabel33">Edit User</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>                      
+                        <div class="modal-body">
+                            <div>
+                                <a href="#" id="userCredentials" class="btn btn-sm btn-warning btn-block p-1 mt-1">
+                                    Change User Credentials
+                                </a>
+                                <form class="auth-register-form mt-2" method="post" asp-action="updateUser" asp-controller="home">
+                                    <input type="text" name="userId" id="userId" hidden />
+                                    <input type="text" id="userName" name="userName" hidden />
+                                    <div class="row">
+                                        <div class="col-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="basic-addon-name">First Name</label>
+                                                <input type="text" class="form-control" name="firstName" id="firstName" placeholder=" First Name" aria-label="Name" aria-describedby="basic-addon-name" required="">
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter your name.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="basic-addon-name"> Last Name</label>
+                                                <input type="text" class="form-control" name="lastName" id="lastName" placeholder=" Last Name" aria-label="Name" aria-describedby="basic-addon-name" required="">
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter your name.</div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="basic-addon-name">Address</label>
+                                                <input type="text" class="form-control" name="address" id="address" placeholder=" Address" aria-label="Name" aria-describedby="basic-addon-name" required="">
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter your name.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="basic-addon-name"> City</label>
+                                                <input type="text" class="form-control" name="city" id="city" placeholder=" City" aria-label="Name" aria-describedby="basic-addon-name" required="">
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter your name.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="basic-addon-name"> State</label>
+                                                <input type="text" class="form-control" name="state" id="state" placeholder=" State" aria-label="Name" aria-describedby="basic-addon-name" required="">
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter your name.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="basic-addon-name"> Phone Number</label>
+                                                <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder=" Phone Number" aria-label="Name" aria-describedby="basic-addon-name" required="">
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter your name.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="basic-addon-name"> Zip Code</label>
+                                                <input type="text" class="form-control" name="zipCode" id="zipCode" placeholder=" Zip Code" aria-label="Name" aria-describedby="basic-addon-name" required="">
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter your name.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-sm btn-primary p-1 float-right" id="RegisterUser">Save Changes</button>
+                                            <button type="reset" class="btn btn-sm btn-danger p-1 mr-1 float-right">Cancel</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END: Content-->
+@section Scripts{
+    <script>
+        $("#editUser").click(function () {
+            var userData = $(this).parents('tr').find('td');
+            var userName = userData[0].innerHTML;
+            var userId = userData[0].className.split(" ");
+            var lastName = (userData[1].innerHTML).replace(userData[1].className, "");
+            var firstName = userData[1].className;
+            var adr = (userData[2].innerHTML).split(',');
+            var address = adr[0];
+            var state = adr[1];
+            var city = adr[2];
+            var zipCode = adr[3];
+            var phoneNumber = userData[3].innerHTML;
+            var newUrl = "/home/ChangeCredentials/?userId=" + userId[0];
+            $("#userCredentials").attr("href", newUrl);
+            $("#userName").val(userName);
+            $("#firstName").val(firstName);
+            $("#lastName").val(lastName);
+            $("#address").val(address);
+            $("#state").val(state);
+            $("#city").val(city);
+            $("#zipCode").val(zipCode);
+            $("#userId").val(userId);
+            $("#phoneNumber").val(phoneNumber);
+        })
+    </script>
+}

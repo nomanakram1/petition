@@ -1,0 +1,220 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_AdminLayout";
+}
+<div class="content-wrapper">
+    <div class="content-body">
+        <!-- Basic Vertical form layout section start -->
+        <section id="basic-vertical-layouts">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                Manage Circulators
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="alert alert-primary" role="alert">
+                                        <div class="alert-body">
+                                            Edit a circulator's contact informaton by clicking on the 'edit' link. You can change the circulator's status while you are in the edit screen.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-lg-12 col-xl-10">
+                                    <div class="row">
+                                        <div class="col-6 col-lg-4 d-flex px-0 pl-sm-1 pr-0 mt-1">
+                                            <span class="float-right text-right">Select a Circulator :</span>
+                                        </div>
+                                        <div class="col-6 col-lg-5 mt-1">
+                                            <select class="form-control form-control-sm" id="basicSelect">
+                                                <option>Thor Ragnarok</option>
+                                                <option>IT</option>
+                                                <option>Blade Runner</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-12 col-lg-2 p-lg-0 d-lg-flex mt-1">
+                                            <button type="button" class="btn btn-sm btn-primary flexCenter float-right">Go</button>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                              
+                            </div>
+
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <table class="datatables-basic table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th>id</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Date</th>
+                                                <th>Salary</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                Create Circulator
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-4 d-flex px-0 ">
+                                            <span class="float-right text-right">Select a Circulator :</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <select class="form-control form-control-sm" id="basicSelect">
+                                                <option>Thor Ragnarok</option>
+                                                <option>IT</option>
+                                                <option>Blade Runner</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-2 d-flex px-0 ">
+                                            <button type="button" class="btn btn-sm btn-primary flexCenter">Go</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-4 d-flex pr-0 pl-lg-1">
+                                    <span class="float-right text-right">Select :</span>
+                                </div>
+                                <div class="col-6">
+                                    <select class="form-control form-control-sm" id="basicSelect">
+                                        <option>Thor Ragnarok</option>
+                                        <option>IT</option>
+                                        <option>Blade Runner</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 mt-1">
+                                    <div class="row">
+                                        <div class="col-4 d-flex pr-0">
+                                            <span class="float-right text-right">First Name :</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control form-control-sm" placeholder="First Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mt-1">
+                                    <div class="row">
+                                        <div class="col-4 d-flex pr-0">
+                                            <span class="float-right text-right">Last Name :</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control form-control-sm" placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mt-1">
+                                    <div class="row">
+                                        <div class="col-4 d-flex pr-0">
+                                            <span class="float-right text-right">Address :</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control form-control-sm" placeholder="Address">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mt-1">
+                                    <div class="row">
+                                        <div class="col-4 d-flex pr-0">
+                                            <span class="float-right text-right">City :</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control form-control-sm" placeholder="City">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mt-1">
+                                    <div class="row">
+                                        <div class="col-4 d-flex pr-0">
+                                            <span class="float-right text-right">State :</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control form-control-sm" placeholder="State">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mt-1">
+                                    <div class="row">
+                                        <div class="col-4 d-flex pr-0">
+                                            <span class="float-right text-right">Zip :</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control form-control-sm" placeholder="5 or 9 digits">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mt-1">
+                                    <div class="row">
+                                        <div class="col-4 d-flex pr-0">
+                                            <span class="float-right text-right">Cell :</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control form-control-sm" placeholder="(xxx)xxx-xxxx">
+                                        </div>
+                                    </div>
+                                </div>                      
+                                <div class="col-sm-12 mt-1">
+                                    <button class=" btn btn-sm btn-primary float-right">Add Circulator</button>
+                                </div>
+                            </div>
+                            </div>
+
+
+                           
+                        </div>
+                    </div>
+            </div>            
+        </section>
+        <!-- Basic Vertical form layout section end -->
+    </div>
+</div>
