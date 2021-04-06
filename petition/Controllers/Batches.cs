@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using petition.DataLayer;
+using petition.DB;
 using petition.Models;
 using petition.Models.DbModel;
 using petition.Models.ViewModels;
@@ -21,7 +22,6 @@ namespace petition.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IPetetionDL petetion;
-
         public BatchesController(AppDbContext context, IBatchDL _batch, UserManager<ApplicationIdentityUser> userManager, ILogger<HomeController> logger, RoleManager<IdentityRole> roleManager, IPetetionDL _petetion)
         {
             this.context = context;
@@ -121,7 +121,29 @@ namespace petition.Controllers
             
             return RedirectToAction("createBatches", "batches");
         }
+        [HttpPost]
+        public async Task<ActionResult> addcirculator(KpmUser user)
+        {
+            var percent = await _userManager.FindByNameAsync(User.Identity.Name);
+            user.DateEntered = DateTime.Now;
+            var commandText = "INSERT INTO dbo.KpmUsers(kpmusertype, firstname, lastname, dateentered, enteredby, coordassigned, displayname, addr, city, state, zip, telephone, status) VALUES('" + user.KpmuserType + "', '" + user.FirstName + "', '" + user.LastName + "', '" + user.DateEntered + "', '" + percent.UserName + "', '" + user.CoordAssigned + "', '" + user.DisplayName + "', '" + user.Addr + "', '" + user.City + "', '" + user.State + "', '" + user.Zip + "', '" + user.Telephone + "', '" + user.Status + "')";
+            try
+            {
+                var result = context.Database.ExecuteSqlRaw(commandText);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("addDeleteCirculer", "Batches");
+            }
 
+            return RedirectToAction("addDeleteCirculer", "Batches");
+        }
+        public ActionResult getcirculator(string id)
+        {
+            var commandText = "SELECT DISTINCT firstname, lastname,  kpmuserID, coordassigned, displayname, addr, city, state, zip, telephone, status FROM kpmUsers where kpmusertype= 'KPM Circulator' and coordassigned= '" + id + "' and status= 'active' order by lastname";
+            var result = context.GetCirculator.FromSqlRaw(commandText).ToList();
+            return Ok(result);
+        }
 
         /// get batches using petitionId and cordinatorId
         public ActionResult getBatches(string KPMUserId, int PetitionId)
@@ -135,8 +157,37 @@ namespace petition.Controllers
             var result = batch.DeleteBatche(Id);
             return RedirectToAction("updateBatchesStatus","Batches");
         }
-        public IActionResult addDeleteCirculer()
+        public async Task<IActionResult> addDeleteCirculer()
         {
+            var users = await _userManager.GetUsersInRoleAsync("User");
+            List<UserListVM> userList = new List<UserListVM>();
+            if (users.Any())
+            {
+                foreach (var user in users)
+                {
+                    userList.Add(new UserListVM
+                    {
+                        userId = user.Id,
+                        userName = user.UserName,
+                        firstName = user.FirstName,
+                        lastName = user.LastName,
+                        address = user.Address,
+                        zipCode = user.ZipCode,
+                        state = user.State,
+                        city = user.City,
+                        phoneNumber = user.PhoneNumber,
+                        authorize = user.Authorize,
+                        email = user.Email
+                    });
+                }
+                createBatchVM data = new createBatchVM();
+                if (userList != null)
+                {
+                    data.users = userList;
+                }
+
+                return View(data);
+            }
             return View();
         }
         public IActionResult editPurgeCount()

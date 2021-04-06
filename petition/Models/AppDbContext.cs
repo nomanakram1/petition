@@ -20,10 +20,6 @@ namespace petition.Models
         public DbSet<UserRole> userRoles { get; set; }
         public  DbSet<Batch> Batches { get; set; }
         public  DbSet<BatchDetail> BatchDetails { get; set; }
-        public  DbSet<BatchDetail2007> BatchDetail2007s { get; set; }
-        public  DbSet<BatchDetail2020> BatchDetail2020s { get; set; }
-        public  DbSet<Batches2007> Batches2007s { get; set; }
-        public  DbSet<Batches2020> Batches2020s { get; set; }
         public  DbSet<City> Cities { get; set; }
         public  DbSet<CityVoter> CityVoters { get; set; }
         public  DbSet<Cntybad> Cntybads { get; set; }
@@ -38,7 +34,6 @@ namespace petition.Models
         public  DbSet<CoordDup> CoordDups { get; set; }
         public  DbSet<CoordSummary> CoordSummaries { get; set; }
         public  DbSet<CoordUpdate> CoordUpdates { get; set; }
-        public  DbSet<CoordUpdates2007> CoordUpdates2007s { get; set; }
         public  DbSet<Coordinator> Coordinators { get; set; }
         public  DbSet<County> Counties { get; set; }
         public  DbSet<CountyTotalsView> CountyTotalsViews { get; set; }
@@ -46,9 +41,6 @@ namespace petition.Models
         public  DbSet<KpmCoordUpdate> KpmCoordUpdates { get; set; }
         public  DbSet<KpmUser> KpmUsers { get; set; }
         public  DbSet<KpmUserTransferTable> KpmUserTransferTables { get; set; }
-        public  DbSet<KpmUsers2009Blended> KpmUsers2009Blendeds { get; set; }
-        public  DbSet<KpmUsers2019Bck> KpmUsers2019Bcks { get; set; }
-        public  DbSet<KpmUsers2020> KpmUsers2020s { get; set; }
         public  DbSet<KpmUsersBck> KpmUsersBcks { get; set; }
         public  DbSet<KpmUsersEmpty> KpmUsersEmpties { get; set; }
         public  DbSet<KpmUsersSav> KpmUsersSavs { get; set; }
@@ -56,9 +48,7 @@ namespace petition.Models
         public  DbSet<KpmcircReportSubmitted> KpmcircReportSubmitteds { get; set; }
         public  DbSet<Petition> Petitions { get; set; }
         public  DbSet<PetitionSummary> PetitionSummaries { get; set; }
-        public  DbSet<PetitionSummaryOld> PetitionSummaryOlds { get; set; }
         public  DbSet<PetitionSummarySubmitted> PetitionSummarySubmitteds { get; set; }
-        public  DbSet<Petitions2007> Petitions2007s { get; set; }
         public  DbSet<Tempcount> Tempcounts { get; set; }
         public  DbSet<Temptable> Temptables { get; set; }
         public  DbSet<Totalupdate> Totalupdates { get; set; }
@@ -70,14 +60,7 @@ namespace petition.Models
         public  DbSet<Validatortotalsall> Validatortotalsalls { get; set; }
         public  DbSet<Voter> Voters { get; set; }
         public  DbSet<VoterDup> VoterDups { get; set; }
-        public  DbSet<VoterDupView> VoterDupViews { get; set; }
-        public  DbSet<VoterDups2007> VoterDups2007s { get; set; }
-        public  DbSet<VoterDups2020> VoterDups2020s { get; set; }
-        public  DbSet<VoterDupsback> VoterDupsbacks { get; set; }
         public  DbSet<VoterRecord> VoterRecords { get; set; }
-        public  DbSet<VoterRecord2007> VoterRecord2007s { get; set; }
-        public  DbSet<VoterRecord2020> VoterRecord2020s { get; set; }
-        public  DbSet<VoterRecordView> VoterRecordViews { get; set; }
         public  DbSet<VwBadDetailByEntryId> VwBadDetailByEntryIds { get; set; }
         public  DbSet<VwBatchesNotReceived> VwBatchesNotReceiveds { get; set; }
         public  DbSet<VwGoodDetailByEntryId> VwGoodDetailByEntryIds { get; set; }
@@ -90,6 +73,7 @@ namespace petition.Models
 
         public DbSet<GetPetetion> GetPetetion { get; set; }
         public DbSet<GetBatches> GetBatches { get; set; }
+        public DbSet<GetCirculator> GetCirculator { get; set; }
 
     }
 }

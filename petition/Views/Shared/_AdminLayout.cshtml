@@ -162,7 +162,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a id="homePetition" class="d-flex align-items-center" href="/home/petitions"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="Account Settings">Petition</span></a>
+                            <a id="homePetition" class="d-flex align-items-center" asp-controller="home" asp-action="petitions"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="Account Settings">Petition</span></a>
                         </li>
                         <li class="has-sub" style="">
                             <a class="d-flex align-items-center" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="Authentication">Managers Users</span></a>
@@ -281,11 +281,9 @@
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static footer-light">
         <p class="clearfix blue-grey lighten-2 mb-0">
-            <span class="float-md-left d-block d-md-inline-block mt-25">
+            <span class="text-center d-block d-md-inline-block mt-25">
                 COPYRIGHT &copy; 2019<a class="text-bold-800 grey darken-2" href="https://mercurysols.org/"
                                         target="_blank">Mercurysols,</a>All rights Reserved
-            </span><span class="float-md-right d-none d-md-block">
-                Hand-crafted & Made with<i class="feather icon-heart pink"></i>
             </span>
             <button class="btn btn-primary btn-icon scroll-top" type="button">
                 <i class="feather icon-arrow-up"></i>
