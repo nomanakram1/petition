@@ -4,6 +4,7 @@
 @{
     Layout = "_AdminLayout";
 }
+@model createBatchVM
 <div class="content-wrapper">
     <div class="content-body">
         <!-- Basic Vertical form layout section start -->
@@ -28,63 +29,42 @@
                                 <div class="col-sm-12 col-lg-12 col-xl-10">
                                     <div class="row">
                                         <div class="col-6 col-lg-4 d-flex px-0 pl-sm-1 pr-0 mt-1">
-                                            <span class="float-right text-right">Select a Circulator :</span>
+                                            <span class="float-right text-right">Select a Coordinator :</span>
                                         </div>
                                         <div class="col-6 col-lg-5 mt-1">
-                                            <select class="form-control form-control-sm" id="basicSelect">
-                                                <option>Thor Ragnarok</option>
-                                                <option>IT</option>
-                                                <option>Blade Runner</option>
+                                            <select class="form-control form-control-sm cordcirculator" id="basicSelect">
+                                                @if (Model.users != null)
+                                                {
+                                                    foreach (var u in Model.users)
+                                                    {
+                                                        <option value="@u.userId">@u.userName</option>
+                                                    }
+                                                }
                                             </select>
                                         </div>
                                         <div class="col-md-12 col-lg-2 p-lg-0 d-lg-flex mt-1">
-                                            <button type="button" class="btn btn-sm btn-primary flexCenter float-right">Go</button>
+                                            <button type="button" id="showcirculator" class="btn btn-sm btn-primary flexCenter float-right">Go</button>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
-                              
+
                             </div>
 
-                            <div class="row mt-1">
+                            <div class="row mt-1 circulatorTable" style="display: none">
                                 <div class="col-12">
-                                    <table class="datatables-basic table">
+                                    <table class="table" id="circulatorlist">
                                         <thead>
                                             <tr>
                                                 <th></th>
-                                                <th></th>
-                                                <th>id</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Date</th>
-                                                <th>Salary</th>
-                                                <th>Status</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Display Name</th>
                                                 <th>Action</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -104,13 +84,17 @@
                                 <div class="col-12">
                                     <div class="row">
                                         <div class="col-4 d-flex px-0 ">
-                                            <span class="float-right text-right">Select a Circulator :</span>
+                                            <span class="float-right text-right">Select a Coordinator :</span>
                                         </div>
                                         <div class="col-6">
-                                            <select class="form-control form-control-sm" id="basicSelect">
-                                                <option>Thor Ragnarok</option>
-                                                <option>IT</option>
-                                                <option>Blade Runner</option>
+                                            <select class="form-control form-control-sm coordinator" id="basicSelect">
+                                                @if (Model.users != null)
+                                                {
+                                                    foreach (var u in Model.users)
+                                                    {
+                                                        <option value="@u.userId">@u.userName</option>
+                                                    }
+                                                }
                                             </select>
                                         </div>
                                         <div class="col-2 d-flex px-0 ">
@@ -119,7 +103,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-1">
+                            @*<div class="row mt-1">
                                 <div class="col-4 d-flex pr-0 pl-lg-1">
                                     <span class="float-right text-right">Select :</span>
                                 </div>
@@ -131,7 +115,7 @@
                                     </select>
                                 </div>
 
-                            </div>
+                            </div>*@
                             <div class="row">
                                 <div class="col-sm-12 mt-1">
                                     <div class="row">
@@ -139,7 +123,7 @@
                                             <span class="float-right text-right">First Name :</span>
                                         </div>
                                         <div class="col-6">
-                                            <input type="text" class="form-control form-control-sm" placeholder="First Name">
+                                            <input type="text" id="first_name" class="form-control form-control-sm" placeholder="First Name">
                                         </div>
                                     </div>
                                 </div>
@@ -149,7 +133,7 @@
                                             <span class="float-right text-right">Last Name :</span>
                                         </div>
                                         <div class="col-6">
-                                            <input type="text" class="form-control form-control-sm" placeholder="Last Name">
+                                            <input type="text" id="last_name" class="form-control form-control-sm" placeholder="Last Name">
                                         </div>
                                     </div>
                                 </div>
@@ -159,7 +143,7 @@
                                             <span class="float-right text-right">Address :</span>
                                         </div>
                                         <div class="col-6">
-                                            <input type="text" class="form-control form-control-sm" placeholder="Address">
+                                            <input type="text" id="address" class="form-control form-control-sm" placeholder="Address">
                                         </div>
                                     </div>
                                 </div>
@@ -169,7 +153,7 @@
                                             <span class="float-right text-right">City :</span>
                                         </div>
                                         <div class="col-6">
-                                            <input type="text" class="form-control form-control-sm" placeholder="City">
+                                            <input type="text" id="city" class="form-control form-control-sm" placeholder="City">
                                         </div>
                                     </div>
                                 </div>
@@ -179,7 +163,7 @@
                                             <span class="float-right text-right">State :</span>
                                         </div>
                                         <div class="col-6">
-                                            <input type="text" class="form-control form-control-sm" placeholder="State">
+                                            <input type="text" id="state" class="form-control form-control-sm" placeholder="State">
                                         </div>
                                     </div>
                                 </div>
@@ -189,7 +173,7 @@
                                             <span class="float-right text-right">Zip :</span>
                                         </div>
                                         <div class="col-6">
-                                            <input type="text" class="form-control form-control-sm" placeholder="5 or 9 digits">
+                                            <input type="text" id="zip" class="form-control form-control-sm" placeholder="5 or 9 digits">
                                         </div>
                                     </div>
                                 </div>
@@ -199,22 +183,102 @@
                                             <span class="float-right text-right">Cell :</span>
                                         </div>
                                         <div class="col-6">
-                                            <input type="text" class="form-control form-control-sm" placeholder="(xxx)xxx-xxxx">
+                                            <input type="text" id="phone" class="form-control form-control-sm" placeholder="(xxx)xxx-xxxx">
                                         </div>
                                     </div>
-                                </div>                      
+                                </div>
                                 <div class="col-sm-12 mt-1">
-                                    <button class=" btn btn-sm btn-primary float-right">Add Circulator</button>
+                                    <button class=" btn btn-sm btn-primary float-right" id="add_circulator">Add Circulator</button>
                                 </div>
                             </div>
-                            </div>
-
-
-                           
                         </div>
+
+
+
                     </div>
-            </div>            
+                </div>
+            </div>
         </section>
         <!-- Basic Vertical form layout section end -->
     </div>
 </div>
+@section Scripts {
+    <script>
+        var table = $('#circulatorlist');
+
+        table.DataTable({
+            responsive: true,
+            "info": false,
+            columns: [
+                { data: '', searchable: false },
+                { data: 'First Name' },
+                { data: 'Last Name' },
+                { data: 'Display Name' },
+                { data: 'Action'},
+                { data: 'Status' },
+            ],
+            order: [2, "desc"],
+        });
+        $("#showcirculator").click(function () {
+            $(".circulatorTable").show();
+            var data = {
+                'id': $(".cordcirculator").find(":selected").val(),
+            }
+            $.ajax({
+                url: "/batches/getcirculator",
+                type: "Get",
+                data: data,
+                success: function (res) {
+                    var table = $('#circulatorlist').DataTable();
+                    table.clear();
+                    res.map(element => {
+                        var obj = {
+                            "": '',
+                            "First Name": element["firstname"],
+                            "Last Name": element["lastname"],
+                            "Display Name": element["displayname"],
+                            "Status": element["status"],
+                            "Action": `<a href="#" id="editUser" data-toggle="modal" data-target="#exampleModalCenter">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                                        </a>`,
+                        }
+                        table.row.add(obj).draw();
+                    })
+                    table.responsive.recalc()
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        })
+        $("#add_circulator").click(function () {
+            console.log("addfunction");
+            var petetionId = $(".Selectpetition").find(":selected").val();
+            petetionId = parseInt(petetionId);
+            var data = {
+                'KpmuserType': 'KPM Circulator',
+                'FirstName': $("#first_name").val(),
+                'LastName': $("#last_name").val(),
+                'CoordAssigned': $(".coordinator").find(":selected").val(),
+                'DisplayName': $("#last_name").val() + ", " + $("#first_name").val(),
+                'Addr': $("#address").val(),
+                'City': $("#city").val(),
+                'State': $("#state").val(),
+                'Zip': $("#zip").val(),
+                'Telephone': $("#phone").val(),
+                'Status': "Active"
+            }
+            console.log(JSON.stringify(data));
+            $.ajax({
+                url: "/batches/addcirculator",
+                type: "Post",
+                data: data,
+                success: function (res) {
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
+}

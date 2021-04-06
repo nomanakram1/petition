@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace petition.Migrations
 {
-    public partial class addbatchTblPK : Migration
+    public partial class new1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,70 +52,6 @@ namespace petition.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "BatchDetail2007s",
-                columns: table => new
-                {
-                    BatchId = table.Column<int>(type: "int", nullable: false),
-                    Circid = table.Column<int>(type: "int", nullable: false),
-                    Circfullname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Circinitsigs = table.Column<int>(type: "int", nullable: false),
-                    Entryid = table.Column<int>(type: "int", nullable: false),
-                    Circrawcount = table.Column<int>(type: "int", nullable: true),
-                    PcInitials = table.Column<int>(type: "int", nullable: true),
-                    PcPobox = table.Column<int>(type: "int", nullable: true),
-                    PcDiffCounty = table.Column<int>(type: "int", nullable: true),
-                    PcIncomAddr = table.Column<int>(type: "int", nullable: true),
-                    PcAddrIllegOrCopy = table.Column<int>(type: "int", nullable: true),
-                    PcSigPrintedOrPrintIlleg = table.Column<int>(type: "int", nullable: true),
-                    PcNameTwiceNoSig = table.Column<int>(type: "int", nullable: true),
-                    PcHwsignForOther = table.Column<int>(type: "int", nullable: true),
-                    PcWomanSignMrsHusbandFname = table.Column<int>(type: "int", nullable: true),
-                    PcForgery = table.Column<int>(type: "int", nullable: true),
-                    PcIncomDeclCirc = table.Column<int>(type: "int", nullable: true),
-                    PcRubStampUsed = table.Column<int>(type: "int", nullable: true),
-                    PcPencilUsed = table.Column<int>(type: "int", nullable: true),
-                    PcDupSig = table.Column<int>(type: "int", nullable: true),
-                    PcWhiteOut = table.Column<int>(type: "int", nullable: true),
-                    PcOther = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                });
-
-            migrationBuilder.CreateTable(
-                name: "BatchDetail2020s",
-                columns: table => new
-                {
-                    BatchId = table.Column<int>(type: "int", nullable: false),
-                    Circid = table.Column<int>(type: "int", nullable: false),
-                    Circfullname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Circinitsigs = table.Column<int>(type: "int", nullable: false),
-                    Entryid = table.Column<int>(type: "int", nullable: false),
-                    Circrawcount = table.Column<int>(type: "int", nullable: true),
-                    PcInitials = table.Column<int>(type: "int", nullable: true),
-                    PcPobox = table.Column<int>(type: "int", nullable: true),
-                    PcDiffCounty = table.Column<int>(type: "int", nullable: true),
-                    PcIncomAddr = table.Column<int>(type: "int", nullable: true),
-                    PcAddrIllegOrCopy = table.Column<int>(type: "int", nullable: true),
-                    PcSigPrintedOrPrintIlleg = table.Column<int>(type: "int", nullable: true),
-                    PcNameTwiceNoSig = table.Column<int>(type: "int", nullable: true),
-                    PcHwsignForOther = table.Column<int>(type: "int", nullable: true),
-                    PcWomanSignMrsHusbandFname = table.Column<int>(type: "int", nullable: true),
-                    PcForgery = table.Column<int>(type: "int", nullable: true),
-                    PcIncomDeclCirc = table.Column<int>(type: "int", nullable: true),
-                    PcRubStampUsed = table.Column<int>(type: "int", nullable: true),
-                    PcPencilUsed = table.Column<int>(type: "int", nullable: true),
-                    PcDupSig = table.Column<int>(type: "int", nullable: true),
-                    PcWhiteOut = table.Column<int>(type: "int", nullable: true),
-                    PcOther = table.Column<int>(type: "int", nullable: true),
-                    BatchStatus = table.Column<int>(type: "int", nullable: false),
-                    CircNewReg = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
                 });
 
             migrationBuilder.CreateTable(
@@ -179,56 +115,6 @@ namespace petition.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Batches", x => x.BatchId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Batches2007s",
-                columns: table => new
-                {
-                    DateAssgBatch = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BatchId = table.Column<int>(type: "int", nullable: false),
-                    KpmuserId = table.Column<int>(type: "int", nullable: false),
-                    KpmuserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PetitionId = table.Column<int>(type: "int", nullable: false),
-                    DateReceivedBatch = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    SigValue = table.Column<short>(type: "smallint", nullable: true),
-                    Enteredby = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    InitialCount = table.Column<int>(type: "int", nullable: true),
-                    RawCount = table.Column<int>(type: "int", nullable: true),
-                    PurgedCount = table.Column<int>(type: "int", nullable: true),
-                    DateSubmitted = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    SubmittedCount = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Batches2020s",
-                columns: table => new
-                {
-                    DateAssgBatch = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BatchId = table.Column<int>(type: "int", nullable: false),
-                    KpmuserId = table.Column<int>(type: "int", nullable: false),
-                    KpmuserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PetitionId = table.Column<int>(type: "int", nullable: false),
-                    DateReceivedBatch = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    SigValue = table.Column<short>(type: "smallint", nullable: true),
-                    Enteredby = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    InitialCount = table.Column<int>(type: "int", nullable: true),
-                    RawCount = table.Column<int>(type: "int", nullable: true),
-                    PurgedCount = table.Column<int>(type: "int", nullable: true),
-                    DateSubmitted = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    SubmittedCount = table.Column<int>(type: "int", nullable: true),
-                    RawComplete = table.Column<bool>(type: "bit", nullable: false),
-                    ProcessingComplete = table.Column<bool>(type: "bit", nullable: false),
-                    ValidationComplete = table.Column<bool>(type: "bit", nullable: false),
-                    ChargeBackDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ChargeBackCount = table.Column<int>(type: "int", nullable: false),
-                    SigAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
-                },
-                constraints: table =>
-                {
                 });
 
             migrationBuilder.CreateTable(
@@ -503,21 +389,6 @@ namespace petition.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CoordUpdates2007s",
-                columns: table => new
-                {
-                    Dateentered = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    PetitionId = table.Column<int>(type: "int", nullable: false),
-                    Batchid = table.Column<int>(type: "int", nullable: false),
-                    Voterid = table.Column<int>(type: "int", nullable: false),
-                    Enteredby = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    County = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Counties",
                 columns: table => new
                 {
@@ -553,6 +424,29 @@ namespace petition.Migrations
                     County = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Countdate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Petitionid = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GetBatches",
+                columns: table => new
+                {
+                    DateAssgBatch = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BatchId = table.Column<int>(type: "int", nullable: false),
+                    KpmuserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Lastname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Petitionname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateReceivedBatch = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    SigValue = table.Column<short>(type: "smallint", nullable: true),
+                    RawCount = table.Column<int>(type: "int", nullable: true),
+                    PurgedCount = table.Column<int>(type: "int", nullable: true),
+                    DateSubmitted = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    SubmittedCount = table.Column<int>(type: "int", nullable: true),
+                    ChargeBackDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ChargeBackCount = table.Column<int>(type: "int", nullable: false),
+                    SigAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -659,15 +553,16 @@ namespace petition.Migrations
                 name: "KpmUsers",
                 columns: table => new
                 {
-                    KpmuserId = table.Column<int>(type: "int", nullable: false),
+                    KpmuserId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     KpmuserType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Enteredby = table.Column<int>(type: "int", nullable: false),
+                    Enteredby = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateEntered = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DateModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DnnUserId = table.Column<int>(type: "int", nullable: true),
-                    CoordAssigned = table.Column<int>(type: "int", nullable: true),
+                    DnnUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CoordAssigned = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Addr = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -675,88 +570,11 @@ namespace petition.Migrations
                     Zip = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Telephone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DnnuserIdOld = table.Column<int>(type: "int", nullable: true)
+                    DnnuserIdOld = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                });
-
-            migrationBuilder.CreateTable(
-                name: "KpmUsers2009Blendeds",
-                columns: table => new
-                {
-                    KpmuserId = table.Column<int>(type: "int", nullable: false),
-                    KpmuserType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Enteredby = table.Column<int>(type: "int", nullable: false),
-                    DateEntered = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DnnUserId = table.Column<int>(type: "int", nullable: true),
-                    CoordAssigned = table.Column<int>(type: "int", nullable: true),
-                    DisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Addr = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Zip = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Telephone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DnnuserIdOld = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                });
-
-            migrationBuilder.CreateTable(
-                name: "KpmUsers2019Bcks",
-                columns: table => new
-                {
-                    KpmuserId = table.Column<int>(type: "int", nullable: false),
-                    KpmuserType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Enteredby = table.Column<int>(type: "int", nullable: false),
-                    DateEntered = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DnnUserId = table.Column<int>(type: "int", nullable: true),
-                    CoordAssigned = table.Column<int>(type: "int", nullable: true),
-                    DisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Addr = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Zip = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Telephone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DnnuserIdOld = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                });
-
-            migrationBuilder.CreateTable(
-                name: "KpmUsers2020s",
-                columns: table => new
-                {
-                    KpmuserId = table.Column<int>(type: "int", nullable: false),
-                    KpmuserType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Enteredby = table.Column<int>(type: "int", nullable: false),
-                    DateEntered = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DnnUserId = table.Column<int>(type: "int", nullable: true),
-                    CoordAssigned = table.Column<int>(type: "int", nullable: true),
-                    DisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Addr = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Zip = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Telephone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DnnuserIdOld = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
+                    table.PrimaryKey("PK_KpmUsers", x => x.KpmuserId);
                 });
 
             migrationBuilder.CreateTable(
@@ -869,36 +687,7 @@ namespace petition.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Petitions2007s",
-                columns: table => new
-                {
-                    Petitiondescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Petitionname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateEntered = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PetitionId = table.Column<int>(type: "int", nullable: false),
-                    DateReceived = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    EnteredBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PetitionSummaries",
-                columns: table => new
-                {
-                    Petitionid = table.Column<int>(type: "int", nullable: true),
-                    Batchid = table.Column<int>(type: "int", nullable: true),
-                    Batchinitcount = table.Column<int>(type: "int", nullable: true),
-                    Batchrawcount = table.Column<int>(type: "int", nullable: true),
-                    Batchpurgecount = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PetitionSummaryOlds",
                 columns: table => new
                 {
                     Petitionid = table.Column<int>(type: "int", nullable: true),
@@ -1085,106 +874,6 @@ namespace petition.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "VoterDups2007s",
-                columns: table => new
-                {
-                    PetitionId = table.Column<int>(type: "int", nullable: false),
-                    BatchId = table.Column<int>(type: "int", nullable: false),
-                    Dateentered = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    VoterId = table.Column<int>(type: "int", nullable: false),
-                    Enteredby = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Recordid = table.Column<int>(type: "int", nullable: false),
-                    County = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Circid = table.Column<int>(type: "int", nullable: false),
-                    Batchentryid = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                });
-
-            migrationBuilder.CreateTable(
-                name: "VoterDups2020s",
-                columns: table => new
-                {
-                    PetitionId = table.Column<int>(type: "int", nullable: false),
-                    BatchId = table.Column<int>(type: "int", nullable: false),
-                    Dateentered = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    VoterId = table.Column<int>(type: "int", nullable: false),
-                    Enteredby = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Recordid = table.Column<int>(type: "int", nullable: false),
-                    County = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Circid = table.Column<int>(type: "int", nullable: false),
-                    Batchentryid = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                });
-
-            migrationBuilder.CreateTable(
-                name: "VoterDupsbacks",
-                columns: table => new
-                {
-                    PetitionId = table.Column<int>(type: "int", nullable: false),
-                    BatchId = table.Column<int>(type: "int", nullable: false),
-                    Dateentered = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    VoterId = table.Column<int>(type: "int", nullable: false),
-                    Enteredby = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Recordid = table.Column<int>(type: "int", nullable: false),
-                    County = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Circid = table.Column<int>(type: "int", nullable: false),
-                    Batchentryid = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                });
-
-            migrationBuilder.CreateTable(
-                name: "VoterDupViews",
-                columns: table => new
-                {
-                    Petitionname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    County = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Countycount = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                });
-
-            migrationBuilder.CreateTable(
-                name: "VoterRecord2007s",
-                columns: table => new
-                {
-                    Dateentered = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    PetitionId = table.Column<int>(type: "int", nullable: false),
-                    Batchid = table.Column<int>(type: "int", nullable: false),
-                    Voterid = table.Column<int>(type: "int", nullable: false),
-                    Enteredby = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    County = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Circid = table.Column<int>(type: "int", nullable: false),
-                    Batchentryid = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                });
-
-            migrationBuilder.CreateTable(
-                name: "VoterRecord2020s",
-                columns: table => new
-                {
-                    Dateentered = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    PetitionId = table.Column<int>(type: "int", nullable: false),
-                    Batchid = table.Column<int>(type: "int", nullable: false),
-                    Voterid = table.Column<int>(type: "int", nullable: false),
-                    Enteredby = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    County = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Circid = table.Column<int>(type: "int", nullable: false),
-                    Batchentryid = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                });
-
-            migrationBuilder.CreateTable(
                 name: "VoterRecords",
                 columns: table => new
                 {
@@ -1196,18 +885,6 @@ namespace petition.Migrations
                     County = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Circid = table.Column<int>(type: "int", nullable: false),
                     Batchentryid = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                });
-
-            migrationBuilder.CreateTable(
-                name: "VoterRecordViews",
-                columns: table => new
-                {
-                    Petitionname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    County = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Countycount = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1488,22 +1165,10 @@ namespace petition.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "BatchDetail2007s");
-
-            migrationBuilder.DropTable(
-                name: "BatchDetail2020s");
-
-            migrationBuilder.DropTable(
                 name: "BatchDetails");
 
             migrationBuilder.DropTable(
                 name: "Batches");
-
-            migrationBuilder.DropTable(
-                name: "Batches2007s");
-
-            migrationBuilder.DropTable(
-                name: "Batches2020s");
 
             migrationBuilder.DropTable(
                 name: "Cities");
@@ -1551,9 +1216,6 @@ namespace petition.Migrations
                 name: "CoordUpdates");
 
             migrationBuilder.DropTable(
-                name: "CoordUpdates2007s");
-
-            migrationBuilder.DropTable(
                 name: "Counties");
 
             migrationBuilder.DropTable(
@@ -1561,6 +1223,9 @@ namespace petition.Migrations
 
             migrationBuilder.DropTable(
                 name: "DailyReports");
+
+            migrationBuilder.DropTable(
+                name: "GetBatches");
 
             migrationBuilder.DropTable(
                 name: "GetPetetion");
@@ -1578,15 +1243,6 @@ namespace petition.Migrations
                 name: "KpmUsers");
 
             migrationBuilder.DropTable(
-                name: "KpmUsers2009Blendeds");
-
-            migrationBuilder.DropTable(
-                name: "KpmUsers2019Bcks");
-
-            migrationBuilder.DropTable(
-                name: "KpmUsers2020s");
-
-            migrationBuilder.DropTable(
                 name: "KpmUsersBcks");
 
             migrationBuilder.DropTable(
@@ -1602,13 +1258,7 @@ namespace petition.Migrations
                 name: "Petitions");
 
             migrationBuilder.DropTable(
-                name: "Petitions2007s");
-
-            migrationBuilder.DropTable(
                 name: "PetitionSummaries");
-
-            migrationBuilder.DropTable(
-                name: "PetitionSummaryOlds");
 
             migrationBuilder.DropTable(
                 name: "PetitionSummarySubmitteds");
@@ -1647,28 +1297,7 @@ namespace petition.Migrations
                 name: "VoterDups");
 
             migrationBuilder.DropTable(
-                name: "VoterDups2007s");
-
-            migrationBuilder.DropTable(
-                name: "VoterDups2020s");
-
-            migrationBuilder.DropTable(
-                name: "VoterDupsbacks");
-
-            migrationBuilder.DropTable(
-                name: "VoterDupViews");
-
-            migrationBuilder.DropTable(
-                name: "VoterRecord2007s");
-
-            migrationBuilder.DropTable(
-                name: "VoterRecord2020s");
-
-            migrationBuilder.DropTable(
                 name: "VoterRecords");
-
-            migrationBuilder.DropTable(
-                name: "VoterRecordViews");
 
             migrationBuilder.DropTable(
                 name: "Voters");

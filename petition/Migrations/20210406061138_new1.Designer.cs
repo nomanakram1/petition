@@ -10,8 +10,8 @@ using petition.Models;
 namespace petition.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210330071021_addbatchTblPK")]
-    partial class addbatchTblPK
+    [Migration("20210406061138_new1")]
+    partial class new1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -364,260 +364,6 @@ namespace petition.Migrations
                         .HasColumnType("int");
 
                     b.ToTable("BatchDetails");
-                });
-
-            modelBuilder.Entity("petition.DB.BatchDetail2007", b =>
-                {
-                    b.Property<int>("BatchId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Circfullname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Circid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Circinitsigs")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Circrawcount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Entryid")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcAddrIllegOrCopy")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcDiffCounty")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcDupSig")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcForgery")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcHwsignForOther")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcIncomAddr")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcIncomDeclCirc")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcInitials")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcNameTwiceNoSig")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcOther")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcPencilUsed")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcPobox")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcRubStampUsed")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcSigPrintedOrPrintIlleg")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcWhiteOut")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcWomanSignMrsHusbandFname")
-                        .HasColumnType("int");
-
-                    b.ToTable("BatchDetail2007s");
-                });
-
-            modelBuilder.Entity("petition.DB.BatchDetail2020", b =>
-                {
-                    b.Property<int>("BatchId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BatchStatus")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CircNewReg")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Circfullname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Circid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Circinitsigs")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Circrawcount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Entryid")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcAddrIllegOrCopy")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcDiffCounty")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcDupSig")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcForgery")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcHwsignForOther")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcIncomAddr")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcIncomDeclCirc")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcInitials")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcNameTwiceNoSig")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcOther")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcPencilUsed")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcPobox")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcRubStampUsed")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcSigPrintedOrPrintIlleg")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcWhiteOut")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PcWomanSignMrsHusbandFname")
-                        .HasColumnType("int");
-
-                    b.ToTable("BatchDetail2020s");
-                });
-
-            modelBuilder.Entity("petition.DB.Batches2007", b =>
-                {
-                    b.Property<int>("BatchId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateAssgBatch")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateReceivedBatch")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateSubmitted")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Enteredby")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("InitialCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("KpmuserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("KpmuserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PetitionId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PurgedCount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("RawCount")
-                        .HasColumnType("int");
-
-                    b.Property<short?>("SigValue")
-                        .HasColumnType("smallint");
-
-                    b.Property<int?>("SubmittedCount")
-                        .HasColumnType("int");
-
-                    b.ToTable("Batches2007s");
-                });
-
-            modelBuilder.Entity("petition.DB.Batches2020", b =>
-                {
-                    b.Property<int>("BatchId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ChargeBackCount")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ChargeBackDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateAssgBatch")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateReceivedBatch")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateSubmitted")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Enteredby")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("InitialCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("KpmuserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("KpmuserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PetitionId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("ProcessingComplete")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("PurgedCount")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("RawComplete")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("RawCount")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("SigAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<short?>("SigValue")
-                        .HasColumnType("smallint");
-
-                    b.Property<int?>("SubmittedCount")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("ValidationComplete")
-                        .HasColumnType("bit");
-
-                    b.ToTable("Batches2020s");
                 });
 
             modelBuilder.Entity("petition.DB.City", b =>
@@ -1086,29 +832,6 @@ namespace petition.Migrations
                     b.ToTable("CoordUpdates");
                 });
 
-            modelBuilder.Entity("petition.DB.CoordUpdates2007", b =>
-                {
-                    b.Property<int>("Batchid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("County")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("Dateentered")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Enteredby")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PetitionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Voterid")
-                        .HasColumnType("int");
-
-                    b.ToTable("CoordUpdates2007s");
-                });
-
             modelBuilder.Entity("petition.DB.Coordinator", b =>
                 {
                     b.Property<int>("CoordinatorId")
@@ -1208,14 +931,19 @@ namespace petition.Migrations
 
             modelBuilder.Entity("petition.DB.KpmUser", b =>
                 {
+                    b.Property<int>("KpmuserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<string>("Addr")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CoordAssigned")
-                        .HasColumnType("int");
+                    b.Property<string>("CoordAssigned")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DateEntered")
                         .HasColumnType("datetime2");
@@ -1226,20 +954,17 @@ namespace petition.Migrations
                     b.Property<string>("DisplayName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("DnnUserId")
-                        .HasColumnType("int");
+                    b.Property<string>("DnnUserId")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("DnnuserIdOld")
-                        .HasColumnType("int");
+                    b.Property<string>("DnnuserIdOld")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Enteredby")
-                        .HasColumnType("int");
+                    b.Property<string>("Enteredby")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("KpmuserId")
-                        .HasColumnType("int");
 
                     b.Property<string>("KpmuserType")
                         .HasColumnType("nvarchar(max)");
@@ -1258,6 +983,8 @@ namespace petition.Migrations
 
                     b.Property<string>("Zip")
                         .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("KpmuserId");
 
                     b.ToTable("KpmUsers");
                 });
@@ -1268,174 +995,6 @@ namespace petition.Migrations
                         .HasColumnType("int");
 
                     b.ToTable("KpmUserTransferTables");
-                });
-
-            modelBuilder.Entity("petition.DB.KpmUsers2009Blended", b =>
-                {
-                    b.Property<string>("Addr")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CoordAssigned")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DateEntered")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DisplayName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("DnnUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DnnuserIdOld")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Enteredby")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("KpmuserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("KpmuserType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telephone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Zip")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToTable("KpmUsers2009Blendeds");
-                });
-
-            modelBuilder.Entity("petition.DB.KpmUsers2019Bck", b =>
-                {
-                    b.Property<string>("Addr")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CoordAssigned")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DateEntered")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DisplayName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("DnnUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DnnuserIdOld")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Enteredby")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("KpmuserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("KpmuserType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telephone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Zip")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToTable("KpmUsers2019Bcks");
-                });
-
-            modelBuilder.Entity("petition.DB.KpmUsers2020", b =>
-                {
-                    b.Property<string>("Addr")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CoordAssigned")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DateEntered")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DisplayName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("DnnUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DnnuserIdOld")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Enteredby")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("KpmuserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("KpmuserType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telephone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Zip")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToTable("KpmUsers2020s");
                 });
 
             modelBuilder.Entity("petition.DB.KpmUsersBck", b =>
@@ -1825,26 +1384,6 @@ namespace petition.Migrations
                     b.ToTable("PetitionSummaries");
                 });
 
-            modelBuilder.Entity("petition.DB.PetitionSummaryOld", b =>
-                {
-                    b.Property<int?>("Batchid")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Batchinitcount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Batchpurgecount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Batchrawcount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Petitionid")
-                        .HasColumnType("int");
-
-                    b.ToTable("PetitionSummaryOlds");
-                });
-
             modelBuilder.Entity("petition.DB.PetitionSummarySubmitted", b =>
                 {
                     b.Property<int?>("Batchid")
@@ -1866,29 +1405,6 @@ namespace petition.Migrations
                         .HasColumnType("int");
 
                     b.ToTable("PetitionSummarySubmitteds");
-                });
-
-            modelBuilder.Entity("petition.DB.Petitions2007", b =>
-                {
-                    b.Property<DateTime>("DateEntered")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateReceived")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EnteredBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PetitionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Petitiondescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Petitionname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToTable("Petitions2007s");
                 });
 
             modelBuilder.Entity("petition.DB.Tempcount", b =>
@@ -2129,116 +1645,6 @@ namespace petition.Migrations
                     b.ToTable("VoterDups");
                 });
 
-            modelBuilder.Entity("petition.DB.VoterDupView", b =>
-                {
-                    b.Property<string>("County")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Countycount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Petitionname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToTable("VoterDupViews");
-                });
-
-            modelBuilder.Entity("petition.DB.VoterDups2007", b =>
-                {
-                    b.Property<int>("BatchId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Batchentryid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Circid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("County")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Dateentered")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Enteredby")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PetitionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Recordid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VoterId")
-                        .HasColumnType("int");
-
-                    b.ToTable("VoterDups2007s");
-                });
-
-            modelBuilder.Entity("petition.DB.VoterDups2020", b =>
-                {
-                    b.Property<int>("BatchId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Batchentryid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Circid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("County")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Dateentered")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Enteredby")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PetitionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Recordid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VoterId")
-                        .HasColumnType("int");
-
-                    b.ToTable("VoterDups2020s");
-                });
-
-            modelBuilder.Entity("petition.DB.VoterDupsback", b =>
-                {
-                    b.Property<int>("BatchId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Batchentryid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Circid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("County")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Dateentered")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Enteredby")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PetitionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Recordid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VoterId")
-                        .HasColumnType("int");
-
-                    b.ToTable("VoterDupsbacks");
-                });
-
             modelBuilder.Entity("petition.DB.VoterRecord", b =>
                 {
                     b.Property<int>("Batchentryid")
@@ -2266,78 +1672,6 @@ namespace petition.Migrations
                         .HasColumnType("int");
 
                     b.ToTable("VoterRecords");
-                });
-
-            modelBuilder.Entity("petition.DB.VoterRecord2007", b =>
-                {
-                    b.Property<int>("Batchentryid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Batchid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Circid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("County")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("Dateentered")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Enteredby")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PetitionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Voterid")
-                        .HasColumnType("int");
-
-                    b.ToTable("VoterRecord2007s");
-                });
-
-            modelBuilder.Entity("petition.DB.VoterRecord2020", b =>
-                {
-                    b.Property<int>("Batchentryid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Batchid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Circid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("County")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("Dateentered")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Enteredby")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PetitionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Voterid")
-                        .HasColumnType("int");
-
-                    b.ToTable("VoterRecord2020s");
-                });
-
-            modelBuilder.Entity("petition.DB.VoterRecordView", b =>
-                {
-                    b.Property<string>("County")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Countycount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Petitionname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToTable("VoterRecordViews");
                 });
 
             modelBuilder.Entity("petition.DB.VwBadDetailByEntryId", b =>
@@ -2531,6 +1865,53 @@ namespace petition.Migrations
                     b.HasKey("id");
 
                     b.ToTable("userRoles");
+                });
+
+            modelBuilder.Entity("petition.Models.ViewModels.GetBatches", b =>
+                {
+                    b.Property<int>("BatchId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ChargeBackCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ChargeBackDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateAssgBatch")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateReceivedBatch")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateSubmitted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("KpmuserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Lastname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Petitionname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PurgedCount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RawCount")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("SigAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<short?>("SigValue")
+                        .HasColumnType("smallint");
+
+                    b.Property<int?>("SubmittedCount")
+                        .HasColumnType("int");
+
+                    b.ToTable("GetBatches");
                 });
 
             modelBuilder.Entity("petition.Models.ViewModels.GetPetetion", b =>
