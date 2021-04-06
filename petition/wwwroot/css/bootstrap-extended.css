@@ -4173,4 +4173,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 .btn{
     padding: 0.6rem!important;
 }
+.p-sm-1{
+    padding:0.5rem!important;
+}
 /**/
