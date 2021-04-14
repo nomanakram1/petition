@@ -4,6 +4,7 @@
 @{
     Layout = "_AdminLayout";
 }
+@model createBatchVM
 <div class="content-wrapper">
     <div class="content-body">
         <!-- Basic Vertical form layout section start -->
@@ -24,10 +25,22 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @if (Model != null)
+                                            {
+                                                @if (Model.users != null)
+                                                {
+                                                    foreach (var u in Model.users)
+                                                    {
+                                                        <tr>
+                                                            <th>@u.userName</th>
+                                                        </tr>
+                                                    }
+                                                }
+                                            }
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>                            
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -36,7 +49,7 @@
                         <div class="card-header">
                             <h4 class="card-title">Coordinators with KPM</h4>
                         </div>
-                        <div class="card-body">                           
+                        <div class="card-body">
                             <div class="row mt-1">
                                 <div class="col-12">
                                     <table class="table" id="CoordinatorsWithKPM">
@@ -70,25 +83,37 @@
             "info": false,
             columns: [
                 { data: '', searchable: false },
-                { data: 'FirstName', searchable: false },
-                { data: 'LastName' },
-                { data: 'KPMID' },
-                
+                { data: 'First Name', searchable: false },
+                { data: 'Last Name' },
+                { data: 'KPM User ID' },
+
             ],
             order: [1, "desc"],
         });
-        var table = $('#CoordinatorsWithOutKPM');
-        table.DataTable({
-            responsive: true,
-            "info": false,
-            columns: [
-                { data: '', searchable: false },
-                { data: 'Name', searchable: false },               
-                
-            ],
-            order: [1, "desc"],
+        var data = {
+            'type': "KPM Coordinator",
+        }
+        $.ajax({
+            url: "/managerUSers/GetCoordinate",
+            type: "Get",
+            data: data,
+            success: function (res) {
+                var table = $('#CoordinatorsWithKPM').DataTable();
+                table.clear();
+                res.map(element => {
+                    var obj = {
+                        "": '',
+                        "First Name": element["firstname"],
+                        "Last Name": element["lastname"],
+                        "KPM User ID": element["kpmuserID"],
+                    }
+                    table.row.add(obj).draw();
+                })
+                table.responsive.recalc()
+            },
+            error: function (error) {
+                console.log(error);
+            }
         });
-        
-        
     </script>
 }

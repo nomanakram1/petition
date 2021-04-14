@@ -4,3 +4,119 @@
 @{
     Layout = "_AdminLayout";
 }
+@model createBatchVM
+<div class="content-wrapper">
+    <div class="content-body">
+        <!-- Basic Vertical form layout section start -->
+        <section id="basic-vertical-layouts">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">Registered Users without KPM Coordinator ID Number</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <table class="table" id="CoordinatorsWithOutKPM">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model != null)
+                                            {
+                                                @if (Model.users != null)
+                                                {
+                                                    foreach (var u in Model.users)
+                                                    {
+                                                        <tr>
+                                                            <td>@u.userName</td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">Coordinators with KPM</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <table class="table" id="CoordinatorsWithKPM">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>UserID</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Assigned To</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tablebody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- Basic Vertical form layout section end -->
+    </div>
+</div>
+@section Scripts {
+    <script>
+        var table = $('#CoordinatorsWithKPM');
+        table.DataTable({
+            responsive: true,
+            "info": false,
+            columns: [
+                { data: '', searchable: false },
+                { data: 'UserID', searchable: false },
+                { data: 'First Name', searchable: false },
+                { data: 'Last Name' },
+                { data: 'Assigned To' },
+
+            ],
+            order: [1, "desc"],
+        });
+        var data = {
+            'type': "KPM SubCoordinator",
+        }
+        $.ajax({
+            url: "/managerUSers/GetCoordinate",
+            type: "Get",
+            data: data,
+            success: function (res) {
+                var table = $('#CoordinatorsWithKPM').DataTable();
+                table.clear();
+                res.map(element => {
+                    var obj = {
+                        "": '',
+                        "UserID": element["kpmuserID"],
+                        "First Name": element["firstname"],
+                        "Last Name": element["lastname"],
+                        "Assigned To": element["coordassigned"],
+                    }
+                    table.row.add(obj).draw();
+                })
+                table.responsive.recalc()
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    </script>
+}

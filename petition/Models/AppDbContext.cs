@@ -77,6 +77,7 @@ namespace petition.Models
         public DbSet<DisplayBatchList> DisplayBatchList { get; set; }
         public DbSet<DisplayBathListForPrint> DisplayBathListForPrint { get; set; }
         public DbSet<GetCirculator> GetCirculator { get; set; }
+        public DbSet<GetCoordinate> GetCoordinate { get; set; }
 
     }
 }
