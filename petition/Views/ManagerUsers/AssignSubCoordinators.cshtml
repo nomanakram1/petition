@@ -4,3 +4,91 @@
 @{
     Layout = "_AdminLayout";
 }
+<div class="content-wrapper">
+    <div class="content-body">
+        <!-- Basic Vertical form layout section start -->
+        <section id="basic-vertical-layouts">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">Sub Coordinators</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <table class="table" id="CoordinatorsWithOutKPM">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">Sub Coordinators with KPM Coordinator IDs</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <table class="table" id="CoordinatorsWithKPM">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>KPM User ID</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tablebody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- Basic Vertical form layout section end -->
+    </div>
+</div>
+@section Scripts {
+    <script>
+        var table = $('#CoordinatorsWithKPM');
+        table.DataTable({
+            responsive: true,
+            "info": false,
+            columns: [
+                { data: '', searchable: false },
+                { data: 'FirstName', searchable: false },
+                { data: 'LastName' },
+                { data: 'KPMID' },
+
+            ],
+            order: [1, "desc"],
+        });
+        var table = $('#CoordinatorsWithOutKPM');
+        table.DataTable({
+            responsive: true,
+            "info": false,
+            columns: [
+                { data: '', searchable: false },
+                { data: 'Name', searchable: false },
+
+            ],
+            order: [1, "desc"],
+        });
+
+
+    </script>
+}
