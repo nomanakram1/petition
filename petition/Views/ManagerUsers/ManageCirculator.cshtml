@@ -4,3 +4,494 @@
 @{
     Layout = "_AdminLayout";
 }
+@model createBatchVM
+<div class="content-wrapper">
+    <div class="content-body">
+        <!-- Basic Vertical form layout section start -->
+        <section id="basic-vertical-layouts">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                Manage Circulators
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="alert alert-primary" role="alert">
+                                        <div class="alert-body">
+                                            Edit a circulator's contact informaton by clicking on the 'edit' link. You can change the circulator's status while you are in the edit screen.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-lg-12 col-xl-10">
+                                    <div class="row">
+                                        <div class="col-6 col-lg-4 px-0 pl-sm-1 pr-0 mt-1">
+                                            <span class="float-right text-right">Select Coordinator :</span>
+                                        </div>
+                                        <div class="col-6 col-lg-5 mt-1">
+                                            <select class="form-control form-control-sm cordcirculator" id="basicSelect">
+                                                @if (Model != null)
+                                                {
+                                                    @if (Model.users != null)
+                                                    {
+                                                        foreach (var u in Model.users)
+                                                        {
+                                                            <option value="@u.userId">@u.userName</option>
+                                                        }
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-md-12 col-lg-2 p-lg-0 d-lg-flex mt-1">
+                                            <button type="button" id="showcirculator" class="btn btn-sm btn-primary flexCenter float-right">Go</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-1 circulatorTable" style="display: none">
+                                <div class="col-12">
+                                    <table class="table" id="circulatorlist">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>id</th>
+                                                <th>addr</th>
+                                                <th>city</th>
+                                                <th>zip</th>
+                                                <th>state</th>
+                                                <th>phone</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Display Name</th>
+                                                <th>Action</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                Create Circulator
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-4 px-0 ">
+                                            <span class="float-right text-right">Select a Coordinator :</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <select class="form-control form-control-sm coordinator" id="basicSelect">
+                                                @if (Model != null)
+                                                {
+                                                    @if (Model.users != null)
+                                                    {
+                                                        foreach (var u in Model.users)
+                                                        {
+                                                            <option value="@u.userId">@u.userName</option>
+                                                        }
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-2 d-flex px-0 ">
+                                            <button type="button" class="btn btn-sm btn-primary flexCenter">Go</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="row mt-1">
+                                    <div class="col-4 d-flex pr-0 pl-lg-1">
+                                        <span class="float-right text-right">Select :</span>
+                                    </div>
+                                    <div class="col-6">
+                                        <select class="form-control form-control-sm" id="basicSelect">
+                                            <option>Thor Ragnarok</option>
+                                            <option>IT</option>
+                                            <option>Blade Runner</option>
+                                        </select>
+                                    </div>
+
+                                </div>*@
+                            <div class="row">
+                                <div class="col-sm-12 mt-1">
+                                    <div class="row">
+                                        <div class="col-4 pr-0">
+                                            <span class="float-right text-right">First Name :</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" id="first_name" class="form-control form-control-sm" placeholder="First Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mt-1">
+                                    <div class="row">
+                                        <div class="col-4 pr-0">
+                                            <span class="float-right text-right">Last Name :</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" id="last_name" class="form-control form-control-sm" placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mt-1">
+                                    <div class="row">
+                                        <div class="col-4 pr-0">
+                                            <span class="float-right text-right">Address :</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" id="address" class="form-control form-control-sm" placeholder="Address">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mt-1">
+                                    <div class="row">
+                                        <div class="col-4 pr-0">
+                                            <span class="float-right text-right">City :</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" id="city" class="form-control form-control-sm" placeholder="City">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mt-1">
+                                    <div class="row">
+                                        <div class="col-4 pr-0">
+                                            <span class="float-right text-right">State :</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" id="state" class="form-control form-control-sm" placeholder="State">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mt-1">
+                                    <div class="row">
+                                        <div class="col-4 pr-0">
+                                            <span class="float-right text-right">Zip :</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" id="zip" class="form-control form-control-sm" placeholder="5 or 9 digits">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mt-1">
+                                    <div class="row">
+                                        <div class="col-4 pr-0">
+                                            <span class="float-right text-right">Cell :</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" id="phone" class="form-control form-control-sm" placeholder="(xxx)xxx-xxxx">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mt-1">
+                                    <button class=" btn btn-sm btn-primary float-right" id="add_circulator">Add Circulator</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Basic Vertical form layout section end -->
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit Circulator Detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <input type="text" id="id1" hidden>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 mt-1">
+                        <p class="p-2 bg-light-warning">
+                            Note: The Display Name was generated by the system from the first and lastnames. The display name is the circulator's last name followed by the first name (i.e. James Smith will display as smith, james). The display name will be listed on all dropdowns for selection purposes. However, the circulator's first and last name will be used on batch sheets and reports.
+                        </p>
+                    </div>
+                    <div class="col-md-6 mt-1">
+                        <div class="row">
+                            <div class="col-4 pr-0">
+                                <span class="float-right text-right">Display Name :</span>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" id="display_name1" class="form-control form-control-sm" placeholder="Display Name" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-1">
+                        <div class="row">
+                            <div class="col-4 pr-0">
+                                <span class="float-right text-right">First Name :</span>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" id="first_name1" class="form-control form-control-sm" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-1">
+                        <div class="row">
+                            <div class="col-4 pr-0">
+                                <span class="float-right text-right">Last Name :</span>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" id="last_name1" class="form-control form-control-sm" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-1">
+                        <div class="row">
+                            <div class="col-4 pr-0">
+                                <span class="float-right text-right">Address :</span>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" id="address1" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-1">
+                        <div class="row">
+                            <div class="col-4 pr-0">
+                                <span class="float-right text-right">City :</span>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" id="city1" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-1">
+                        <div class="row">
+                            <div class="col-4 pr-0">
+                                <span class="float-right text-right">State :</span>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" id="state1" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-1">
+                        <div class="row">
+                            <div class="col-4 pr-0">
+                                <span class="float-right text-right">Zip :</span>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" id="zip1" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-1">
+                        <div class="row">
+                            <div class="col-4 pr-0">
+                                <span class="float-right text-right">Tell Num :</span>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" id="phone1" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mt-1">
+                        <button type="button" class="UpdateCircInfo btn btn-sm btn-primary float-right">Update Circulator Info</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mt-1">
+                        <h3>
+                            Make Circulator Active/Inactive
+                        </h3>
+                    </div>
+                    <div class="col-12">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="active1">
+                            <label class="custom-control-label" for="active1">Active?</label>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-1">
+                        <p class="p-2 bg-light-warning">
+                            Note: Changing a Circulator to inactive will remove them from all of your dropdown lists. The name will remain on all batch history. This will prevent you from having inactive Circulators in your selection lists and making them longer than they already are.
+                        </p>
+                    </div>
+                    <div class="col-12">
+                        <button type="button" class="changeStatus btn btn-sm btn-warning float-right">Change Status</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        var table = $('#circulatorlist');
+
+        table.DataTable({
+            responsive: true,
+            "info": false,
+            columns: [
+                { data: '', searchable: false },
+                { data: 'id', visible: false, searchable: false },
+                { data: 'addr', visible: false, searchable: false },
+                { data: 'city', visible: false, searchable: false },
+                { data: 'zip', visible: false, searchable: false },
+                { data: 'state', visible: false, searchable: false },
+                { data: 'phone', visible: false, searchable: false },
+                { data: 'First Name' },
+                { data: 'Last Name' },
+                { data: 'Display Name' },
+                { data: 'Action' },
+                { data: 'Status' },
+            ],
+            order: [2, "desc"],
+        });
+        $(".UpdateCircInfo").click(function () {
+            var data = {
+                'id': $("#id1").val(),
+                'addr': $("#address1").val(),
+                'city': $("#city1").val(),
+                'zip': $("#zip1").val(),
+                'state': $("#state1").val(),
+                'telephone': $("#phone1").val(),
+            }
+            $.ajax({
+                url: "/batches/updateCircInfo",
+                type: "post",
+                data: data,
+                success: function (res) {
+                    window.location.href = "/managerUsers/manageCirculator"
+                }
+            })
+        });
+        $(".changeStatus").click(function () {
+            var status = $("#active1").prop("checked");
+            if (!status) {
+                status = "Inactive";
+            } else if (status) {
+                status = "Active";
+            }
+            var data = {
+                'status': status,
+                'id': $("#id1").val()
+            }
+            $.ajax({
+                url: "/batches/changeStatus",
+                type: "post",
+                data: data,
+                success: function (res) {
+                    window.location.href = "/managerUsers/manageCirculator"
+                }
+            })
+        });
+        $("#showcirculator").click(function () {
+            $(".circulatorTable").show();
+            var data = {
+                'id': $(".cordcirculator").find(":selected").val(),
+            }
+            $.ajax({
+                url: "/batches/getcirculator",
+                type: "Get",
+                data: data,
+                success: function (res) {
+                    var table = $('#circulatorlist').DataTable();
+                    table.clear();
+                    res.map(element => {
+                        var obj = {
+                            "": '',
+                            "First Name": element["firstname"],
+                            "Last Name": element["lastname"],
+                            "id": element["kpmuserID"],
+                            "addr": element["addr"],
+                            "city": element["city"],
+                            "zip": element["zip"],
+                            "phone": element["telephone"],
+                            "state": element["state"],
+                            "Display Name": element["displayname"],
+                            "Status": element["status"],
+                            "Action": `<a href="#" id="editUser" data-toggle="modal" data-target="#exampleModalLong">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="editUser feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                                            </a>`,
+                        }
+                        table.row.add(obj).draw();
+                    })
+                    table.responsive.recalc()
+                    $("#editUser").click(function () {
+                        var userData = table.row($(this).parents('tr')).data();
+                        console.log(userData);
+                        var status = userData["Status"] == "Active" ? true : false;
+                        var fn = userData["First Name"];
+                        var ln = userData["Last Name"];
+                        var dn = userData["Display Name"];
+                        var id = userData["id"];
+                        var address = userData["addr"];
+                        var city = userData["city"];
+                        var zip = userData["zip"];
+                        var phone = userData["phone"];
+                        var state = userData["state"];
+                        $("#first_name1").val(fn)
+                        $("#display_name1").val(dn)
+                        $("#last_name1").val(ln);
+                        $("#id1").val(id);
+                        $("#address1").val(address);
+                        $("#city1").val(city);
+                        $("#zip1").val(zip);
+                        $("#phone1").val(phone);
+                        $("#state1").val(state);
+                        $("#active1").prop('checked', status);
+                    })
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        })
+        $("#add_circulator").click(function () {
+            console.log("addfunction");
+            var petetionId = $(".Selectpetition").find(":selected").val();
+            petetionId = parseInt(petetionId);
+            var data = {
+                'KpmuserType': 'KPM Circulator',
+                'FirstName': $("#first_name").val(),
+                'LastName': $("#last_name").val(),
+                'CoordAssigned': $(".coordinator").find(":selected").val(),
+                'DisplayName': $("#last_name").val() + ", " + $("#first_name").val(),
+                'Addr': $("#address").val(),
+                'City': $("#city").val(),
+                'State': $("#state").val(),
+                'Zip': $("#zip").val(),
+                'Telephone': $("#phone").val(),
+                'Status': "Active"
+            }
+            console.log(JSON.stringify(data));
+            $.ajax({
+                url: "/managerUsers/addcirculator",
+                type: "Post",
+                data: data,
+                success: function (res) {
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
+}

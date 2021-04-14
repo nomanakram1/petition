@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using petition.DataLayer;
+using petition.DB;
 using petition.Models;
 using petition.Models.DbModel;
 using petition.Models.ViewModels;
@@ -31,6 +32,36 @@ namespace petition.Controllers
         }
         public async Task<ActionResult> ManageCirculator()
         {
+            var users = await _userManager.GetUsersInRoleAsync("KPM Coordinator");
+
+            List<UserListVM> userList = new List<UserListVM>();
+            if (users.Any())
+            {
+                foreach (var user in users)
+                {
+                    userList.Add(new UserListVM
+                    {
+                        userId = user.Id,
+                        userName = user.UserName,
+                        firstName = user.FirstName,
+                        lastName = user.LastName,
+                        address = user.Address,
+                        zipCode = user.ZipCode,
+                        state = user.State,
+                        city = user.City,
+                        phoneNumber = user.PhoneNumber,
+                        authorize = user.Authorize,
+                        email = user.Email
+                    });
+                }
+                createBatchVM data = new createBatchVM();
+                if (userList != null)
+                {
+                    data.users = userList;
+                }
+
+                return View(data);
+            }
             return View();
         }
         public async Task<ActionResult> AssignExternalValidators()
@@ -116,6 +147,22 @@ namespace petition.Controllers
                 return View(data);
             }
             return View();
+        }
+        public async Task<ActionResult> addcirculator(KpmUser user)
+        {
+            var percent = await _userManager.FindByNameAsync(User.Identity.Name);
+            user.DateEntered = DateTime.Now;
+            var commandText = "INSERT INTO dbo.KpmUsers(kpmusertype, firstname, lastname, dateentered, enteredby, coordassigned, displayname, addr, city, state, zip, telephone, status) VALUES('" + user.KpmuserType + "', '" + user.FirstName + "', '" + user.LastName + "', '" + user.DateEntered + "', '" + percent.UserName + "', '" + user.CoordAssigned + "', '" + user.DisplayName + "', '" + user.Addr + "', '" + user.City + "', '" + user.State + "', '" + user.Zip + "', '" + user.Telephone + "', '" + user.Status + "')";
+            try
+            {
+                var result = context.Database.ExecuteSqlRaw(commandText);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("ManageCirculator", "ManagerUsers");
+            }
+
+            return RedirectToAction("ManageCirculator", "ManagerUsers");
         }
     }
 }
