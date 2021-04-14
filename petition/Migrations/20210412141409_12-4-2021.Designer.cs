@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using petition.Models;
 
 namespace petition.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210412141409_12-4-2021")]
+    partial class _1242021
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1952,98 +1954,6 @@ namespace petition.Migrations
                         .HasColumnType("int");
 
                     b.ToTable("DisplayBatchList");
-                });
-
-            modelBuilder.Entity("petition.Models.ViewModels.DisplayBathListForPrint", b =>
-                {
-                    b.Property<int>("BadCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BatchID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BatchStatus")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CircNewReg")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GoodCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GoodPercent")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SubmittedCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalSigs")
-                        .HasColumnType("int");
-
-                    b.Property<string>("circfullname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("circid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("circinitsigs")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("circrawcount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("entryid")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("pcAddrIllegOrCopy")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("pcDiffCounty")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("pcDupSig")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("pcForgery")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("pcHWSignForOther")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("pcIncomAddr")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("pcIncomDeclCirc")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("pcInitials")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("pcNameTwiceNoSig")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("pcOther")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("pcPOBox")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("pcPencilUsed")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("pcRubStampUsed")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("pcSigPrintedOrPrintIlleg")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("pcWhiteOut")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("pcWomanSignMrsHusbandFname")
-                        .HasColumnType("int");
-
-                    b.ToTable("DisplayBathListForPrint");
                 });
 
             modelBuilder.Entity("petition.Models.ViewModels.GetBatchList", b =>

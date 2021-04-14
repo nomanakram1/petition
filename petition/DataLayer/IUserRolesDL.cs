@@ -11,8 +11,8 @@ namespace petition.DataLayer
     public interface IUserRolesDL
     {
         Task<UserRole> InsertUserRole(UserRole model);
-        Task<bool> DeleteRole(string roleId, string userId);
-        Task<bool> DeleteRolesByUserId(string userId);
+        bool DeleteRole(string roleId, string userId);
+        bool DeleteRolesByUserId(string userId);
         Task<List<UserRole>> GetUserRoleList(string userId);
     }
     public class UserRolesDL : IUserRolesDL
@@ -23,14 +23,14 @@ namespace petition.DataLayer
             this.context = context;
         }
 
-        public async Task<bool> DeleteRole(string roleId, string userId)
+        public bool DeleteRole(string roleId, string userId)
         {
             var role = context.userRoles.Where(r => r.userId == userId && r.roleId == roleId);
             context.userRoles.RemoveRange(role);
             context.SaveChanges();
             return true;
         }
-        public async Task<bool> DeleteRolesByUserId(string userId)
+        public bool DeleteRolesByUserId(string userId)
         {
             var role = context.userRoles.Where(r => r.userId == userId);
             context.userRoles.RemoveRange(role);

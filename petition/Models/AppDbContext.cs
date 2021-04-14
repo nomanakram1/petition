@@ -73,6 +73,9 @@ namespace petition.Models
 
         public DbSet<GetPetetion> GetPetetion { get; set; }
         public DbSet<GetBatches> GetBatches { get; set; }
+        public DbSet<GetBatchList> GetBatchList { get; set; }
+        public DbSet<DisplayBatchList> DisplayBatchList { get; set; }
+        public DbSet<DisplayBathListForPrint> DisplayBathListForPrint { get; set; }
         public DbSet<GetCirculator> GetCirculator { get; set; }
 
     }
