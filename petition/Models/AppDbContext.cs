@@ -78,6 +78,9 @@ namespace petition.Models
         public DbSet<DisplayBathListForPrint> DisplayBathListForPrint { get; set; }
         public DbSet<GetCirculator> GetCirculator { get; set; }
         public DbSet<GetCoordinate> GetCoordinate { get; set; }
+        public DbSet<KPMBatchesGetSubmittedByPetByDateRange> KPMBatchesGetSubmittedByPetByDateRange { get; set; }
+        public DbSet<PetitionStatsSubmitted> PetitionStatsSubmitted { get; set; }
+
 
     }
 }

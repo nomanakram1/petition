@@ -63,8 +63,40 @@
         table.DataTable({
             responsive: true,
             "info": false,
-
+            columns: [
+                { data: 'Petition' },
+                { data: 'Submitted' },
+                { data: 'Raw' },
+                { data: 'New Reg' },
+                { data: 'Diff' },
+                { data: 'Purged' },
+                { data: 'Net' },
+            ],
         });
-
+        $.ajax({
+            url: "/reports/PetitionFullStatsSubmitted",
+            type: "Get",
+            success: function (res) {
+                var table = $('#petitionStatistics').DataTable();
+                table.clear();
+                res.map(element => {
+                    var obj = {
+                        "": '',
+                        "Petition": element["petitionname"],
+                        "Submitted": element["batchsubmittedcount"],
+                        "Raw": element["batchrawcount"],
+                        "New Reg": element["batchsubmittedcount"] - element["batchrawcount"],
+                        "Diff": element["SigAmount"],
+                        "Purged": element["batchpurgecount"],
+                        "Net": element["batchsubmittedcount"] - element["batchpurgecount"] - (element["SigAmount"]),
+                    }
+                    table.row.add(obj).draw();
+                })
+                table.responsive.recalc()
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
     </script>
 }

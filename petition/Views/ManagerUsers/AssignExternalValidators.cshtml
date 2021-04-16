@@ -24,15 +24,6 @@
 
                                                 <th>Name</th>
                                                 <th>Actions</th>
-                                                <th hidden>
-                                                    lname
-                                                <th>
-                                                <th hidden>
-                                                    fname
-                                                <th>
-                                                <th hidden>
-                                                    id
-                                                <th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -48,11 +39,8 @@
                                                                 @u.userName
                                                             </td>
                                                             <td>
-                                                                <button class="@u.userId,@u.firstName, btn btn-sm btn-primary" id="assignmodal" data-toggle="modal" data-target="#assignexternalvalidator">Assign</button>
+                                                                <button class="@u.userId,@u.firstName,@u.lastName, btn btn-sm btn-primary" id="assignmodal" data-toggle="modal" data-target="#assignexternalvalidator">Assign</button>
                                                             </td>
-                                                            <td style="display:block">@u.lastName</td>
-                                                            <td style="display:block">@u.firstName</td>
-                                                            <td style="display:block">@u.userId</td>
                                                         </tr>
                                                     }
                                                 }
@@ -143,16 +131,42 @@
                 
                 { data: 'Name', searchable: false },
                 { data: 'Action' },
-                { data: 'lname', visible: false, searchable: false },
-                { data: 'fname', visible: false, searchable: false },
-                { data: 'id', visible: false, searchable: false },
             ],
         });
         $("#assignmodal").click(function () {
             var data = $(this).parents('tr');
             data = data.find("td");
-            var values = data[1].outerHTML;
+            var values = data[1].children[0].className;
+            values = values.split(',', 3);
+            $("#id").val(values[0])
+            $("#fname").val(values[1])
+            $("#lname").val(values[2])
 
+        });
+        var data = {
+            'type': "External Validator",
+        }
+        $.ajax({
+            url: "/managerUSers/GetCoordinate",
+            type: "Get",
+            data: data,
+            success: function (res) {
+                var table = $('#externalValidatorswithKPM').DataTable();
+                table.clear();
+                res.map(element => {
+                    var obj = {
+                        "User ID": element["kpmuserID"],
+                        "First Name": element["firstname"],
+                        "Last Name": element["lastname"],
+                        "Assign To": element["coordassigned"],
+                    }
+                    table.row.add(obj).draw();
+                })
+                table.responsive.recalc()
+            },
+            error: function (error) {
+                console.log(error);
+            }
         });
         var a = $("#assignCoordinator");
         $.ajax({
@@ -171,6 +185,7 @@
 
         $("#assign").click(function () {
             var data = {
+                'coordassigned': $("#assignCoordinator").find(":selected").val(),
                 'id': $("#id").val(),
                 'fname': $("#fname").val(),
                 'lname': $("#lname").val(),
@@ -192,7 +207,6 @@
             responsive: true,
             "info": false,
             columns: [
-                { data: '', searchable: false },
                 { data: 'User ID', searchable: false },
                 { data: 'First Name', searchable: false },
                 { data: 'Last Name' },
@@ -201,31 +215,6 @@
             ],
            
         });
-        var data = {
-            'type': "External Validator",
-        }
-        $.ajax({
-            url: "/managerUSers/GetCoordinate",
-            type: "Get",
-            data: data,
-            success: function (res) {
-                var table = $('#externalValidatorswithKPM').DataTable();
-                table.clear();
-                res.map(element => {
-                    var obj = {
-                        "": '',
-                        "User ID": element["kpmuserID"],
-                        "First Name": element["firstname"],
-                        "Last Name": element["lastname"],
-                        "Assign To": element["coordassigned"],
-                    }
-                    table.row.add(obj).draw();
-                })
-                table.responsive.recalc()
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        });
+
     </script>
 }
