@@ -21,27 +21,43 @@
                                     <table class="table" id="externalValidator">
                                         <thead>
                                             <tr>
+
                                                 <th>Name</th>
                                                 <th>Actions</th>
+                                                <th hidden>
+                                                    lname
+                                                <th>
+                                                <th hidden>
+                                                    fname
+                                                <th>
+                                                <th hidden>
+                                                    id
+                                                <th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    Kashif
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-sm btn-primary">Assign</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Kashif
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-sm btn-primary">Assign</button>
-                                                </td>
-                                            </tr>
+                                            @if (Model != null)
+                                            {
+                                                @if (Model.users != null)
+                                                {
+                                                    foreach (var u in Model.users)
+                                                    {
+                                                        <tr>
+
+                                                            <td>
+                                                                @u.userName
+                                                            </td>
+                                                            <td>
+                                                                <button class="@u.userId,@u.firstName, btn btn-sm btn-primary" id="assignmodal" data-toggle="modal" data-target="#assignexternalvalidator">Assign</button>
+                                                            </td>
+                                                            <td style="display:block">@u.lastName</td>
+                                                            <td style="display:block">@u.firstName</td>
+                                                            <td style="display:block">@u.userId</td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            }
+
                                         </tbody>
                                         
                                     </table>
@@ -81,28 +97,135 @@
         <!-- Basic Vertical form layout section end -->
     </div>
 </div>
+<div class="modal fade" id="assignexternalvalidator" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Assign External Validator</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <input type="text" id="id" hidden />
+            <input type="text" id="fname" hidden />
+            <input type="text" id="lname" hidden />
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label class="float-right text-right">
+                                    Select a Coordinator :
+                                </label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="assignCoordinator">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-sm btn-primary" id="assign">Assign</button>
+            </div>
+        </div>
+    </div>
+</div>
 @section Scripts {
     <script>
+        var table1 = $('#externalValidator');
+        table1.DataTable({
+            responsive: true,
+            "info": false,
+            columns: [
+                
+                { data: 'Name', searchable: false },
+                { data: 'Action' },
+                { data: 'lname', visible: false, searchable: false },
+                { data: 'fname', visible: false, searchable: false },
+                { data: 'id', visible: false, searchable: false },
+            ],
+        });
+        $("#assignmodal").click(function () {
+            var data = $(this).parents('tr');
+            data = data.find("td");
+            var values = data[1].outerHTML;
+
+        });
+        var a = $("#assignCoordinator");
+        $.ajax({
+            url: "/managerUSers/Getcoordinators",
+            type: "get",
+            data: data,
+            success: function (res) {
+                res.users.map(element => {
+                    a.append(`<option value="${element["userId"]}">${element["userName"]}</option>`);
+                })
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+
+        $("#assign").click(function () {
+            var data = {
+                'id': $("#id").val(),
+                'fname': $("#fname").val(),
+                'lname': $("#lname").val(),
+            }
+            $.ajax({
+                url: "/managerUSers/AddKPMUser",
+                type: "post",
+                data: data,
+                success: function (res) {
+                    window.location.href = "/managerUsers/assignExternalValidators"
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
         var table = $('#externalValidatorswithKPM');
         table.DataTable({
             responsive: true,
             "info": false,
             columns: [
                 { data: '', searchable: false },
+                { data: 'User ID', searchable: false },
                 { data: 'First Name', searchable: false },
                 { data: 'Last Name' },
-                { data: 'KPM User ID' },
+                { data: 'Assign To' },
 
             ],
            
         });
-@**@
-        var table1 = $('#externalValidator');
-        table1.DataTable({
-            responsive: true,
-            "info": false,
-           
-
+        var data = {
+            'type': "External Validator",
+        }
+        $.ajax({
+            url: "/managerUSers/GetCoordinate",
+            type: "Get",
+            data: data,
+            success: function (res) {
+                var table = $('#externalValidatorswithKPM').DataTable();
+                table.clear();
+                res.map(element => {
+                    var obj = {
+                        "": '',
+                        "User ID": element["kpmuserID"],
+                        "First Name": element["firstname"],
+                        "Last Name": element["lastname"],
+                        "Assign To": element["coordassigned"],
+                    }
+                    table.row.add(obj).draw();
+                })
+                table.responsive.recalc()
+            },
+            error: function (error) {
+                console.log(error);
+            }
         });
     </script>
 }
