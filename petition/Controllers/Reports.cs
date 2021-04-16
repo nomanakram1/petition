@@ -12,5 +12,13 @@ namespace petition.Controllers
         {
             return View();
         }
+        public IActionResult PetitionStatistics()
+        {
+            return View();
+        }
+        public IActionResult CountyAnalysis()
+        {
+            return View();
+        }
     }
 }
