@@ -168,27 +168,27 @@
                             <a class="d-flex align-items-center" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="Authentication">Managers Users</span></a>
                             <ul class="menu-content">
                                 <li>
-                                    <a asp-action="AssignCoordinators" asp-controller="ManagerUsers">
+                                    <a id="assignCoordinators" asp-action="AssignCoordinators" asp-controller="ManagerUsers">
                                         <span class="menu-item" data-i18n="Analytics">Assign Coordinators</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-action="AssignSubCoordinators" asp-controller="ManagerUsers">
+                                    <a id="assignSubCoordinators" asp-action="AssignSubCoordinators" asp-controller="ManagerUsers">
                                         <span class="menu-item" data-i18n="Analytics">Assign SubCoordinators</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-action="ManageCirculator" asp-controller="ManagerUsers">
+                                    <a id="manageCirculator" asp-action="ManageCirculator" asp-controller="ManagerUsers">
                                         <span class="menu-item" data-i18n="Analytics">Manage Circulators</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-action="AssignExternalValidators" asp-controller="ManagerUsers">
+                                    <a id="assignExternalValidators" asp-action="AssignExternalValidators" asp-controller="ManagerUsers">
                                         <span class="menu-item" data-i18n="Analytics">Assign External Validators</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-action="ManageInternalValidators" asp-controller="ManagerUsers">
+                                    <a id="manageInternalValidators" asp-action="ManageInternalValidators" asp-controller="ManagerUsers">
                                         <span class="menu-item" data-i18n="Analytics">Manage Internal Validators</span>
                                     </a>
                                 </li>
@@ -198,37 +198,37 @@
                             <a class="d-flex align-items-center" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="Authentication">Reports</span></a>
                             <ul class="menu-content">
                                 <li>
-                                    <a asp-controller="Reports" asp-action="NewBatchSubmission" >
+                                    <a id="newBatchSubmission" asp-controller="Reports" asp-action="NewBatchSubmission" >
                                         <span class="menu-item" data-i18n="Analytics">New Batch Submissions</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-controller="Reports" asp-action="PetitionStatistics">
+                                    <a id="PetitionStatistics" asp-controller="Reports" asp-action="PetitionStatistics">
                                         <span class="menu-item" data-i18n="Analytics">Petition Stats</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-controller="Reports" asp-action="CountyAnalysis">
+                                    <a id="countyAnalysis" asp-controller="Reports" asp-action="CountyAnalysis">
                                         <span class="menu-item" data-i18n="Analytics">County Analysis</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-controller="Reports" asp-action="CoordinatorBatchReport">
+                                    <a id="coordinatorBatchReport" asp-controller="Reports" asp-action="CoordinatorBatchReport">
                                         <span class="menu-item" data-i18n="Analytics">Coordinator Batch Listing</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-controller="Reports" asp-action="CountyAnalysis">
+                                    <a id="countyAnalysis" asp-controller="Reports" asp-action="CountyAnalysis">
                                         <span class="menu-item" data-i18n="Analytics">Coordinator Voter Activity</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-controller="Reports" asp-action="CountyAnalysis">
+                                    <a asp-controller="" asp-action="">
                                         <span class="menu-item" data-i18n="Analytics">Circulator Counts</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-controller="Reports" asp-action="CountyAnalysis">
+                                    <a asp-controller="" asp-action="">
                                         <span class="menu-item" data-i18n="Analytics">Internal Validator Activity</span>
                                     </a>
                                 </li>

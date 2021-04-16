@@ -48,6 +48,64 @@
         $("#KPMUsers").addClass("active");
         $("#KPMUsers").parents(".has-sub").addClass("open");
     }
-   
-
+    else
+        if (location.href.indexOf('ManagerUsers/AssignCoordinators') != -1) {
+            $("#assignCoordinators").addClass("active");
+            $("#assignCoordinators").parents(".has-sub").addClass("open");
+                                        }
+    else
+        if (location.href.indexOf('home/petitions') != -1) {
+            $("#assignSubCoordinators").addClass("active");
+            $("#assignSubCoordinators").parents(".has-sub").addClass("open");
+                                            }
+    else
+            if (location.href.indexOf('ManagerUsers/AssignSubCoordinators') != -1) {
+            $("#assignSubCoordinators").addClass("active");
+            $("#assignSubCoordinators").parents(".has-sub").addClass("open");
+                                                }
+    else
+            if (location.href.indexOf('ManagerUsers/ManageCirculator') != -1) {
+            $("#manageCirculator").addClass("active");
+            $("#manageCirculator").parents(".has-sub").addClass("open");
+        }
+    else
+            if (location.href.indexOf('ManagerUsers/AssignExternalValidators') != -1) {
+            $("#assignExternalValidators").addClass("active");
+            $("#assignExternalValidators").parents(".has-sub").addClass("open");
+                                                        }
+    else
+                if (location.href.indexOf('ManagerUsers/ManageInternalValidators') != -1) {
+            $("#manageInternalValidators").addClass("active");
+            $("#manageInternalValidators").parents(".has-sub").addClass("open");
+                                                            }
+    else
+            if (location.href.indexOf('Reports/NewBatchSubmission') != -1) {
+            $("#newBatchSubmission").addClass("active");
+            $("#newBatchSubmission").parents(".has-sub").addClass("open");
+                                                                }
+    else
+            if (location.href.indexOf('Reports/PetitionStatistics') != -1) {
+            $("#PetitionStatistics").addClass("active");
+            $("#PetitionStatistics").parents(".has-sub").addClass("open");
+                                                                    }
+    else
+            if (location.href.indexOf('Reports/CountyAnalysis') != -1) {
+            $("#countyAnalysis").addClass("active");
+            $("#countyAnalysis").parents(".has-sub").addClass("open");
+                                                                        }
+    else
+            if (location.href.indexOf('Reports/CoordinatorBatchReport') != -1) {
+            $("#coordinatorBatchReport").addClass("active");
+            $("#coordinatorBatchReport").parents(".has-sub").addClass("open");
+                                                                            }
+    else
+            if (location.href.indexOf('Reports/CountyAnalysis') != -1) {
+            $("#countyAnalysis").addClass("active");
+            $("#countyAnalysis").parents(".has-sub").addClass("open");
+                                                                                }
+    else
+            if (location.href.indexOf('Reports/CoordinatorBatchReport') != -1) {
+            $("#coordinatorBatchReport").addClass("active");
+            $("#coordinatorBatchReport").parents(".has-sub").addClass("open");
+        }
 })(window);
