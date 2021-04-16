@@ -1,0 +1,108 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_AdminLayout";
+}
+@model createBatchVM
+<div class="content-wrapper">
+    <div class="content-body">
+        <!-- Basic Vertical form layout section start -->
+        <section id="basic-vertical-layouts">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">Manage External Validators</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <table class="table" id="externalValidator">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    Kashif
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-primary">Assign</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Kashif
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-primary">Assign</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">External Validators with KPM Coordinator IDs</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <table class="table" id="externalValidatorswithKPM">
+                                        <thead>
+                                            <tr>
+                                                <th>User ID</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Assign To</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody >
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- Basic Vertical form layout section end -->
+    </div>
+</div>
+@section Scripts {
+    <script>
+        var table = $('#externalValidatorswithKPM');
+        table.DataTable({
+            responsive: true,
+            "info": false,
+            columns: [
+                { data: '', searchable: false },
+                { data: 'First Name', searchable: false },
+                { data: 'Last Name' },
+                { data: 'KPM User ID' },
+
+            ],
+           
+        });
+@**@
+        var table1 = $('#externalValidator');
+        table1.DataTable({
+            responsive: true,
+            "info": false,
+           
+
+        });
+    </script>
+}

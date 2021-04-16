@@ -4,6 +4,7 @@
 @{
     Layout = "_AdminLayout";
 }
+@model createBatchVM
 <div class="content-wrapper">
     <div class="content-body">
         <!-- Basic Vertical form layout section start -->
@@ -25,14 +26,21 @@
                                             <span class="float-right text-right">Select Coordinator :</span>
                                         </div>
                                         <div class="col-6 col-md-4 mt-1">
-                                            <select class="form-control form-control-sm" id="basicSelect">
-                                                <option>Thor Ragnarok</option>
-                                                <option>IT</option>
-                                                <option>Blade Runner</option>
+                                            <select class="form-control form-control-sm cordcirculator" id="basicSelect">
+                                                @if (Model != null)
+                                                {
+                                                    @if (Model.users != null)
+                                                    {
+                                                        foreach (var u in Model.users)
+                                                        {
+                                                            <option value="@u.userId">@u.userName</option>
+                                                        }
+                                                    }
+                                                }
                                             </select>
                                         </div>
                                         <div class="col-md-4 mt-1 px-lg-0 px-xl-1">
-                                            <button type="button" class="btn btn-sm btn-primary flexCenter float-right float-sm-left">Show Batch List</button>
+                                            <button type="button" id="getbatchlist" class="btn btn-sm btn-primary flexCenter float-right float-sm-left">Show Batch List</button>
                                         </div>
                                     </div>
                                 </div>
@@ -42,14 +50,12 @@
                                             <span class="float-right text-right">Select a Batch :</span>
                                         </div>
                                         <div class="col-6 col-md-4 mt-1">
-                                            <select class="form-control form-control-sm" id="basicSelect">
-                                                <option>Thor Ragnarok</option>
-                                                <option>IT</option>
-                                                <option>Blade Runner</option>
+                                            <select class="form-control form-control-sm displayBatch" id="basicSelect">
+                                                
                                             </select>
                                         </div>
                                         <div class="col-md-4 mt-1">
-                                            <button type="button" class="btn btn-sm btn-primary flexCenter float-right float-sm-left">Dispaly Batch</button>
+                                            <button type="button" id="displayBatch" class="btn btn-sm btn-primary flexCenter float-right float-sm-left">Dispaly Batch</button>
                                         </div>
                                     </div>
                                 </div>
@@ -102,9 +108,51 @@
                         </div>
                     </div>
                 </div>
-               
+
             </div>
         </section>
         <!-- Basic Vertical form layout section end -->
     </div>
 </div>
+@section Scripts {
+    <script>
+        $("#getbatchlist").click(function () {
+            var data = {
+                'id': $(".cordcirculator").find(":selected").val(),
+            }
+            $.ajax({
+                url: "/batches/getbatchlist",
+                type: "Get",
+                data: data,
+                success: function (res) {
+                    var list = $(".displayBatch");
+                    res.map(element => {
+                        list.append(`<option value="${element['batchId']}">${element['batchId']}</option>`);
+                    })
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        })
+        $("#displayBatch").click(function () {
+            var data = {
+                'id': parseInt($(".displayBatch").find(":selected").val()),
+            }
+            $.ajax({
+                url: "/batches/displayBatch",
+                type: "Get",
+                data: data,
+                success: function (res) {
+                    var list = $(".displayBatch");
+                    res.map(element => {
+                        list.append(`<option value="${element['batchId']}">${element['batchId']}</option>`);
+                    })
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        })
+    </script>
+}

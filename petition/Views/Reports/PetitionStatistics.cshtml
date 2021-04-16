@@ -1,0 +1,70 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_AdminLayout";
+}
+<div class="content-wrapper">
+    <div class="content-body">
+        <!-- Basic Vertical form layout section start -->
+        <section id="basic-vertical-layouts">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                Petition Statistics
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <div class="alert alert-warning" role="alert">
+                                        <div class="alert-body">
+                                            Only displays submitted batches
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <table class="table" id="petitionStatistics">
+                                        <thead>
+                                            <tr>
+                                                <th>Petition</th>
+                                                <th>Name</th>
+                                                <th>Submitted</th>
+                                                <th>Raw</th>
+                                                <th>New Reg</th>
+                                                <th>Diff</th>
+                                                <th>Purged</th>
+                                                <th>Net</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- Basic Vertical form layout section end -->
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var table = $('#petitionStatistics');
+        table.DataTable({
+            responsive: true,
+            "info": false,
+
+        });
+
+    </script>
+}

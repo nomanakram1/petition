@@ -1,0 +1,91 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_AdminLayout";
+}
+<div class="content-wrapper">
+    <div class="content-body">
+        <!-- Basic Vertical form layout section start -->
+        <section id="basic-vertical-layouts">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                County Analysis
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <div class="alert alert-warning" role="alert">
+                                        <div class="alert-body">
+                                            Retrieves a report of all batches and their submitted counts.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-xl-10 offset-xl-1">
+                                    <div class="row">
+                                        <div class="col-sm-6 mt-1">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <label class="float-right text-right mt-1">
+                                                        Select Petition :
+                                                    </label>
+                                                </div>
+                                                <div class="col-8">
+                                                    <select class="form-control" id="basicSelect">
+                                                        <option>IT</option>
+                                                        <option>Blade Runner</option>
+                                                        <option>Thor Ragnarok</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 mt-1">
+                                            <button type="button" class="btn btn-sm btn-primary float-right float-sm-left">Submit</button>
+                                        </div>                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <table class="table" id="batchesSubmitted">
+                                        <thead>
+                                            <tr>
+                                                <th>County</th>
+                                                <th>Verified</th>
+                                                <th>Bad</th>
+                                                <th>Dups</th>
+                                                <th>Percent</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- Basic Vertical form layout section end -->
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var table = $('#batchesSubmitted');
+        table.DataTable({
+            responsive: true,
+            "info": false,
+
+        });
+
+    </script>
+}
