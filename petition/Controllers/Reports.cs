@@ -68,5 +68,13 @@ namespace petition.Controllers
         {
             return View();
         }
+        public IActionResult CoordinatorBatchReport()
+        {
+            return View();
+        }
+        public IActionResult CoordinatorVoterActivity()
+        {
+            return View();
+        }
     }
 }
