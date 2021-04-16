@@ -24,5 +24,9 @@ namespace petition.Controllers
         {
             return View();
         }
+        public IActionResult CoordinatorVoterActivity()
+        {
+            return View();
+        }
     }
 }
