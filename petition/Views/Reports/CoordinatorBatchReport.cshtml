@@ -4,6 +4,7 @@
 @{
     Layout = "_AdminLayout";
 }
+@model createBatchVM
 <div class="content-wrapper">
     <div class="content-body">
         <!-- Basic Vertical form layout section start -->
@@ -37,17 +38,24 @@
                                                     </label>
                                                 </div>
                                                 <div class="col-8">
-                                                    <select class="form-control" id="basicSelect">
-                                                        <option>IT</option>
-                                                        <option>Blade Runner</option>
-                                                        <option>Thor Ragnarok</option>
+                                                    <select class="form-control coordinator" id="basicSelect">
+                                                        @if (Model != null)
+                                                        {
+                                                            @if (Model.users != null)
+                                                            {
+                                                                foreach (var u in Model.users)
+                                                                {
+                                                                    <option value="@u.userId">@u.userName</option>
+                                                                }
+                                                            }
+                                                        }
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mt-1">
-                                            <button type="button" class="btn btn-sm btn-primary float-right float-sm-left">Submit</button>
-                                        </div>                                       
+                                            <button type="button" class="submit btn btn-sm btn-primary float-right float-sm-left">Submit</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -56,11 +64,13 @@
                                     <table class="table" id="batchesSubmitted">
                                         <thead>
                                             <tr>
-                                                <th>County</th>
-                                                <th>Verified</th>
-                                                <th>Bad</th>
-                                                <th>Dups</th>
-                                                <th>Percent</th>
+                                                <th>Batch</th>
+                                                <th>Submitted Count</th>
+                                                <th>Circ Sigs</th>
+                                                <th>Raw</th>
+                                                <th>Purged</th>
+                                                <th>Total Diff</th>
+                                                <th>Net</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -84,8 +94,47 @@
         table.DataTable({
             responsive: true,
             "info": false,
-
+            columns: [
+                { data: 'Batch' },
+                { data: 'Submitted Count' },
+                { data: 'Circ Sigs' },
+                { data: 'Raw' },
+                { data: 'Purged' },
+                { data: 'Total Diff' },
+                { data: 'Net' },
+            ],
         });
+        $(".submit").click(function () {
+            var id = $(".coordinator").find(":selected").val();
+            var data = {
+                'id': id,
+            }
+            $.ajax({
+                url: "/reports/GetPetitionCountyStats",
+                type: "Get",
+                data: data,
+                success: function (res) {
+                    var table = $('#batchesSubmitted').DataTable();
+                    table.clear();
+                    res.map(element => {
+                        var obj = {
+                            "Batch": element["county"],
+                            "Submitted Count": element["Ttlvalid"],
+                            "Circ Sigs": element["Ttlbad"],
+                            "Raw": element["Ttldup"],
+                            "Purged": element["Ttlpercent"],
+                            "Total Diff": element["Ttlpercent"],
+                            "Net": element["Ttlpercent"],
+                        }
+                        table.row.add(obj).draw();
+                    })
+                    table.responsive.recalc()
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
 
+        })
     </script>
 }

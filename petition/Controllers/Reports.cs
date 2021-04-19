@@ -31,7 +31,40 @@ namespace petition.Controllers
             var petitions = context.Petitions.FromSqlRaw("SELECT * FROM dbo.Petitions").ToList();
             return View(petitions);
         }
-        public ActionResult CoordinatorBatchReport()
+        public async Task<ActionResult> CoordinatorBatchReport()
+        {
+            var users = await _userManager.GetUsersInRoleAsync("KPM Coordinator");
+            List<UserListVM> userList = new List<UserListVM>();
+            if (users.Any())
+            {
+                foreach (var user in users)
+                {
+                    userList.Add(new UserListVM
+                    {
+                        userId = user.Id,
+                        userName = user.UserName,
+                        firstName = user.FirstName,
+                        lastName = user.LastName,
+                        address = user.Address,
+                        zipCode = user.ZipCode,
+                        state = user.State,
+                        city = user.City,
+                        phoneNumber = user.PhoneNumber,
+                        authorize = user.Authorize,
+                        email = user.Email
+                    });
+                }
+                createBatchVM data = new createBatchVM();
+                if (userList != null)
+                {
+                    data.users = userList;
+                }
+
+                return View(data);
+            }
+            return View();
+        }
+        public ActionResult CoordinatorVoterActivity()
         {
             return View();
         }
@@ -75,6 +108,19 @@ namespace petition.Controllers
                 SqlParameter petid = new SqlParameter("@petid", id);
                 SqlParameter startdate = new SqlParameter("@reportdate", date);
                 var result = context.GetPetitionCountyStats.FromSqlRaw("EXEC [dbo].voterrecordcount2 @petid=" + id + ", @reportdate='" + date + "'").ToList();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+        public ActionResult CoordBatchListSubmitted(string id)
+        {
+            try
+            {
+                SqlParameter petid = new SqlParameter("@petid", id);
+                var result = context.GetPetitionCountyStats.FromSqlRaw("EXEC [dbo].CoordBatchListSubmitted @petid=" + id).ToList();
                 return Ok(result);
             }
             catch (Exception ex)
