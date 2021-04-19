@@ -80,6 +80,7 @@ namespace petition.Models
         public DbSet<GetCoordinate> GetCoordinate { get; set; }
         public DbSet<KPMBatchesGetSubmittedByPetByDateRange> KPMBatchesGetSubmittedByPetByDateRange { get; set; }
         public DbSet<PetitionStatsSubmitted> PetitionStatsSubmitted { get; set; }
+        public DbSet<GetPetitionCountyStats> GetPetitionCountyStats { get; set; }
 
 
     }

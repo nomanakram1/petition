@@ -31,6 +31,10 @@ namespace petition.Controllers
             var petitions = context.Petitions.FromSqlRaw("SELECT * FROM dbo.Petitions").ToList();
             return View(petitions);
         }
+        public ActionResult CoordinatorBatchReport()
+        {
+            return View();
+        }
 
         public ActionResult BatchesGetSubmittedbyPetByDateRange(string id, DateTime endDate, DateTime startDate)
         {
@@ -64,17 +68,24 @@ namespace petition.Controllers
                 return BadRequest(ex);
             }
         }
+        public ActionResult GetPetitionCountyStats(string id,DateTime date)
+        {
+            try
+            {
+                SqlParameter petid = new SqlParameter("@petid", id);
+                SqlParameter startdate = new SqlParameter("@reportdate", date);
+                var result = context.GetPetitionCountyStats.FromSqlRaw("EXEC [dbo].voterrecordcount2 @petid=" + id + ", @reportdate='" + date + "'").ToList();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
         public IActionResult CountyAnalysis()
         {
-            return View();
-        }
-        public IActionResult CoordinatorBatchReport()
-        {
-            return View();
-        }
-        public IActionResult CoordinatorVoterActivity()
-        {
-            return View();
+            var petitions = context.Petitions.FromSqlRaw("SELECT * FROM dbo.Petitions").ToList();
+            return View(petitions);
         }
     }
 }
