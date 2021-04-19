@@ -120,7 +120,7 @@ namespace petition.Controllers
             try
             {
                 SqlParameter petid = new SqlParameter("@petid", id);
-                var result = context.GetPetitionCountyStats.FromSqlRaw("EXEC [dbo].CoordBatchListSubmitted @petid=" + id).ToList();
+                var result = context.CoordBatchListSubmit.FromSqlRaw("EXEC [dbo].KPMCoordBatchListSubmitted @coordid='" + id+"'").ToList();
                 return Ok(result);
             }
             catch (Exception ex)

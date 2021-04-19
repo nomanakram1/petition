@@ -110,7 +110,7 @@
                 'id': id,
             }
             $.ajax({
-                url: "/reports/GetPetitionCountyStats",
+                url: "/reports/CoordBatchListSubmitted",
                 type: "Get",
                 data: data,
                 success: function (res) {
@@ -119,12 +119,12 @@
                     res.map(element => {
                         var obj = {
                             "Batch": element["county"],
-                            "Submitted Count": element["Ttlvalid"],
-                            "Circ Sigs": element["Ttlbad"],
-                            "Raw": element["Ttldup"],
-                            "Purged": element["Ttlpercent"],
-                            "Total Diff": element["Ttlpercent"],
-                            "Net": element["Ttlpercent"],
+                            "Submitted Count": element["initsigs"],
+                            "Circ Sigs": element["circinitsigs"],
+                            "Raw": element["rawcount"],
+                            "Purged": element["purgecount"],
+                            "Total Diff": element["purgecount"] - (element["rawcount"] - element["initsigs"]),
+                            "Net": element["initsigs"] - (element["purgecount"] - (element["rawcount"] - element["initsigs"])),
                         }
                         table.row.add(obj).draw();
                     })
