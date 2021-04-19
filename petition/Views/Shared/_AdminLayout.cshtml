@@ -224,12 +224,12 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-controller="" asp-action="">
+                                    <a asp-controller="Reports" asp-action="CirculatorCount">
                                         <span class="menu-item" data-i18n="Analytics">Circulator Counts</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-controller="" asp-action="">
+                                    <a asp-controller="Reports" asp-action="InternalValidatorActivity">
                                         <span class="menu-item" data-i18n="Analytics">Internal Validator Activity</span>
                                     </a>
                                 </li>
@@ -240,10 +240,35 @@
                     </ul>
                 </li>
                 <li class="nav-item has-sub">
+                    <a class="d-flex align-items-center" href="index.html"><i class="fa fa-building-o" aria-hidden="true"></i><span>Office</span></a>
+                    <ul class="menu-content">
+                        <li>
+                            <a id="AddCirculatorToBatch" asp-controller="Office" asp-action="AddCirculatorToBatch">
+                                <span class="menu-item" data-i18n="Analytics">Add Coordinator To Batch</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="EditPurgeCount" asp-controller="Office" asp-action="EditPurgeCount">
+                                <span class="menu-item" data-i18n="Analytics">Edit Purge Counts</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="OperationalInfo" asp-controller="Office" asp-action="OperationalInfo">
+                                <span class="menu-item" data-i18n="Analytics">Operational Info</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="EditPurgeCount1Line" asp-controller="Office" asp-action="EditPurgeCount1Line">
+                                <span class="menu-item" data-i18n="Analytics">Edit Purge Count - 1 Line</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-sub">
                     <a class="d-flex align-items-center" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg><span>Dashboard</span></a>
                     <ul class="menu-content">
                         <li>
-                            <a class="d-flex align-items-center" href="dashboard-analytics.html"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="Analytics">Analytics</span></a>
+                            <a class="d-flex align-items-center" href="dashboard-analytics.html"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="Analytics">Add Circulator To Batch</span></a>
                         </li>
                         <li>
                             <a class="d-flex align-items-center" href="dashboard-ecommerce.html"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="eCommerce">eCommerce</span></a>

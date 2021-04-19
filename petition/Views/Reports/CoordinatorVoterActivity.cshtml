@@ -4,6 +4,7 @@
 @{
     Layout = "_AdminLayout";
 }
+@model createBatchVM
 <div class="content-wrapper">
     <div class="content-body">
         <!-- Basic Vertical form layout section start -->
@@ -16,7 +17,7 @@
                                 Coordinator Voter Activity
                             </h4>
                         </div>
-                        <div class="card-body">                           
+                        <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-12 col-xl-10 offset-xl-1">
                                     <div class="row">
@@ -29,9 +30,16 @@
                                                 </div>
                                                 <div class="col-8">
                                                     <select class="form-control" id="basicSelect">
-                                                        <option>IT</option>
-                                                        <option>Blade Runner</option>
-                                                        <option>Thor Ragnarok</option>
+                                                        @if (Model != null)
+                                                        {
+                                                            @if (Model.users != null)
+                                                            {
+                                                                foreach (var u in Model.users)
+                                                                {
+                                                                    <option value="@u.userId">@u.userName</option>
+                                                                }
+                                                            }
+                                                        }
                                                     </select>
                                                 </div>
                                             </div>

@@ -64,8 +64,36 @@ namespace petition.Controllers
             }
             return View();
         }
-        public ActionResult CoordinatorVoterActivity()
+        public async Task<ActionResult> CoordinatorVoterActivity()
         {
+            var users = await _userManager.GetUsersInRoleAsync("KPM Coordinator");
+            List<UserListVM> userList = new List<UserListVM>();
+            if (users.Any())
+            {
+                foreach (var user in users)
+                {
+                    userList.Add(new UserListVM
+                    {
+                        userId = user.Id,
+                        userName = user.UserName,
+                        firstName = user.FirstName,
+                        lastName = user.LastName,
+                        address = user.Address,
+                        zipCode = user.ZipCode,
+                        state = user.State,
+                        city = user.City,
+                        phoneNumber = user.PhoneNumber,
+                        authorize = user.Authorize,
+                        email = user.Email
+                    });
+                }
+                createBatchVM data = new createBatchVM();
+                if (userList != null)
+                {
+                    data.users = userList;
+                }
+                return View(data);
+            }
             return View();
         }
 
@@ -132,6 +160,14 @@ namespace petition.Controllers
         {
             var petitions = context.Petitions.FromSqlRaw("SELECT * FROM dbo.Petitions").ToList();
             return View(petitions);
+        }
+        public IActionResult CirculatorCount()
+        {
+            return View();
+        }
+        public IActionResult InternalValidatorActivity()
+        {
+            return View();
         }
     }
 }
