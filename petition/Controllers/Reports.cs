@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using petition.DataLayer;
 using petition.Models;
 using petition.Models.DbModel;
 using petition.Models.ViewModels;
@@ -19,9 +20,11 @@ namespace petition.Controllers
         private readonly UserManager<ApplicationIdentityUser> _userManager;
         private readonly ILogger<HomeController> _logger;
         private readonly RoleManager<IdentityRole> _roleManager;
-        public Reports(AppDbContext context, UserManager<ApplicationIdentityUser> userManager, ILogger<HomeController> logger, RoleManager<IdentityRole> roleManager)
+        private readonly IPetetionDL petetion;
+        public Reports(AppDbContext context, UserManager<ApplicationIdentityUser> userManager, ILogger<HomeController> logger, RoleManager<IdentityRole> roleManager, IPetetionDL _petetion)
         {
             this.context = context;
+            petetion = _petetion;
             _logger = logger;
             _roleManager = roleManager;
             _userManager = userManager;
@@ -143,6 +146,35 @@ namespace petition.Controllers
                 return BadRequest(ex);
             }
         }
+        public ActionResult GetValidatorData(string id,DateTime startdate, DateTime enddate)
+        {
+            try
+            {
+                SqlParameter vid = new SqlParameter("@vid", id);
+                SqlParameter strdtt = new SqlParameter("@startdate", startdate);
+                SqlParameter enddt = new SqlParameter("@enddate", enddate);
+                var result = context.GetValidatorData.FromSqlRaw("EXEC [dbo].[ValidatorProductivity] @vid=" + id + ", @startdate='" + startdate + "'" + ", @enddate='" + enddate + "'").ToList();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+        public ActionResult GetCircReportByPetitionCoordSubmitted(int pid,string coordassigned)
+        {
+            try
+            {
+                SqlParameter petitionid = new SqlParameter("@petitionid", pid);
+                SqlParameter coord = new SqlParameter("@coordassigned", coordassigned);
+                var result = context.GetValidatorData.FromSqlRaw("EXEC [dbo].[ValidatorProductivity] @petitionid=" + pid + ", @coordassigned='" + coordassigned + "'").ToList();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
         public ActionResult CoordBatchListSubmitted(string id)
         {
             try
@@ -161,13 +193,72 @@ namespace petition.Controllers
             var petitions = context.Petitions.FromSqlRaw("SELECT * FROM dbo.Petitions").ToList();
             return View(petitions);
         }
-        public IActionResult CirculatorCount()
+        public async Task<IActionResult> CirculatorCount()
         {
-            return View();
+            createBatchVM data = new createBatchVM();
+            List<GetPetetion> p = petetion.GetPetition();
+            var users = await _userManager.GetUsersInRoleAsync("Internal Validator");
+            List<UserListVM> userList = new List<UserListVM>();
+            if (users.Any())
+            {
+                foreach (var user in users)
+                {
+                    userList.Add(new UserListVM
+                    {
+                        userId = user.Id,
+                        userName = user.UserName,
+                        firstName = user.FirstName,
+                        lastName = user.LastName,
+                        address = user.Address,
+                        zipCode = user.ZipCode,
+                        state = user.State,
+                        city = user.City,
+                        phoneNumber = user.PhoneNumber,
+                        authorize = user.Authorize,
+                        email = user.Email
+                    });
+                }
+            }
+            if (p != null)
+            {
+                data.petitons = p;
+            }
+            if (userList != null)
+            {
+                data.users = userList;
+            }
+            return View(data);
         }
-        public IActionResult InternalValidatorActivity()
+        public async Task<IActionResult> InternalValidatorActivity()
         {
-            return View();
+            createBatchVM data = new createBatchVM();
+            var users = await _userManager.GetUsersInRoleAsync("Internal Validator");
+            List<UserListVM> userList = new List<UserListVM>();
+            if (users.Any())
+            {
+                foreach (var user in users)
+                {
+                    userList.Add(new UserListVM
+                    {
+                        userId = user.Id,
+                        userName = user.UserName,
+                        firstName = user.FirstName,
+                        lastName = user.LastName,
+                        address = user.Address,
+                        zipCode = user.ZipCode,
+                        state = user.State,
+                        city = user.City,
+                        phoneNumber = user.PhoneNumber,
+                        authorize = user.Authorize,
+                        email = user.Email
+                    });
+                }
+            }
+            if (userList != null)
+            {
+                data.users = userList;
+            }
+            return View(data);
         }
     }
 }

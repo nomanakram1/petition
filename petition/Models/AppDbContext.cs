@@ -82,7 +82,7 @@ namespace petition.Models
         public DbSet<PetitionStatsSubmitted> PetitionStatsSubmitted { get; set; }
         public DbSet<GetPetitionCountyStats> GetPetitionCountyStats { get; set; }
         public DbSet<CoordBatchListSubmit> CoordBatchListSubmit { get; set; }
-
+        public DbSet<GetValidatorData> GetValidatorData { get; set; }
 
     }
 }
