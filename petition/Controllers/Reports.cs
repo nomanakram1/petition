@@ -161,13 +161,13 @@ namespace petition.Controllers
                 return BadRequest(ex);
             }
         }
-        public ActionResult GetCircReportByPetitionCoordSubmitted(int pid,string coordassigned)
+        public ActionResult GetCircReportByPetitionCoordSubmitted(int pid, string coordassigned)
         {
             try
             {
                 SqlParameter petitionid = new SqlParameter("@petitionid", pid);
                 SqlParameter coord = new SqlParameter("@coordassigned", coordassigned);
-                var result = context.GetValidatorData.FromSqlRaw("EXEC [dbo].[ValidatorProductivity] @petitionid=" + pid + ", @coordassigned='" + coordassigned + "'").ToList();
+                var result = context.GetCircReportByPetitionCoordSubmitted.FromSqlRaw("EXEC [dbo].[KPMCircReportbyPetitionCoordSubmitted] @petitionid=" + pid + ", @coordassigned='" + coordassigned + "'").ToList();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -197,7 +197,7 @@ namespace petition.Controllers
         {
             createBatchVM data = new createBatchVM();
             List<GetPetetion> p = petetion.GetPetition();
-            var users = await _userManager.GetUsersInRoleAsync("Internal Validator");
+            var users = await _userManager.GetUsersInRoleAsync("KPM_Validator");
             List<UserListVM> userList = new List<UserListVM>();
             if (users.Any())
             {
