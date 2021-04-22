@@ -153,7 +153,7 @@ namespace petition.Controllers
                 SqlParameter vid = new SqlParameter("@vid", id);
                 SqlParameter strdtt = new SqlParameter("@startdate", startdate);
                 SqlParameter enddt = new SqlParameter("@enddate", enddate);
-                var result = context.GetValidatorData.FromSqlRaw("EXEC [dbo].[ValidatorProductivity] @vid=" + id + ", @startdate='" + startdate + "'" + ", @enddate='" + enddate + "'").ToList();
+                var result = context.GetValidatorData.FromSqlRaw("EXEC [dbo].[ValidatorProductivity] @vid='" + id + "', @startdate='" + startdate + "'" + ", @enddate='" + enddate + "'").ToList();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -232,7 +232,7 @@ namespace petition.Controllers
         public async Task<IActionResult> InternalValidatorActivity()
         {
             createBatchVM data = new createBatchVM();
-            var users = await _userManager.GetUsersInRoleAsync("Internal Validator");
+            var users = await _userManager.GetUsersInRoleAsync("KPM_Validator");
             List<UserListVM> userList = new List<UserListVM>();
             if (users.Any())
             {
