@@ -1,0 +1,331 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_AdminLayout";
+}
+<div class="content-wrapper">
+    <div class="content-body">
+        <!-- Basic Vertical form layout section start -->
+        <section id="basic-vertical-layouts">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                Batch Help
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <p>To add a batch, first choose a petition before clicking on the 'Add Batch' Button. Once you click on the Buton, a pop-up window will appear with the batch number.  Click on OK to clear the pop-up window.</p>
+                            <p>To view your batches and their status, use the Review Batches Module.  Select a petition and click on  the 'List Batches' button.</p>
+                            <p>Once you are ready to submit a batch to KPM, click on the 'Select' link to the right of the batch number you want to add. Please have your estimated batch submitted numbers ready.  On the next screen, you will be prompted to enter your estimate prior to submitting the batch.</p>
+                            <p>To create a batch sheet and add circulators to your batch, you must go to the 'Batch Sheets' selection on the drop down menu.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                Create KPM Batch
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-4 mt-1">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="float-right text-right mt-1">
+                                                Select a Coordinator:
+                                            </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <select class="form-control petition" id="basicSelect">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 mt-1">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="float-right text-right mt-1">
+                                                Select a Petition:
+                                            </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <select class="form-control petition" id="basicSelect">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 mt-1">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="float-right text-right mt-1">
+                                                Signature Value:
+                                            </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" name="name" value="" class="form-control form-control-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 mt-1">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="float-right text-right mt-1">
+                                                Select Assigned Date :
+                                            </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" id="fp-default" class="form-control flatpickr-basic bg-white" placeholder="YYYY-MM-DD" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="button" class="btn btn-sm btn-primary float-right">Add Batch</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                Review/Edit Batches
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-4 mt-1">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="float-right text-right mt-1">
+                                                Select a Petition:
+                                            </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <select class="form-control petition" id="basicSelect">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 mt-1">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="float-right text-right mt-1">
+                                                Select a Coordinator:
+                                            </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <select class="form-control petition" id="basicSelect">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 mt-1">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">View All Batches</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="button" class="btn btn-sm btn-primary float-right">List Batch</button>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <table class="table" id="batchesSubmitted">
+                                        <thead>
+                                            <tr>
+                                                <th>Batch</th>
+                                                <th>Coordinator</th>
+                                                <th>Petition</th>
+                                                <th>Date Submitted</th>
+                                                <th>Sig Value</th>
+                                                <th>Date Received</th>
+                                                <th>Submitted Count</th>
+                                                <th>CB Date</th>
+                                                <th>CB Count</th>
+                                                <th>Total Sigs</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                Request Shipment
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3 mt-1">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="float-right text-right mt-1">
+                                                Name:
+                                            </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" name="name" value="" class="form-control form-control-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 mt-1">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="float-right text-right mt-1">
+                                                Email:
+                                            </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" name="name" value="" class="form-control form-control-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 mt-1">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="float-right text-right mt-1">
+                                                Boxes:
+                                            </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" name="name" value="" class="form-control form-control-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 mt-1">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="float-right text-right mt-1">
+                                                Petition:
+                                            </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" name="name" value="" class="form-control form-control-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 mt-1">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="float-right text-right mt-1">
+                                                Address:
+                                            </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" name="name" value="" class="form-control form-control-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 mt-1">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="float-right text-right mt-1">
+                                                Address2:
+                                            </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" name="name" value="" class="form-control form-control-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 mt-1">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="float-right text-right mt-1">
+                                                City:
+                                            </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" name="name" value="" class="form-control form-control-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 mt-1">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="float-right text-right mt-1">
+                                                State:
+                                            </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" name="name" value="" class="form-control form-control-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 mt-1">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="float-right text-right mt-1">
+                                                Zip:
+                                            </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" id="fp-default" class="form-control flatpickr-basic bg-white" placeholder="YYYY-MM-DD" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 mt-1">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="float-right text-right mt-1">
+                                                Comments:
+                                            </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Textarea"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 mt-2">
+                                    <button type="button" class="btn btn-sm btn-primary float-right">Submit Inquiry</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Basic Vertical form layout section end -->
+    </div>
+</div>
+@section Scripts {
+    <script>
+        var table = $('#batchesSubmitted');
+        table.DataTable({
+            responsive: true,
+            "info": false,
+           
+        });
+       
+    </script>
+}
