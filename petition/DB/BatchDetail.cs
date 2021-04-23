@@ -1,18 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
 namespace petition.DB
 {
-    [Keyless]
     public partial class BatchDetail
     {
         public int BatchId { get; set; }
         public int Circid { get; set; }
         public string Circfullname { get; set; }
         public int Circinitsigs { get; set; }
+        [Key]
         public int Entryid { get; set; }
         public int? Circrawcount { get; set; }
         public int? PcInitials { get; set; }
@@ -31,7 +32,7 @@ namespace petition.DB
         public int? PcDupSig { get; set; }
         public int? PcWhiteOut { get; set; }
         public int? PcOther { get; set; }
-        public int BatchStatus { get; set; }
-        public int CircNewReg { get; set; }
+        public int? BatchStatus { get; set; }
+        public int? CircNewReg { get; set; }
     }
 }

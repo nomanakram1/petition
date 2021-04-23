@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace petition.Migrations
 {
-    public partial class new1 : Migration
+    public partial class _2242021 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -58,11 +58,12 @@ namespace petition.Migrations
                 name: "BatchDetails",
                 columns: table => new
                 {
+                    Entryid = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     BatchId = table.Column<int>(type: "int", nullable: false),
                     Circid = table.Column<int>(type: "int", nullable: false),
                     Circfullname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Circinitsigs = table.Column<int>(type: "int", nullable: false),
-                    Entryid = table.Column<int>(type: "int", nullable: false),
                     Circrawcount = table.Column<int>(type: "int", nullable: true),
                     PcInitials = table.Column<int>(type: "int", nullable: true),
                     PcPobox = table.Column<int>(type: "int", nullable: true),
@@ -80,11 +81,12 @@ namespace petition.Migrations
                     PcDupSig = table.Column<int>(type: "int", nullable: true),
                     PcWhiteOut = table.Column<int>(type: "int", nullable: true),
                     PcOther = table.Column<int>(type: "int", nullable: true),
-                    BatchStatus = table.Column<int>(type: "int", nullable: false),
-                    CircNewReg = table.Column<int>(type: "int", nullable: false)
+                    BatchStatus = table.Column<int>(type: "int", nullable: true),
+                    CircNewReg = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_BatchDetails", x => x.Entryid);
                 });
 
             migrationBuilder.CreateTable(
@@ -283,6 +285,21 @@ namespace petition.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CoordBatchListSubmit",
+                columns: table => new
+                {
+                    coordassigned = table.Column<int>(type: "int", nullable: false),
+                    batchid = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    initsigs = table.Column<double>(type: "float", nullable: false),
+                    circinitsigs = table.Column<double>(type: "float", nullable: false),
+                    rawcount = table.Column<double>(type: "float", nullable: false),
+                    purgecount = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CoordBatchListSubmitteds",
                 columns: table => new
                 {
@@ -430,6 +447,81 @@ namespace petition.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DisplayBatchList",
+                columns: table => new
+                {
+                    firstname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    lastname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    kpmuserid = table.Column<int>(type: "int", nullable: false),
+                    batchid = table.Column<int>(type: "int", nullable: false),
+                    circinitsigs = table.Column<int>(type: "int", nullable: false),
+                    entryid = table.Column<int>(type: "int", nullable: false),
+                    circrawcount = table.Column<int>(type: "int", nullable: true),
+                    pcInitials = table.Column<int>(type: "int", nullable: true),
+                    pcpobox = table.Column<int>(type: "int", nullable: true),
+                    pcdiffcounty = table.Column<int>(type: "int", nullable: true),
+                    pcIncomAddr = table.Column<int>(type: "int", nullable: true),
+                    pcAddrIllegOrCopy = table.Column<int>(type: "int", nullable: true),
+                    pcSigPrintedOrPrintIlleg = table.Column<int>(type: "int", nullable: true),
+                    pcNameTwiceNoSig = table.Column<int>(type: "int", nullable: true),
+                    pcHWSignForOther = table.Column<int>(type: "int", nullable: true),
+                    pcWomanSignMrsHusbandFname = table.Column<int>(type: "int", nullable: true),
+                    pcForgery = table.Column<int>(type: "int", nullable: true),
+                    pcIncomDeclCirc = table.Column<int>(type: "int", nullable: true),
+                    pcRubStampUsed = table.Column<int>(type: "int", nullable: true),
+                    pcPencilUsed = table.Column<int>(type: "int", nullable: true),
+                    pcDupSig = table.Column<int>(type: "int", nullable: true),
+                    pcWhiteOut = table.Column<int>(type: "int", nullable: true),
+                    pcOther = table.Column<int>(type: "int", nullable: true),
+                    CircNewReg = table.Column<int>(type: "int", nullable: false),
+                    BatchStatus = table.Column<int>(type: "int", nullable: false),
+                    TotalSigs = table.Column<int>(type: "int", nullable: false),
+                    BadTotal = table.Column<int>(type: "int", nullable: false),
+                    SubmittedCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DisplayBathListForPrint",
+                columns: table => new
+                {
+                    BatchID = table.Column<int>(type: "int", nullable: false),
+                    circid = table.Column<int>(type: "int", nullable: false),
+                    circfullname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    circinitsigs = table.Column<int>(type: "int", nullable: false),
+                    entryid = table.Column<int>(type: "int", nullable: false),
+                    circrawcount = table.Column<int>(type: "int", nullable: true),
+                    pcInitials = table.Column<int>(type: "int", nullable: true),
+                    pcPOBox = table.Column<int>(type: "int", nullable: true),
+                    pcDiffCounty = table.Column<int>(type: "int", nullable: true),
+                    pcIncomAddr = table.Column<int>(type: "int", nullable: true),
+                    pcAddrIllegOrCopy = table.Column<int>(type: "int", nullable: true),
+                    pcSigPrintedOrPrintIlleg = table.Column<int>(type: "int", nullable: true),
+                    pcNameTwiceNoSig = table.Column<int>(type: "int", nullable: true),
+                    pcHWSignForOther = table.Column<int>(type: "int", nullable: true),
+                    pcWomanSignMrsHusbandFname = table.Column<int>(type: "int", nullable: true),
+                    pcForgery = table.Column<int>(type: "int", nullable: true),
+                    pcIncomDeclCirc = table.Column<int>(type: "int", nullable: true),
+                    pcRubStampUsed = table.Column<int>(type: "int", nullable: true),
+                    pcPencilUsed = table.Column<int>(type: "int", nullable: true),
+                    pcDupSig = table.Column<int>(type: "int", nullable: true),
+                    pcWhiteOut = table.Column<int>(type: "int", nullable: true),
+                    pcOther = table.Column<int>(type: "int", nullable: true),
+                    CircNewReg = table.Column<int>(type: "int", nullable: false),
+                    BatchStatus = table.Column<int>(type: "int", nullable: false),
+                    TotalSigs = table.Column<int>(type: "int", nullable: false),
+                    BadCount = table.Column<int>(type: "int", nullable: false),
+                    GoodCount = table.Column<int>(type: "int", nullable: false),
+                    GoodPercent = table.Column<int>(type: "int", nullable: false),
+                    SubmittedCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
                 name: "GetBatches",
                 columns: table => new
                 {
@@ -453,6 +545,92 @@ namespace petition.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "GetBatchList",
+                columns: table => new
+                {
+                    DateAssgBatch = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BatchId = table.Column<int>(type: "int", nullable: false),
+                    Petitionid = table.Column<int>(type: "int", nullable: false),
+                    KpmuserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Lastname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Petitionname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateReceivedBatch = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    SigValue = table.Column<short>(type: "smallint", nullable: true),
+                    RawCount = table.Column<int>(type: "int", nullable: true),
+                    PurgedCount = table.Column<int>(type: "int", nullable: true),
+                    DateSubmitted = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    SubmittedCount = table.Column<int>(type: "int", nullable: true),
+                    SigAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GetCircReportByPetitionCoordSubmitted",
+                columns: table => new
+                {
+                    firstname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    lastname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    coordassigned = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    circid = table.Column<int>(type: "int", nullable: false),
+                    circinitsigs = table.Column<int>(type: "int", nullable: false),
+                    rawcount = table.Column<int>(type: "int", nullable: true),
+                    pcInitials = table.Column<int>(type: "int", nullable: true),
+                    pcpobox = table.Column<int>(type: "int", nullable: true),
+                    pcdiffcounty = table.Column<int>(type: "int", nullable: true),
+                    pcincomAddr = table.Column<int>(type: "int", nullable: true),
+                    pcaddrIllegorcopy = table.Column<int>(type: "int", nullable: true),
+                    pcsigprintedorprintIlleg = table.Column<int>(type: "int", nullable: true),
+                    pcnametwicenosig = table.Column<int>(type: "int", nullable: true),
+                    pchwsignforother = table.Column<int>(type: "int", nullable: true),
+                    pcwomansignmrshusbandfname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    pcforgery = table.Column<int>(type: "int", nullable: true),
+                    pcincomdeclcirc = table.Column<int>(type: "int", nullable: true),
+                    pcrubstampused = table.Column<int>(type: "int", nullable: true),
+                    pcpencilused = table.Column<int>(type: "int", nullable: true),
+                    pcdupsig = table.Column<int>(type: "int", nullable: true),
+                    pcwhiteout = table.Column<int>(type: "int", nullable: true),
+                    pcother = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GetCirculator",
+                columns: table => new
+                {
+                    lastname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    firstname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    kpmuserID = table.Column<int>(type: "int", nullable: false),
+                    coordassigned = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    displayname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    addr = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    city = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    state = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    zip = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    telephone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    status = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GetCoordinate",
+                columns: table => new
+                {
+                    firstname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    lastname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    kpmuserID = table.Column<int>(type: "int", nullable: false),
+                    coordassigned = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
                 name: "GetPetetion",
                 columns: table => new
                 {
@@ -461,6 +639,55 @@ namespace petition.Migrations
                     PetitionId = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: true),
                     CityPetition = table.Column<bool>(type: "bit", nullable: true)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GetPetitionCountyStats",
+                columns: table => new
+                {
+                    county = table.Column<double>(type: "float", nullable: false),
+                    Ttlvalid = table.Column<double>(type: "float", nullable: false),
+                    Ttlbad = table.Column<double>(type: "float", nullable: false),
+                    Ttldup = table.Column<double>(type: "float", nullable: false),
+                    Ttlpercent = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GetValidatorData",
+                columns: table => new
+                {
+                    valid = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ttlgood = table.Column<double>(type: "float", nullable: false),
+                    ttlbad = table.Column<double>(type: "float", nullable: false),
+                    ttldup = table.Column<double>(type: "float", nullable: false),
+                    FName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    petitionname = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
+                name: "KPMBatchesGetSubmittedByPetByDateRange",
+                columns: table => new
+                {
+                    BatchID = table.Column<int>(type: "int", nullable: true),
+                    dateAssgBatch = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    lastname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    petitionname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SigAmount = table.Column<double>(type: "float", nullable: false),
+                    dateReceivedBatch = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SubmittedCount = table.Column<double>(type: "float", nullable: false),
+                    RawCount = table.Column<double>(type: "float", nullable: false),
+                    PurgedCount = table.Column<double>(type: "float", nullable: false),
+                    datesubmitted = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -684,6 +911,21 @@ namespace petition.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Petitions", x => x.PetitionId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PetitionStatsSubmitted",
+                columns: table => new
+                {
+                    petitionname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    petitiondescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    batchsubmittedcount = table.Column<double>(type: "float", nullable: false),
+                    batchrawcount = table.Column<double>(type: "float", nullable: false),
+                    batchnewreg = table.Column<double>(type: "float", nullable: false),
+                    batchpurgecount = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
                 });
 
             migrationBuilder.CreateTable(
@@ -1195,6 +1437,9 @@ namespace petition.Migrations
                 name: "CoordBatchLists");
 
             migrationBuilder.DropTable(
+                name: "CoordBatchListSubmit");
+
+            migrationBuilder.DropTable(
                 name: "CoordBatchListSubmitteds");
 
             migrationBuilder.DropTable(
@@ -1225,10 +1470,37 @@ namespace petition.Migrations
                 name: "DailyReports");
 
             migrationBuilder.DropTable(
+                name: "DisplayBatchList");
+
+            migrationBuilder.DropTable(
+                name: "DisplayBathListForPrint");
+
+            migrationBuilder.DropTable(
                 name: "GetBatches");
 
             migrationBuilder.DropTable(
+                name: "GetBatchList");
+
+            migrationBuilder.DropTable(
+                name: "GetCircReportByPetitionCoordSubmitted");
+
+            migrationBuilder.DropTable(
+                name: "GetCirculator");
+
+            migrationBuilder.DropTable(
+                name: "GetCoordinate");
+
+            migrationBuilder.DropTable(
                 name: "GetPetetion");
+
+            migrationBuilder.DropTable(
+                name: "GetPetitionCountyStats");
+
+            migrationBuilder.DropTable(
+                name: "GetValidatorData");
+
+            migrationBuilder.DropTable(
+                name: "KPMBatchesGetSubmittedByPetByDateRange");
 
             migrationBuilder.DropTable(
                 name: "KpmcircReports");
@@ -1256,6 +1528,9 @@ namespace petition.Migrations
 
             migrationBuilder.DropTable(
                 name: "Petitions");
+
+            migrationBuilder.DropTable(
+                name: "PetitionStatsSubmitted");
 
             migrationBuilder.DropTable(
                 name: "PetitionSummaries");

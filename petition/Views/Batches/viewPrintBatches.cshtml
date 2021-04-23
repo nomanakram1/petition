@@ -106,43 +106,62 @@
     </div>
 </div>
 @section Scripts {
-    var table = $('#batchlist');
-
-    table.DataTable({
-    responsive: true,
-    "info": false,
-    columns: [
-    { data: '', searchable: false },
-    { data: 'Circulator', searchable: true },
-    { data: 'Circ Count' },
-    { data: 'Raw' },
-    { data: 'A' },
-    { data: 'B' },
-    { data: 'C' },
-    { data: 'D' },
-    { data: 'E' },
-    { data: 'F' },
-    { data: 'G' },
-    { data: 'H' },
-    { data: 'J' },
-    { data: 'K' },
-    { data: 'L' },
-    { data: 'M' },
-    { data: 'P' },
-    { data: 'R' },
-    { data: 'S' },
-    { data: 'T' },
-    { data: 'Diff' },
-    { data: 'Net' },
-    ],
-    });
     <script>
+        var table = $('#batchlist');
+
+        table.DataTable({
+            responsive: true,
+            "info": false,
+            columns: [
+                { data: '', searchable: false },
+                { data: 'Circulator', searchable: true },
+                { data: 'Circ Count' },
+                { data: 'Raw' },
+                { data: 'A' },
+                { data: 'B' },
+                { data: 'C' },
+                { data: 'D' },
+                { data: 'E' },
+                { data: 'F' },
+                { data: 'G' },
+                { data: 'H' },
+                { data: 'J' },
+                { data: 'K' },
+                { data: 'L' },
+                { data: 'M' },
+                { data: 'P' },
+                { data: 'R' },
+                { data: 'S' },
+                { data: 'T' },
+                { data: 'Diff' },
+                { data: 'Net' },
+            ],
+        });
         $("#getbatchlist").click(function () {
             var data = {
                 'id': $(".cordcirculator").find(":selected").val(),
             }
             $.ajax({
                 url: "/batches/getbatchlist",
+                type: "Get",
+                data: data,
+                success: function (res) {
+                    var list = $(".displayBatch");
+                    res.map(element => {
+                        list.append(`<option value="${element['batchId']}">${element['batchId']}</option>`);
+                    })
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        })
+        $("#displayBatch").click(function () {
+            var data = {
+                'id': parseInt($(".displayBatch").find(":selected").val()),
+            }
+            $.ajax({
+                url: "/batches/DisplayBathListForPrint",
                 type: "Get",
                 data: data,
                 success: function (res) {
@@ -175,25 +194,7 @@
                         table.row.add(obj).draw();
                     })
                     table.responsive.recalc()
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        })
-        $("#displayBatch").click(function () {
-            var data = {
-                'id': parseInt($(".displayBatch").find(":selected").val()),
-            }
-            $.ajax({
-                url: "/batches/DisplayBathListForPrint",
-                type: "Get",
-                data: data,
-                success: function (res) {
-                    var list = $(".displayBatch");
-                    res.map(element => {
-                        list.append(`<option value="${element['batchId']}">${element['batchId']}</option>`);
-                    })
+                    
                 },
                 error: function (error) {
                     console.log(error);
