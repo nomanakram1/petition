@@ -289,13 +289,18 @@ namespace petition.Migrations
 
             modelBuilder.Entity("petition.DB.BatchDetail", b =>
                 {
+                    b.Property<int>("Entryid")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("BatchId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BatchStatus")
+                    b.Property<int?>("BatchStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("CircNewReg")
+                    b.Property<int?>("CircNewReg")
                         .HasColumnType("int");
 
                     b.Property<string>("Circfullname")
@@ -308,9 +313,6 @@ namespace petition.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("Circrawcount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Entryid")
                         .HasColumnType("int");
 
                     b.Property<int?>("PcAddrIllegOrCopy")
@@ -360,6 +362,8 @@ namespace petition.Migrations
 
                     b.Property<int?>("PcWomanSignMrsHusbandFname")
                         .HasColumnType("int");
+
+                    b.HasKey("Entryid");
 
                     b.ToTable("BatchDetails");
                 });
@@ -1865,6 +1869,29 @@ namespace petition.Migrations
                     b.ToTable("userRoles");
                 });
 
+            modelBuilder.Entity("petition.Models.ViewModels.CoordBatchListSubmit", b =>
+                {
+                    b.Property<string>("batchid")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("circinitsigs")
+                        .HasColumnType("float");
+
+                    b.Property<int>("coordassigned")
+                        .HasColumnType("int");
+
+                    b.Property<double>("initsigs")
+                        .HasColumnType("float");
+
+                    b.Property<double>("purgecount")
+                        .HasColumnType("float");
+
+                    b.Property<double>("rawcount")
+                        .HasColumnType("float");
+
+                    b.ToTable("CoordBatchListSubmit");
+                });
+
             modelBuilder.Entity("petition.Models.ViewModels.DisplayBatchList", b =>
                 {
                     b.Property<int>("BadTotal")
@@ -2137,6 +2164,77 @@ namespace petition.Migrations
                     b.ToTable("GetBatches");
                 });
 
+            modelBuilder.Entity("petition.Models.ViewModels.GetCircReportByPetitionCoordSubmitted", b =>
+                {
+                    b.Property<int>("circid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("circinitsigs")
+                        .HasColumnType("int");
+
+                    b.Property<string>("coordassigned")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("firstname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("lastname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("pcInitials")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("pcaddrIllegorcopy")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("pcdiffcounty")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("pcdupsig")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("pcforgery")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("pchwsignforother")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("pcincomAddr")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("pcincomdeclcirc")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("pcnametwicenosig")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("pcother")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("pcpencilused")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("pcpobox")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("pcrubstampused")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("pcsigprintedorprintIlleg")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("pcwhiteout")
+                        .HasColumnType("int");
+
+                    b.Property<string>("pcwomansignmrshusbandfname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("rawcount")
+                        .HasColumnType("int");
+
+                    b.ToTable("GetCircReportByPetitionCoordSubmitted");
+                });
+
             modelBuilder.Entity("petition.Models.ViewModels.GetCirculator", b =>
                 {
                     b.Property<string>("addr")
@@ -2175,6 +2273,23 @@ namespace petition.Migrations
                     b.ToTable("GetCirculator");
                 });
 
+            modelBuilder.Entity("petition.Models.ViewModels.GetCoordinate", b =>
+                {
+                    b.Property<string>("coordassigned")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("firstname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("kpmuserID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("lastname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("GetCoordinate");
+                });
+
             modelBuilder.Entity("petition.Models.ViewModels.GetPetetion", b =>
                 {
                     b.Property<bool?>("CityPetition")
@@ -2193,6 +2308,110 @@ namespace petition.Migrations
                         .HasColumnType("bit");
 
                     b.ToTable("GetPetetion");
+                });
+
+            modelBuilder.Entity("petition.Models.ViewModels.GetPetitionCountyStats", b =>
+                {
+                    b.Property<double>("Ttlbad")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Ttldup")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Ttlpercent")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Ttlvalid")
+                        .HasColumnType("float");
+
+                    b.Property<double>("county")
+                        .HasColumnType("float");
+
+                    b.ToTable("GetPetitionCountyStats");
+                });
+
+            modelBuilder.Entity("petition.Models.ViewModels.GetValidatorData", b =>
+                {
+                    b.Property<string>("FName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("petitionname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("ttlbad")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ttldup")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ttlgood")
+                        .HasColumnType("float");
+
+                    b.Property<string>("valid")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("GetValidatorData");
+                });
+
+            modelBuilder.Entity("petition.Models.ViewModels.KPMBatchesGetSubmittedByPetByDateRange", b =>
+                {
+                    b.Property<int?>("BatchID")
+                        .HasColumnType("int");
+
+                    b.Property<double>("PurgedCount")
+                        .HasColumnType("float");
+
+                    b.Property<double>("RawCount")
+                        .HasColumnType("float");
+
+                    b.Property<double>("SigAmount")
+                        .HasColumnType("float");
+
+                    b.Property<double>("SubmittedCount")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("dateAssgBatch")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("dateReceivedBatch")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("datesubmitted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("lastname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("petitionname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("KPMBatchesGetSubmittedByPetByDateRange");
+                });
+
+            modelBuilder.Entity("petition.Models.ViewModels.PetitionStatsSubmitted", b =>
+                {
+                    b.Property<double>("batchnewreg")
+                        .HasColumnType("float");
+
+                    b.Property<double>("batchpurgecount")
+                        .HasColumnType("float");
+
+                    b.Property<double>("batchrawcount")
+                        .HasColumnType("float");
+
+                    b.Property<double>("batchsubmittedcount")
+                        .HasColumnType("float");
+
+                    b.Property<string>("petitiondescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("petitionname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("PetitionStatsSubmitted");
                 });
 
             modelBuilder.Entity("petition.Models.DbModel.ApplicationIdentityUser", b =>

@@ -1,0 +1,175 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_AdminLayout";
+}
+@model createBatchVM
+<div class="content-wrapper">
+    <div class="content-body">
+        <!-- Basic Vertical form layout section start -->
+        <section id="basic-vertical-layouts">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">Circulator Activity Report</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label class="label">Select a Coordinator</label>
+                                    <select class="form-control form-control-sm coordinator" id="basicSelect">
+                                        @if (Model.users != null)
+                                        {
+                                            foreach (var u in Model.users)
+                                            {
+                                                <option value="@u.userId">@u.userName</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="form-label">Select a Petition</label>
+                                    <select class="form-control form-control-sm Selectpetition" id="basicSelect">
+                                        @if (Model.petitons != null)
+                                        {
+                                            foreach (var p in Model.petitons)
+                                            {
+                                                <option value="@p.PetitionId">@p.Petitionname</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button type="button" id="List_batches" class="btn btn-sm btn-primary float-sm-left float-right mt-2">Go</button>
+                                </div>
+                            </div>
+
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <table class="table" id="batchlist">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Circulator</th>
+                                                <th>Circ Count</th>
+                                                <th>Raw Count</th>
+                                                <th>A</th>
+                                                <th>B</th>
+                                                <th>C</th>
+                                                <th>D</th>
+                                                <th>E</th>
+                                                <th>F</th>
+                                                <th>G</th>
+                                                <th>H</th>
+                                                <th>J</th>
+                                                <th>K</th>
+                                                <th>L</th>
+                                                <th>M</th>
+                                                <th>P</th>
+                                                <th>R</th>
+                                                <th>S</th>
+                                                <th>T</th>
+                                                <th>Diff</th>
+                                                <th>Net</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tablebody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- Basic Vertical form layout section end -->
+    </div>
+</div>
+@section Scripts {
+    <script>
+        var table = $('#batchlist');
+
+        table.DataTable({
+            responsive: true,
+            "info": false,
+            columns: [
+                { data: '', searchable: false },
+                { data: 'Circulator', searchable: true },
+                { data: 'Circ Count' },
+                { data: 'Raw' },
+                { data: 'A' },
+                { data: 'B' },
+                { data: 'C' },
+                { data: 'D' },
+                { data: 'E' },
+                { data: 'F' },
+                { data: 'G' },
+                { data: 'H' },
+                { data: 'J' },
+                { data: 'K' },
+                { data: 'L' },
+                { data: 'M' },
+                { data: 'P' },
+                { data: 'R' },
+                { data: 'S' },
+                { data: 'T' },
+                { data: 'Diff' },
+                { data: 'Net' },
+            ],
+        });
+        $("#List_batches").click(function () {
+            var petetionId = $(".Selectpetition").find(":selected").val();
+            petetionId = parseInt(petetionId);
+            var data = {
+                'pid': petetionId,
+                'coordassigned': $(".coordinator").find(":selected").val(),
+            }
+            $.ajax({
+                url: "/reports/GetCircReportByPetitionCoordSubmitted",
+                type: "Get",
+                data: data,
+                success: function (res) {
+                    var table = $('#batchlist').DataTable();
+                    table.clear();
+                    res.map(element => {
+                        var a = element["pcInitials"] + element["pcpobox"] + element["pcdiffcounty"] + element["pcincomAddr"] + element["pcaddrIllegorcopy"] + element["pcsigprintedorprintIlleg"] + element["pcnametwicenosig"] + element["pchwsignforother"] + element["pcwomanwignmrshusbandfname"] + element["pcforgery"] + element["pcincomdeclcirc"] + element["pcrubstampused"] + element["pcpencilused"] + element["pcdupsig"] + element["pcwhiteout"] + element["pcother"] + element["circinitsigs"] - element["rawcount"];
+
+                        var obj = {
+                            "":'',
+                            "Circulator": element["firstname"] + " " + element["lastname"],
+                            "Circ Count": element["circinitsigs"],
+                            "Raw": element["rawcount"],
+                            "A": element["pcInitials"],
+                            "B": element["pcpobox"],
+                            "C": element["pcdiffcounty"],
+                            "D": element["pcincomAddr"],
+                            "E": element["pcaddrIllegorcopy"],
+                            "F": element["pcsigprintedorprintIlleg"],
+                            "G": element["pcnametwicenosig"],
+                            "H": element["pchwsignforother"],
+                            "J": element["pcwomanwignmrshusbandfname"],
+                            "K": element["pcforgery"],
+                            "L": element["pcincomdeclcirc"],
+                            "M": element["pcrubstampused"],
+                            "P": element["pcpencilused"],
+                            "R": element["pcdupsig"],
+                            "S": element["pcwhiteout"],
+                            "T": element["pcother"],
+                            "Diff": a, 
+                            "Net": element["circinitsigs"] + (a),
+                        }
+                        table.row.add(obj).draw();
+                    })
+                    table.responsive.recalc()
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
+}

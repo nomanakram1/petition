@@ -102,8 +102,24 @@ namespace petition.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        public async Task<ActionResult> AddKPMUser(string id, string fname,string lname)
+        public ActionResult AssignCirc(string coordinatorid, string kpmuserid)
+        {
+            try
+            {
+                string commandText = "UPDATE dbo.KpmUsers SET  coordassigned = '" + coordinatorid + "' where (KPMUserID = '" + kpmuserid + "')";
+                context.Database.ExecuteSqlRaw(commandText);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddKPMUser(string coordassigned, string id, string fname,string lname)
         {
             var percent = await _userManager.FindByNameAsync(User.Identity.Name);
             var strdisplayname = lname + ", " + fname;
@@ -111,19 +127,11 @@ namespace petition.Controllers
             var enteredby = percent.Id;
             var dateentered = DateTime.Now;
             var kpmusertype = "External Validator";
-            int kpmuserid;
-            var commandText = "INSERT INTO dbo.KpmUsers(kpmusertype, firstname, lastname, dateentered, enteredby, dnn_userid, displayname) VALUES ('" + kpmusertype + "','" + fname + "','" + lname + "','" + dateentered + "','" + enteredby + "','" + dnnUserID + "','" + strdisplayname + "' )";
+            var kpmuserid=-1;
+            var commandText = "INSERT INTO dbo.KpmUsers(coordassigned, kpmusertype, firstname, lastname, dateentered, enteredby, DnnUserId, displayname) VALUES ('"+coordassigned+"','" + kpmusertype + "','" + fname + "','" + lname + "','" + dateentered + "','" + enteredby + "','" + dnnUserID + "','" + strdisplayname + "' )";
                 try
             {
                 var result = context.Database.ExecuteSqlRaw(commandText);
-                try
-                {
-                    commandText = "SELECT kpmuserid FROM KPM_Users where  dnn_userid = '" + dnnUserID + "'";
-                    kpmuserid = context.Database.ExecuteSqlRaw(commandText);
-                }catch(Exception e)
-                {
-                    return BadRequest(e);
-                }
             }
             catch (Exception e)
             {
@@ -169,9 +177,16 @@ namespace petition.Controllers
         [HttpGet]
         public ActionResult GetCoordinate(string type)
         {
-            var commandText = "SELECT firstname, lastname, kpmuserID, coordassigned FROM KPMUsers where kpmusertype= '"+type+"' order by lastname";
-            var result = context.GetCoordinate.FromSqlRaw(commandText).ToList();
-            return Ok(result);
+            try
+            {
+                var commandText = "SELECT firstname, lastname, kpmuserID, coordassigned FROM KPMUsers where kpmusertype= '" + type + "' order by lastname";
+                var result = context.GetCoordinate.FromSqlRaw(commandText).ToList();
+                return Ok(result);
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e);
+            }
         }
         public async Task<ActionResult> Getcoordinators()
         {
@@ -250,7 +265,7 @@ namespace petition.Controllers
             {
                 var result = context.Database.ExecuteSqlRaw(commandText);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return RedirectToAction("ManageCirculator", "ManagerUsers");
             }

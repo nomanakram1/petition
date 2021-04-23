@@ -5,6 +5,7 @@
     Layout = "_AdminLayout";
 }
 @model createBatchVM
+
 <div class="content-wrapper">
     <div class="content-body">
         <!-- Basic Vertical form layout section start -->
@@ -14,31 +15,23 @@
                     <div class="card h-100">
                         <div class="card-header">
                             <h4 class="card-title">
-                                County Analysis
+                                Validator Activity
                             </h4>
                         </div>
                         <div class="card-body">
-                            <div class="row mt-1">
-                                <div class="col-12">
-                                    <div class="alert alert-warning" role="alert">
-                                        <div class="alert-body">
-                                            Retrieves a report of all batches and their submitted counts.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="row">
                                 <div class="col-lg-12 col-xl-10 offset-xl-1">
                                     <div class="row">
-                                        <div class="col-sm-6 mt-1">
+                                        <div class="col-sm-4 mt-1">
                                             <div class="row">
                                                 <div class="col-4">
                                                     <label class="float-right text-right mt-1">
-                                                        Select Petition :
+                                                        Select :
                                                     </label>
                                                 </div>
                                                 <div class="col-8">
-                                                    <select class="form-control coordinator" id="basicSelect">
+                                                    <select class="form-control petition" id="basicSelect">
                                                         @if (Model != null)
                                                         {
                                                             @if (Model.users != null)
@@ -53,8 +46,33 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 mt-1">
-                                            <button type="button" class="submit btn btn-sm btn-primary float-right float-sm-left">Submit</button>
+                                        <div class="col-sm-4 mt-1">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <label class="float-right text-right mt-1">
+                                                        Start Date :
+                                                    </label>
+                                                </div>
+                                                <div class="col-8">
+                                                    <input type="text" id="fp-default" class="startdate form-control flatpickr-basic bg-white" placeholder="YYYY-MM-DD" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 mt-1">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <label class="float-right text-right mt-1">
+                                                        End Date :
+                                                    </label>
+                                                </div>
+                                                <div class="col-8">
+                                                    <input type="text" id="fp-default" class="enddate form-control flatpickr-basic bg-white" placeholder="YYYY-MM-DD" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 mt-1">
+                                            <button type="button" id="Submit" class="btn btn-sm btn-primary float-right">Go</button>
                                         </div>
                                     </div>
                                 </div>
@@ -64,13 +82,12 @@
                                     <table class="table" id="batchesSubmitted">
                                         <thead>
                                             <tr>
-                                                <th>Batch</th>
-                                                <th>Submitted Count</th>
-                                                <th>Circ Sigs</th>
-                                                <th>Raw</th>
-                                                <th>Purged</th>
-                                                <th>Total Diff</th>
-                                                <th>Net</th>
+                                                <th>Petition</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Good</th>
+                                                <th>Bad</th>
+                                                <th>Dups</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -88,6 +105,7 @@
     </div>
 </div>
 
+
 @section Scripts {
     <script>
         var table = $('#batchesSubmitted');
@@ -95,22 +113,25 @@
             responsive: true,
             "info": false,
             columns: [
-                { data: 'Batch' },
-                { data: 'Submitted Count' },
-                { data: 'Circ Sigs' },
-                { data: 'Raw' },
-                { data: 'Purged' },
-                { data: 'Total Diff' },
-                { data: 'Net' },
+                { data: 'Petition' },
+                { data: 'First Name' },
+                { data: 'Last Name' },
+                { data: 'Good' },
+                { data: 'Bad' },
+                { data: 'Dups' },
             ],
         });
-        $(".submit").click(function () {
-            var id = $(".coordinator").find(":selected").val();
+        $("#Submit").click(function () {
+            var id = $(".petition").find(":selected").val();
+            var startdate = $(".startdate").val();
+            var enddate = $(".enddate").val();
             var data = {
                 'id': id,
+                'startdate': startdate,
+                'enddate': enddate,
             }
             $.ajax({
-                url: "/reports/CoordBatchListSubmitted",
+                url: "/reports/GetValidatorData",
                 type: "Get",
                 data: data,
                 success: function (res) {
@@ -118,13 +139,12 @@
                     table.clear();
                     res.map(element => {
                         var obj = {
-                            "Batch": element["county"],
-                            "Submitted Count": element["initsigs"],
-                            "Circ Sigs": element["circinitsigs"],
-                            "Raw": element["rawcount"],
-                            "Purged": element["purgecount"],
-                            "Total Diff": element["purgecount"] - (element["rawcount"] - element["initsigs"]),
-                            "Net": element["initsigs"] - (element["purgecount"] - (element["rawcount"] - element["initsigs"])),
+                            "Petition": element["petitionname"],
+                            "First Name": element["FName"],
+                            "Last Name": element["LName"],
+                            "Good": element["ttlgood"],
+                            "Bad": element["ttlbad"],
+                            "Dups": element["ttldup"],
                         }
                         table.row.add(obj).draw();
                     })

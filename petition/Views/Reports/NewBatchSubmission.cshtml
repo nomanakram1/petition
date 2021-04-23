@@ -4,6 +4,7 @@
 @{
     Layout = "_AdminLayout";
 }
+@model List<Petition>
 <div class="content-wrapper">
     <div class="content-body">
         <!-- Basic Vertical form layout section start -->
@@ -37,10 +38,14 @@
                                                     </label>
                                                 </div>
                                                 <div class="col-8">
-                                                    <select class="form-control" id="basicSelect">
-                                                        <option>IT</option>
-                                                        <option>Blade Runner</option>
-                                                        <option>Thor Ragnarok</option>
+                                                    <select class="form-control petition" id="basicSelect">
+                                                        @if (Model != null)
+                                                        {
+                                                                foreach (var petition in Model)
+                                                                {
+                                                                    <option value="@petition.PetitionId">@petition.Petitionname</option>
+                                                                }
+                                                        }
                                                     </select>
                                                 </div>
                                             </div>
@@ -53,7 +58,7 @@
                                                     </label>
                                                 </div>
                                                 <div class="col-8">
-                                                    <input type="text" id="fp-default" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" />
+                                                    <input type="text" id="fp-default" class="StartDate form-control flatpickr-basic" placeholder="YYYY-MM-DD" />
                                                 </div>
                                             </div>
                                         </div>
@@ -65,12 +70,12 @@
                                                     </label>
                                                 </div>
                                                 <div class="col-8">
-                                                    <input type="text" id="fp-default" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" />
+                                                    <input type="text" id="fp-default" class="EndDate form-control flatpickr-basic" placeholder="YYYY-MM-DD" />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <button type="button" class="btn btn-sm btn-primary float-right">Retrieves a report</button>
+                                            <button type="button" id="RetrievesReports" class="btn btn-sm btn-primary float-right">Retrieves a report</button>
                                         </div>
                                     </div>
                                 </div>
@@ -109,8 +114,51 @@
         table.DataTable({
             responsive: true,
             "info": false,
-            
+            columns: [
+                { data: 'Batch ID' },
+                { data: 'Coordinator' },
+                { data: 'Date Submitted' },
+                { data: 'Submitted Count' },
+                { data: 'Sig Value' },
+                { data: 'Total' },
+            ],
+
         });
-       
+        $("#RetrievesReports").click(function () {
+            var id = $(".petition").find(":selected").val();
+            var endDate = $(".EndDate").val();
+            var startDate = $(".StartDate").val();
+            var data = {
+                'id': id,
+                'endDate': endDate,
+                'startDate': startDate,
+            }
+            $.ajax({
+                url: "/reports/BatchesGetSubmittedbyPetByDateRange",
+                type: "Get",
+                data: data,
+                success: function (res) {
+                    var table = $('#batchesSubmitted').DataTable();
+                    table.clear();
+                    res.map(element => {
+                        var obj = {
+                            "": '',
+                            "Batch ID": element["BatchID"],
+                            "Coordinator": element["lastname"],
+                            "Date Submitted": element["datesubmitted"],
+                            "Submitted Count": element["SubmittedCount"],
+                            "Sig Value": element["SigAmount"],
+                            "Total": element["city"],
+                        }
+                        table.row.add(obj).draw();
+                    })
+                    table.responsive.recalc()
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+
+        })
     </script>
 }

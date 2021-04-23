@@ -1,0 +1,314 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_AdminLayout";
+}
+@model createBatchVM
+<div class="content-wrapper">
+    <div class="content-body">
+        <!-- Basic Vertical form layout section start -->
+        <section id="basic-vertical-layouts">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                Edit Batch
+                            </h4>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-lg-12 col-xl-10 offset-xl-1">
+                                    <div class="row">
+                                        <div class="col-sm-6 mt-1">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="float-right text-right mt-1">
+                                                        Select a Coordinator :
+                                                    </label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <select class="form-control petition coordinator" id="basicSelect">
+                                                        @if (Model.users != null)
+                                                        {
+                                                            foreach (var u in Model.users)
+                                                            {
+                                                                <option value="@u.userId">@u.userName</option>
+                                                            }
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 mt-1">
+                                            <button type="button" id="getbatchlist" class="btn btn-sm btn-primary float-left">List Batches</button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 mt-1">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="float-right text-right mt-1">
+                                                        Select a Batch :
+                                                    </label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <select class="form-control displayBatch" id="basicSelect">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 mt-1">
+                                            <button type="button" id="displayBatch" class="btn btn-sm btn-primary float-left">Show Batches</button>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 mt-1">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="float-right text-right mt-1">
+                                                        Select A Circulator :
+                                                    </label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <select class="form-control Circulator" id="basicSelect">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-sm-6 mt-1">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="float-right text-right mt-1">
+                                                        Circ New Registered:
+                                                    </label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="text" name="name" id="CircNewRegistered" class="form-control form-control-sm" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 mt-1">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="float-right text-right mt-1">
+                                                        Circulator Count:
+                                                    </label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="text" name="name" id="circCount" class="form-control form-control-sm" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 mt-1">
+                                            <button type="button" id="Submit" class="btn btn-sm btn-primary float-left">Add to Batches</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <table class="table" id="batchlist">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Circ New Reg</th>
+                                                <th>Initial Sigs</th>
+                                                <th>Submit Count</th>
+                                                <th>Raw Count</th>
+                                                <th>A</th>
+                                                <th>B</th>
+                                                <th>C</th>
+                                                <th>D</th>
+                                                <th>E</th>
+                                                <th>F</th>
+                                                <th>G</th>
+                                                <th>H</th>
+                                                <th>J</th>
+                                                <th>K</th>
+                                                <th>L</th>
+                                                <th>M</th>
+                                                <th>P</th>
+                                                <th>R</th>
+                                                <th>S</th>
+                                                <th>T</th>
+                                                <th>Total Sigs</th>
+                                                <th>Good</th>
+                                                <th>Bad</th>
+                                                <th>Pct (%)</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tablebody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- Basic Vertical form layout section end -->
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        ////////////////////
+        var table = $('#batchlist');
+
+        table.DataTable({
+            responsive: true,
+            "info": false,
+            columns: [
+                { data: '', searchable: false },
+                { data: 'Circ New Reg', searchable: true },
+                { data: 'Initial Sigs' },
+                { data: 'Submit Count' },
+                { data: 'Raw Count' },
+                { data: 'A' },
+                { data: 'B' },
+                { data: 'C' },
+                { data: 'D' },
+                { data: 'E' },
+                { data: 'F' },
+                { data: 'G' },
+                { data: 'H' },
+                { data: 'J' },
+                { data: 'K' },
+                { data: 'L' },
+                { data: 'M' },
+                { data: 'P' },
+                { data: 'R' },
+                { data: 'S' },
+                { data: 'T' },
+                { data: 'Total Sigs' },
+                { data: 'Good' },
+                { data: 'Bad' },
+                { data: 'Pct (%)' },
+                { data: 'Action' },
+            ],
+        });
+        //////////////////
+        $("#getbatchlist").click(function () {
+            var data = {
+                'id': $(".coordinator").find(":selected").val(),
+            }
+            $.ajax({
+                url: "/batches/getbatchlist",
+                type: "Get",
+                data: data,
+                success: function (res) {
+                    var list = $(".displayBatch");
+                    res.map(element => {
+                        list.append(`<option value="${element['batchId']}">${element['batchId']}</option>`);
+                    })
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+            $.ajax({
+                url: "/batches/getcirculator",
+                type: "Get",
+                data: data,
+                success: function (res) {
+                    var list = $(".Circulator");
+                    res.map(element => {
+                        list.append(`<option value="${element['kpmuserID']}">${element['lastname'] +', '+ element['firstname']}</option >`);
+                    })
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        })
+        /////////////
+            
+        $("#displayBatch").click(function () {
+            var data = {
+                'id': parseInt($(".displayBatch").find(":selected").val()),
+            }
+            $.ajax({
+                url: "/batches/DisplayBathListForPrint",
+                type: "Get",
+                data: data,
+                success: function (res) {
+                    var table = $('#batchlist').DataTable();
+                    table.clear();
+                    res.map(element => {
+                        var obj = {
+                            "": '',
+                            "Circ New Reg": element["circfullname"],
+                            "Initial Sigs": element["circinitsigs"],
+                            "Submit Count": element["SubmittedCount"],
+                            "Raw Count": element["circrawcount"],
+                            "A": element["pcInitials"],
+                            "B": element["pcpobox"],
+                            "C": element["pcdiffcounty"],
+                            "D": element["pcIncomAddr"],
+                            "E": element["pcAddrIllegOrCopy"],
+                            "F": element["pcSigPrintedOrPrintIlleg"],
+                            "G": element["pcNameTwiceNoSig"],
+                            "H": element["pcHWSignForOther"],
+                            "J": element["pcWomanSignMrsHusbandFname"],
+                            "K": element["pcForgery"],
+                            "L": element["pcIncomDeclCirc"],
+                            "M": element["pcRubStampUsed"],
+                            "P": element["pcPencilUsed"],
+                            "R": element["pcDupSig"],
+                            "S": element["pcWhiteOut"],
+                            "T": element["pcOther"],
+                            "Total Sigs": element["TotalSigs"],
+                            "Good": element["GoodCount"],
+                            "Bad": element["BadCount"],
+                            "Pct (%)": element["GoodPercent"],
+                            "Action": element["lastname"],
+                        }
+                        table.row.add(obj).draw();
+                    })
+                    table.responsive.recalc()
+
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        })
+
+        ////
+
+        $("#Submit").click(function () {
+            var data = {
+                'batchid': $(".displayBatch").find(":selected").val(),
+                'kpmuserid': $(".Circulator").find(":selected").val(),
+                'circfullname': $(".Circulator").find(":selected").text(),
+                'circCount': parseInt($("#circCount").val()),
+                'CircNewReg': parseInt($("#CircNewRegistered").val()),
+
+            }
+            $.ajax({
+                url: "/office/AddBatchCircDetails",
+                type: "Get",
+                data: data,
+                success: function (res) {
+                    alert("add Successfully");
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+
+    </script>
+}

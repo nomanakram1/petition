@@ -64,43 +64,34 @@
 
                             <div class="row mt-1">
                                 <div class="col-12">
-                                    <table class="datatables-basic table">
+                                    <table class="table" id="batchlist">
                                         <thead>
                                             <tr>
                                                 <th></th>
-                                                <th></th>
-                                                <th>id</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Date</th>
-                                                <th>Salary</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
+                                                <th>Circulator</th>
+                                                <th>Circ Count</th>
+                                                <th>Raw Count</th>
+                                                <th>A</th>
+                                                <th>B</th>
+                                                <th>C</th>
+                                                <th>D</th>
+                                                <th>E</th>
+                                                <th>F</th>
+                                                <th>G</th>
+                                                <th>H</th>
+                                                <th>J</th>
+                                                <th>K</th>
+                                                <th>L</th>
+                                                <th>M</th>
+                                                <th>P</th>
+                                                <th>R</th>
+                                                <th>S</th>
+                                                <th>T</th>
+                                                <th>Diff</th>
+                                                <th>Net</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -116,6 +107,36 @@
 </div>
 @section Scripts {
     <script>
+        var table = $('#batchlist');
+
+        table.DataTable({
+            responsive: true,
+            "info": false,
+            columns: [
+                { data: '', searchable: false },
+                { data: 'Circulator', searchable: true },
+                { data: 'Circ Count' },
+                { data: 'Raw' },
+                { data: 'A' },
+                { data: 'B' },
+                { data: 'C' },
+                { data: 'D' },
+                { data: 'E' },
+                { data: 'F' },
+                { data: 'G' },
+                { data: 'H' },
+                { data: 'J' },
+                { data: 'K' },
+                { data: 'L' },
+                { data: 'M' },
+                { data: 'P' },
+                { data: 'R' },
+                { data: 'S' },
+                { data: 'T' },
+                { data: 'Diff' },
+                { data: 'Net' },
+            ],
+        });
         $("#getbatchlist").click(function () {
             var data = {
                 'id': $(".cordcirculator").find(":selected").val(),
@@ -144,10 +165,36 @@
                 type: "Get",
                 data: data,
                 success: function (res) {
-                    var list = $(".displayBatch");
+                    var table = $('#batchlist').DataTable();
+                    table.clear();
                     res.map(element => {
-                        list.append(`<option value="${element['batchId']}">${element['batchId']}</option>`);
+                        var obj = {
+                            "": '',
+                            "Circulator": element["kpmuserId"],
+                            "Circ Count": element["batchId"],
+                            "A": element["lastname"],
+                            "B": element["lastname"],
+                            "C": element["lastname"],
+                            "D": element["lastname"],
+                            "E": element["lastname"],
+                            "F": element["lastname"],
+                            "G": element["lastname"],
+                            "H": element["lastname"],
+                            "J": element["lastname"],
+                            "K": element["lastname"],
+                            "L": element["lastname"],
+                            "M": element["lastname"],
+                            "P": element["lastname"],
+                            "R": element["lastname"],
+                            "S": element["lastname"],
+                            "T": element["lastname"],
+                            "Diff": element["lastname"],
+                            "Net": element["lastname"],
+                        }
+                        table.row.add(obj).draw();
                     })
+                    table.responsive.recalc()
+                    
                 },
                 error: function (error) {
                     console.log(error);

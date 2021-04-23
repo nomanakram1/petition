@@ -4,6 +4,7 @@
 @{
     Layout = "_AdminLayout";
 }
+@model List<Petition>
 <div class="content-wrapper">
     <div class="content-body">
         <!-- Basic Vertical form layout section start -->
@@ -37,10 +38,14 @@
                                                     </label>
                                                 </div>
                                                 <div class="col-8">
-                                                    <select class="form-control" id="basicSelect">
-                                                        <option>IT</option>
-                                                        <option>Blade Runner</option>
-                                                        <option>Thor Ragnarok</option>
+                                                    <select class="form-control petition" id="basicSelect">
+                                                        @if (Model != null)
+                                                        {
+                                                            foreach (var petition in Model)
+                                                            {
+                                                                <option value="@petition.PetitionId">@petition.Petitionname</option>
+                                                            }
+                                                        }
                                                     </select>
                                                 </div>
                                             </div>
@@ -53,13 +58,13 @@
                                                     </label>
                                                 </div>
                                                 <div class="col-8">
-                                                    <input type="text" id="fp-default" class="form-control flatpickr-basic bg-white" placeholder="YYYY-MM-DD" />
+                                                    <input type="text" id="fp-default" class="date form-control flatpickr-basic bg-white" placeholder="YYYY-MM-DD" />
                                                 </div>
                                             </div>
                                         </div>
-                                       
+
                                         <div class="col-12 mt-1">
-                                            <button type="button" class="btn btn-sm btn-primary float-right">Submit</button>
+                                            <button type="button" id="Submit" class="btn btn-sm btn-primary float-right">Submit</button>
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +78,7 @@
                                                 <th>Verified</th>
                                                 <th>Bad</th>
                                                 <th>Dups</th>
-                                                <th>Percent</th>                                                
+                                                <th>Percent</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -97,8 +102,45 @@
         table.DataTable({
             responsive: true,
             "info": false,
-
+            columns: [
+                { data: 'County' },
+                { data: 'Verified' },
+                { data: 'Bad' },
+                { data: 'Dups' },
+                { data: 'Percent' },
+            ],
         });
+        $("#Submit").click(function () {
+            var id = $(".petition").find(":selected").val();
+            var date = $(".date").val();
+            var data = {
+                'id': id,
+                'date': date,
+            }
+            $.ajax({
+                url: "/reports/GetPetitionCountyStats",
+                type: "Get",
+                data: data,
+                success: function (res) {
+                    var table = $('#batchesSubmitted').DataTable();
+                    table.clear();
+                    res.map(element => {
+                        var obj = {
+                            "County": element["county"],
+                            "Verified": element["Ttlvalid"],
+                            "Bad": element["Ttlbad"],
+                            "Dups": element["Ttldup"],
+                            "Percent": element["Ttlpercent"],
+                        }
+                        table.row.add(obj).draw();
+                    })
+                    table.responsive.recalc()
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
 
+        })
     </script>
 }
