@@ -198,7 +198,7 @@
                             <a class="d-flex align-items-center" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="Authentication">Reports</span></a>
                             <ul class="menu-content">
                                 <li>
-                                    <a id="newBatchSubmission" asp-controller="Reports" asp-action="NewBatchSubmission" >
+                                    <a id="newBatchSubmission" asp-controller="Reports" asp-action="NewBatchSubmission">
                                         <span class="menu-item" data-i18n="Analytics">New Batch Submissions</span>
                                     </a>
                                 </li>
@@ -219,17 +219,17 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a id="CoordinatorVoterActivity" asp-controller="Reports" asp-action="CoordinatorVoterActivity">
+                                    <a id="coordinatorVoterActivity" asp-controller="Reports" asp-action="CoordinatorVoterActivity">
                                         <span class="menu-item" data-i18n="Analytics">Coordinator Voter Activity</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-controller="Reports" asp-action="CirculatorCount">
+                                    <a id="circulatorCount" asp-controller="Reports" asp-action="CirculatorCount">
                                         <span class="menu-item" data-i18n="Analytics">Circulator Counts</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-controller="Reports" asp-action="InternalValidatorActivity">
+                                    <a id="internalValidatorActivity" asp-controller="Reports" asp-action="InternalValidatorActivity">
                                         <span class="menu-item" data-i18n="Analytics">Internal Validator Activity</span>
                                     </a>
                                 </li>
@@ -240,27 +240,47 @@
                     </ul>
                 </li>
                 <li class="nav-item has-sub">
-                    <a class="d-flex align-items-center" href="index.html"><i class="fa fa-building-o" aria-hidden="true"></i><span>Office</span></a>
+                    <a class="d-flex align-items-center" href="index.html"><i data-feather='book'></i><span>Office</span></a>
                     <ul class="menu-content">
                         <li>
-                            <a id="AddCirculatorToBatch" asp-controller="Office" asp-action="AddCirculatorToBatch">
+                            <a id="addCirculatorToBatch" asp-controller="Office" asp-action="AddCirculatorToBatch">
                                 <span class="menu-item" data-i18n="Analytics">Add Coordinator To Batch</span>
                             </a>
                         </li>
                         <li>
-                            <a id="EditPurgeCount" asp-controller="Office" asp-action="EditPurgeCount">
+                            <a id="officeOditPurgeCount" asp-controller="Office" asp-action="EditPurgeCount">
                                 <span class="menu-item" data-i18n="Analytics">Edit Purge Counts</span>
                             </a>
                         </li>
                         <li>
-                            <a id="OperationalInfo" asp-controller="Office" asp-action="OperationalInfo">
+                            <a id="operationalInfo" asp-controller="Office" asp-action="OperationalInfo">
                                 <span class="menu-item" data-i18n="Analytics">Operational Info</span>
                             </a>
                         </li>
                         <li>
-                            <a id="EditPurgeCount1Line" asp-controller="Office" asp-action="EditPurgeCount1Line">
+                            <a id="OneLineEditPurgeCount" asp-controller="Office" asp-action="OneLineEditPurgeCount">
                                 <span class="menu-item" data-i18n="Analytics">Edit Purge Count - 1 Line</span>
                             </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-sub">
+                    <a class="d-flex align-items-center" href="#"><i data-feather='check-circle'></i><span class="menu-title text-truncate" data-i18n="Pages">Coordinator</span></a>
+                    <ul class="menu-content">
+                        <li>
+                            <a id="BatchSheets" class="d-flex align-items-center" asp-controller="Coordinator" asp-action="BatchSheets"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="Account Settings">Batch Sheets</span></a>
+                        </li>
+                        <li>
+                            <a id="ManageBatches" class="d-flex align-items-center" asp-controller="Coordinator" asp-action="ManageBatches"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="Account Settings">Manage Batches</span></a>
+                        </li>
+                        <li>
+                            <a id="CoordinatorUsers" class="d-flex align-items-center" asp-controller="Coordinator" asp-action="Users"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="Account Settings">Users</span></a>
+                        </li>
+                        <li>
+                            <a id="CirculatorActivity" class="d-flex align-items-center" asp-controller="Coordinator" asp-action="CirculatorActivity"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="Account Settings">Circulator Activity</span></a>
+                        </li>
+                        <li>
+                            <a id="CoordinatorMyTotals" class="d-flex align-items-center" asp-controller="Coordinator" asp-action="MyTotals"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="Account Settings">My Totals</span></a>
                         </li>
                     </ul>
                 </li>
@@ -278,7 +298,7 @@
 
                 <li id="KPMUsers" class=" nav-item">
                     <a href="/home/userList">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg><span class="menu-title text-truncate" data-i18n="Pages">KPM Users</span>
+                        <i data-feather='users'></i><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg><span class="menu-title text-truncate" data-i18n="Pages">KPM Users</span>
                     </a>
                 </li>
             </ul>

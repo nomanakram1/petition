@@ -91,7 +91,7 @@ namespace petition.Controllers
         {
             return View();
         }
-        public IActionResult EditPurgeCount1Line()
+        public IActionResult OneLineEditPurgeCount()
         {
             return View();
         }
