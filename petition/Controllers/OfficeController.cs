@@ -54,8 +54,37 @@ namespace petition.Controllers
             }
             return View(data);
         }
-        public IActionResult EditPurgeCount()
+        public async Task<IActionResult> EditPurgeCount()
         {
+            var users = await _userManager.GetUsersInRoleAsync("User");
+            List<UserListVM> userList = new List<UserListVM>();
+            if (users.Any())
+            {
+                foreach (var user in users)
+                {
+                    userList.Add(new UserListVM
+                    {
+                        userId = user.Id,
+                        userName = user.UserName,
+                        firstName = user.FirstName,
+                        lastName = user.LastName,
+                        address = user.Address,
+                        zipCode = user.ZipCode,
+                        state = user.State,
+                        city = user.City,
+                        phoneNumber = user.PhoneNumber,
+                        authorize = user.Authorize,
+                        email = user.Email
+                    });
+                }
+                createBatchVM data = new createBatchVM();
+                if (userList != null)
+                {
+                    data.users = userList;
+                }
+
+                return View(data);
+            }
             return View();
         }
         public IActionResult OperationalInfo()

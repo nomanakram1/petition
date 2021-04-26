@@ -33,7 +33,7 @@ namespace petition.Models.ViewModels
         public int? pcWhiteOut { get; set; }
         public int? pcOther { get; set; }
         public int CircNewReg { get; set; }
-        public int BatchStatus { get; set; }
+        public int? BatchStatus { get; set; }
         public int TotalSigs { get; set; }
         public int BadTotal { get; set; }
         public int SubmittedCount { get; set; }
