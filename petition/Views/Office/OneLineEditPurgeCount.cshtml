@@ -1,0 +1,163 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_AdminLayout";
+}
+@model createBatchVM
+<div class="content-wrapper">
+    <div class="content-body">
+        <!-- Basic Vertical form layout section start -->
+        <section id="basic-vertical-layouts">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                Edit Batch
+                            </h4>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-lg-12 col-xl-10 offset-xl-1">
+                                    <div class="row">
+                                        <div class="col-sm-6 mt-1">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="float-right text-right mt-1">
+                                                        Enter a Batch Number:
+                                                    </label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="text" class="form-control form-control-sm" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 mt-1">
+                                            <button type="button" id="getbatchlist" class="btn btn-sm btn-primary float-left">Find Batch</button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 mt-1">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="float-right text-right mt-1">
+                                                        Choose Line To Validate:
+                                                    </label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <select class="form-control displayBatch" id="basicSelect">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 mt-1">
+                                            <button type="button" id="displayBatch" class="btn btn-sm btn-primary float-left">Choose Line</button>
+                                        </div>
+
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <table class="table" id="batchlist">
+                                        <thead>
+                                            <tr>
+                                                <th>Raw</th>                                               
+                                                <th>A</th>
+                                                <th>B</th>
+                                                <th>C</th>
+                                                <th>D</th>
+                                                <th>E</th>
+                                                <th>F</th>
+                                                <th>G</th>
+                                                <th>H</th>
+                                                <th>J</th>
+                                                <th>K</th>
+                                                <th>L</th>
+                                                <th>M</th>
+                                                <th>P</th>
+                                                <th>R</th>
+                                                <th>S</th>
+                                                <th>T</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="padding:0.5rem"><input type="text" class="form-control form-control-sm" /></td>
+                                                <td style="padding:0.5rem"><input type="text" class="form-control form-control-sm" /></td>
+                                                <td style="padding:0.5rem"><input type="text" class="form-control form-control-sm" /></td>
+                                                <td style="padding:0.5rem"><input type="text" class="form-control form-control-sm" /></td>
+                                                <td style="padding:0.5rem"><input type="text" class="form-control form-control-sm" /></td>
+                                                <td style="padding:0.5rem"><input type="text" class="form-control form-control-sm" /></td>
+                                                <td style="padding:0.5rem"><input type="text" class="form-control form-control-sm" /></td>
+                                                <td style="padding:0.5rem"><input type="text" class="form-control form-control-sm" /></td>
+                                                <td style="padding:0.5rem"><input type="text" class="form-control form-control-sm" /></td>
+                                                <td style="padding:0.5rem"><input type="text" class="form-control form-control-sm" /></td>
+                                                <td style="padding:0.5rem"><input type="text" class="form-control form-control-sm" /></td>
+                                                <td style="padding:0.5rem"><input type="text" class="form-control form-control-sm" /></td>
+                                                <td style="padding:0.5rem"><input type="text" class="form-control form-control-sm" /></td>
+                                                <td style="padding:0.5rem"><input type="text" class="form-control form-control-sm" /></td>
+                                                <td style="padding:0.5rem"><input type="text" class="form-control form-control-sm" /></td>
+                                                <td style="padding:0.5rem"><input type="text" class="form-control form-control-sm" /></td>
+                                                <td style="padding:0.5rem"><input type="text" class="form-control form-control-sm" /></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- Basic Vertical form layout section end -->
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+       
+        var table = $('#batchlist');
+
+        table.DataTable({
+            responsive: true,
+            "info": false,
+            columns: [
+                { data: '', searchable: false },
+                { data: 'Circ New Reg', searchable: true },
+                { data: 'Initial Sigs' },
+                { data: 'Submit Count' },
+                { data: 'Raw Count' },
+                { data: 'A' },
+                { data: 'B' },
+                { data: 'C' },
+                { data: 'D' },
+                { data: 'E' },
+                { data: 'F' },
+                { data: 'G' },
+                { data: 'H' },
+                { data: 'J' },
+                { data: 'K' },
+                { data: 'L' },
+                { data: 'M' },
+                { data: 'P' },
+                { data: 'R' },
+                { data: 'S' },
+                { data: 'T' },
+                { data: 'Total Sigs' },
+                { data: 'Good' },
+                { data: 'Bad' },
+                { data: 'Pct (%)' },
+                { data: 'Action' },
+            ],
+        });
+       
+
+    </script>
+}

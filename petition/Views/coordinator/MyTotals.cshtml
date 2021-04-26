@@ -4,3 +4,69 @@
 @{
     Layout = "_AdminLayout";
 }
+<div class="content-wrapper">
+    <div class="content-body">
+        <div class="row">
+            <div class="col-12">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            Coord Batch Report
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4 mt-1">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="float-right text-right mt-1">
+                                            Choose a Coordinator:
+                                        </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <select class="form-control petition" id="basicSelect">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 mt-1">
+                                <button type="button" class="btn btn-sm btn-primary float-right float-md-left">Go</button>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <table class="table" id="coordBatchReport">
+                                    <thead>
+                                        <tr>
+                                            <th>Batch</th>
+                                            <th>Submitted Count</th>
+                                            <th>Circ Sigs</th>
+                                            <th>Raw</th>
+                                            <th>Purged</th>
+                                            <th>Total Diff</th>
+                                            <th>Net</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+@section Scripts {
+    <script>
+        var table = $('#coordBatchReport');
+        table.DataTable({
+            responsive: true,
+            "info": false,
+
+        });
+
+    </script>
+}
