@@ -12,58 +12,48 @@
                 <div class="col-12">
                     <div class="card h-100">
                         <div class="card-header">
-                            <h4 class="card-title">
-                                Edit Purge Count - 1 Line
-                            </h4>
+                            <h3 class="card-title">
+                                Operational Info
+                            </h3>
                         </div>
                         <div class="card-body">
+                            <div class="text-dark">
+                                <h5>PORTAL REGISTRATION</h5>
+                                <li class="ml-3">Coordinators need to reqister in order to log into the site.</li>
+                                <li class="ml-3">SubCoordinators need to register in order to log into the site.</li>
+                                <li class="ml-3">External Validators need to register in order to log into the site.</li>
+                                <li class="ml-3">Circulators DO NOT need to register, they do not log into the site. They just appear in the appropriate dropdown lists.</li>
+                                <h5>CIRCULATORS</h5>
 
-                            <div class="row">
-                                <div class="col-lg-12 col-xl-10 offset-xl-1">
-                                    <div class="row">
-                                        <div class="col-sm-6 mt-1">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <label class="float-right text-right mt-1">
-                                                        Enter a Batch Number: :
-                                                    </label>
-                                                </div>
-                                                <div class="col-6">
-                                                    <input type="text" name="name" value="" class="form-control form-control-sm"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4 mt-1">
-                                            <button type="button" id="Submit" class="btn btn-sm btn-primary float-left">Find a Batch</button>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6 mt-1">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <label class="float-right text-right mt-1">
-                                                        Choose Line To Validate:
-                                                    </label>
-                                                </div>
-                                                <div class="col-6">
-                                                    <select class="form-control petition" id="basicSelect">
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4 mt-1">
-                                            <button type="button" id="Submit" class="btn btn-sm btn-primary float-left">Choose Line</button>
-                                        </div>
+                                Once created, circulators cannot be deleted.
+                                The Admin and Office Managers can create circulators for any coordinator.
+                                The Coordinator and SubCoordinator can add circulators for their organization only.
+                                SubCoordinators will be able to see ALL the circulators that work for the Coordinator. This is necessary so two different SubCoordinators don't enter the same person for the same coordinator.
+                                In order to retain their identity, a coordinator's name cannot be changed.
+                                A circulator can be hidden from the dropdown list by using the manage circulators modules
 
-                                    </div>
-                                </div>
+                                <h5>OTHER ROLES</h5>
+
+                                Coordinators have to be assigned by KPM through the KPM Manage menu
+                                SubCoordinators have to be assigned to their coordinator by KPM through the KPM Manage menu
+                                External Valiators have to be assigned to their coordinator by KPM through the KPM Manage menu
+                                Coordinators do not have to be given External Validator priviledges. It is part of their role.
+                                Since not all SubCoordinators will be validating, they do have to be give External Validator priviledges through the Admin function. They must be assigned as SubCoordinators first.
+                                Office Managers can see all internal report and functions.  They are not for use outside of KPM.
+
+                                <h5>BATCHES</h5>
+
+                                The Admin (Debbi) or Office Manager can create batches for any cooordinator
+                                The coordinator can create new  batches for their organization only and add entries to their batch sheets.
+                                Once a batch list is received (admin enters the date received), entries cannot be deleted.
+                                Once a batch has entries, the batch cannot be deleted
+                                Since a batch may arrive with extra signature sheets that are not on the batch sheet, the admin and Office Managers can add entries to a batch after it has arrived.  However they cannot deleted entries
+
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </section>
         <!-- Basic Vertical form layout section end -->
     </div>
