@@ -54,15 +54,44 @@ namespace petition.Controllers
             }
             return View(data);
         }
-        public IActionResult EditPurgeCount()
+        public async Task<IActionResult> EditPurgeCount()
         {
+            var users = await _userManager.GetUsersInRoleAsync("User");
+            List<UserListVM> userList = new List<UserListVM>();
+            if (users.Any())
+            {
+                foreach (var user in users)
+                {
+                    userList.Add(new UserListVM
+                    {
+                        userId = user.Id,
+                        userName = user.UserName,
+                        firstName = user.FirstName,
+                        lastName = user.LastName,
+                        address = user.Address,
+                        zipCode = user.ZipCode,
+                        state = user.State,
+                        city = user.City,
+                        phoneNumber = user.PhoneNumber,
+                        authorize = user.Authorize,
+                        email = user.Email
+                    });
+                }
+                createBatchVM data = new createBatchVM();
+                if (userList != null)
+                {
+                    data.users = userList;
+                }
+
+                return View(data);
+            }
             return View();
         }
         public IActionResult OperationalInfo()
         {
             return View();
         }
-        public IActionResult EditPurgeCount1Line()
+        public IActionResult OneLineEditPurgeCount()
         {
             return View();
         }
@@ -79,5 +108,30 @@ namespace petition.Controllers
                 return BadRequest(e);
             }
         }
-}
+        public IActionResult GetCircBatchDetails(int enterid)
+        {
+            try
+            {
+                var commandText = "select circinitsigs, entryid, circrawcount, pcInitials, pcpobox, pcdiffcounty, pcIncomAddr, pcAddrIllegOrCopy, pcSigPrintedOrPrintIlleg, pcNameTwiceNoSig, pcHWSignForOther, pcWomanSignMrsHusbandFname, pcForgery, pcIncomDeclCirc, pcRubStampUsed, pcPencilUsed, pcDupSig, pcWhiteOut, pcOther from batchdetails as b where entryid = '"+enterid+"'";
+                var result = context.GetCircBatchDetails.FromSqlRaw(commandText).ToList();
+                return Ok(result);
+            }catch(Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+        public IActionResult UpdateBatchEntry(int raw,int A, int B, int C, int D, int E, int F, int G, int H, int J, int K, int L, int M, int P, int R, int S, int T, int enterid)
+        {
+            try
+            {
+                var commandText = "UPDATE dbo.BatchDetails SET circrawcount = '"+raw+"', pcinitials = '"+A+"', pcpobox = '"+B+"', pcdiffcounty = '"+C+"', pcincomaddr= '"+D+"', pcAddrIllegOrCopy= '"+E+"', pcSigPrintedOrPrintIlleg= '"+F+"', pcNameTwiceNoSig= '"+G+"', pcHWSignForOther = '"+H+"', pcWomanSignMrsHusbandFname= '"+J+"', pcForgery= '"+K+"', pcIncomDeclCirc= '"+L+"', pcRubStampUsed= '"+M+"', pcPencilUsed= '"+P+"', pcDupSig= '"+R+"', pcWhiteOut= '"+S+"', pcOther= '"+T+"' where (entryID = '"+enterid+"')";
+                var result = context.Database.ExecuteSqlRaw(commandText);
+                return Ok(result);
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+    }
 }

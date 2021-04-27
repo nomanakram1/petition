@@ -1,3 +1,2 @@
-﻿Data Source=hgws17.win.hostgator.com;Initial Catalog=aquating_3246624;Persist Security Info=True;User ID=aquating_3246624;Password=F&515hse
-
+﻿DbConnection": "Data Source=hgws17.win.hostgator.com;Initial Catalog=aquating_123456;Persist Security Info=True;User ID=aquating_23123;Password=8^sqt21B
 Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=petition;Integrated Security=True;

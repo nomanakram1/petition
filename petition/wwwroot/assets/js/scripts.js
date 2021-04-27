@@ -107,5 +107,75 @@
             if (location.href.indexOf('Reports/CoordinatorBatchReport') != -1) {
             $("#coordinatorBatchReport").addClass("active");
             $("#coordinatorBatchReport").parents(".has-sub").addClass("open");
+                                                                                    }
+    else
+            if (location.href.indexOf('Reports/CoordinatorVoterActivity') != -1) {
+            $("#coordinatorVoterActivity").addClass("active");
+            $("#coordinatorVoterActivity").parents(".has-sub").addClass("open");
+                                                                                        }
+    else
+            if (location.href.indexOf('Reports/CirculatorCount') != -1) {
+            $("#circulatorCount").addClass("active");
+            $("#circulatorCount").parents(".has-sub").addClass("open");
+                                                                                            }
+    else
+            if (location.href.indexOf('Reports/InternalValidatorActivity') != -1) {
+            $("#internalValidatorActivity").addClass("active");
+            $("#internalValidatorActivity").parents(".has-sub").addClass("open");
+                                                                                                }
+    else
+            if (location.href.indexOf('Office/AddCirculatorToBatch') != -1) {
+            $("#addCirculatorToBatch").addClass("active");
+            $("#addCirculatorToBatch").parents(".has-sub").addClass("open");
+                                                                                                    }
+    else
+            if (location.href.indexOf('Office/EditPurgeCount') != -1) {
+            $("#officeOditPurgeCount").addClass("active");
+            $("#officeOditPurgeCount").parents(".has-sub").addClass("open");
+                                                                                                        }
+    else
+            if (location.href.indexOf('Office/OperationalInfo') != -1) {
+            $("#operationalInfo").addClass("active");
+            $("#operationalInfo").parents(".has-sub").addClass("open");
+                                                                                                            }
+    else
+            if (location.href.indexOf('Office/OneLineEditPurgeCount') != -1) {
+            $("#OneLineEditPurgeCount").addClass("active");
+            $("#OneLineEditPurgeCount").parents(".has-sub").addClass("open");
+                                                                                                                }
+    else
+            if (location.href.indexOf('Office/AddCirculatorToBatch') != -1) {
+            $("#addCirculatorToBatch").addClass("active");
+            $("#addCirculatorToBatch").parents(".has-sub").addClass("open");
+                                                                                                                    }
+    else
+            if (location.href.indexOf('Coordinator/BatchSheets') != -1) {
+            $("#BatchSheets").addClass("active");
+            $("#BatchSheets").parents(".has-sub").addClass("open");
+                                                                                                                        }
+    else
+            if (location.href.indexOf('Coordinator/ManageBatches') != -1) {
+            $("#ManageBatches").addClass("active");
+            $("#ManageBatches").parents(".has-sub").addClass("open");
+                                                                                                                            }
+    else
+            if (location.href.indexOf('Coordinator/Users') != -1) {
+            $("#CoordinatorUsers").addClass("active");
+            $("#CoordinatorUsers").parents(".has-sub").addClass("open");
+                                                                                                                                }
+    else
+            if (location.href.indexOf('Coordinator/CirculatorActivity') != -1) {
+            $("#CirculatorActivity").addClass("active");
+            $("#CirculatorActivity").parents(".has-sub").addClass("open");
+                                                                                                                                    }
+    else
+            if (location.href.indexOf('Coordinator/MyTotals') != -1) {
+            $("#CoordinatorMyTotals").addClass("active");
+            $("#CoordinatorMyTotals").parents(".has-sub").addClass("open");
+        }
+    else
+            if (location.href.indexOf('KPMVoterSearch/KpmVoterSearch') != -1) {
+            $("#KPMVoterSearch").addClass("active");
+            $("#KPMVoterSearch").parents(".has-sub").addClass("open");
         }
 })(window);

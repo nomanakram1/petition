@@ -1,0 +1,261 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_AdminLayout";
+}
+@model createBatchVM
+<div class="content-wrapper">
+    <div class="content-body">
+        <!-- Basic Vertical form layout section start -->
+        <section id="basic-vertical-layouts">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                Edit Batch
+                            </h4>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-lg-12 col-xl-10 offset-xl-1">
+                                    <div class="row">
+                                        <div class="col-sm-6 mt-1">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="float-right text-right mt-1">
+                                                        Enter a Batch Number: :
+                                                    </label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="text" id="batchnumber" name="name" value="" class="form-control form-control-sm" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 mt-1">
+                                            <button type="button" id="Submit" class="getbatchlist btn btn-sm btn-primary float-left">Find a Batch</button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 mt-1">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="float-right text-right mt-1">
+                                                        Choose Line To Validate:
+                                                    </label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <select class="form-control displayBatch" id="basicSelect">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 mt-1">
+                                            <button type="button" id="Submit" class="choseline btn btn-sm btn-primary float-left">Choose Line</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <table class="table" id="batchlist">
+                                        <thead>
+                                            <tr>
+                                                <th>Raw</th>                                               
+                                                <th>A</th>
+                                                <th>B</th>
+                                                <th>C</th>
+                                                <th>D</th>
+                                                <th>E</th>
+                                                <th>F</th>
+                                                <th>G</th>
+                                                <th>H</th>
+                                                <th>J</th>
+                                                <th>K</th>
+                                                <th>L</th>
+                                                <th>M</th>
+                                                <th>P</th>
+                                                <th>R</th>
+                                                <th>S</th>
+                                                <th>T</th>
+                                                <th>Action</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="padding:0.5rem"></td>
+                                                <td style="padding:0.5rem"></td>
+                                                <td style="padding:0.5rem"></td>
+                                                <td style="padding:0.5rem"></td>
+                                                <td style="padding:0.5rem"></td>
+                                                <td style="padding:0.5rem"></td>
+                                                <td style="padding:0.5rem"></td>
+                                                <td style="padding:0.5rem"></td>
+                                                <td style="padding:0.5rem"></td>
+                                                <td style="padding:0.5rem"></td>
+                                                <td style="padding:0.5rem"></td>
+                                                <td style="padding:0.5rem"></td>
+                                                <td style="padding:0.5rem"></td>
+                                                <td style="padding:0.5rem"></td>
+                                                <td style="padding:0.5rem"></td>
+                                                <td style="padding:0.5rem"></td>
+                                                <td style="padding:0.5rem"></td>
+                                                <td style="padding:0.5rem"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- Basic Vertical form layout section end -->
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+       
+        var table = $('#batchlist');
+
+        table.DataTable({
+            "info": false,
+            columns: [
+                { data: 'Raw' },
+                { data: 'A' },
+                { data: 'B' },
+                { data: 'C' },
+                { data: 'D' },
+                { data: 'E' },
+                { data: 'F' },
+                { data: 'G' },
+                { data: 'H' },
+                { data: 'J' },
+                { data: 'K' },
+                { data: 'L' },
+                { data: 'M' },
+                { data: 'P' },
+                { data: 'R' },
+                { data: 'S' },
+                { data: 'T' },
+                { data: 'Action' },
+            ],
+        });
+        $(".getbatchlist").click(function () {
+            var data = {
+                'id': $("#batchnumber").val(),
+            }
+            $.ajax({
+                url: "/batches/displayBatch",
+                type: "Get",
+                data: data,
+                success: function (res) {
+                    var list = $(".displayBatch");
+                    var a = 1;
+                    res.map(element => {
+                        list.append(`<option value="${element['entryid']}">${element['firstname']} ${element['lastname']}-${element['circinitsigs']} Sigs-Line ${a}</option>`);
+                        a++;
+                    })
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        })
+        $(".choseline").click(function () {
+            var data = {
+                'enterid': parseInt($(".displayBatch").find(":selected").val()),
+            }
+            $.ajax({
+                url: "/office/GetCircBatchDetails",
+                type: "Get",
+                data: data,
+                success: function (res) {
+                    var table = $("#batchlist").DataTable();
+                    res.map(element => {
+                        table.cell(0, 0).data(`<input id="raw" type="text" value="${element['circrawcount']}" class="form-control form-control-sm" />`);
+                        table.cell(0, 1).data(`<input id="A" type="text" value="${element['pcInitials']}" class="form-control form-control-sm" />`);
+                        table.cell(0, 2).data(`<input id="B" type="text" value="${element['pcpobox']}" class="form-control form-control-sm" />`);
+                        table.cell(0, 3).data(`<input id="C" type="text" value="${element['pcdiffcounty']}" class="form-control form-control-sm" />`);
+                        table.cell(0, 4).data(`<input id="D" type="text" value="${element['pcIncomAddr']}" class="form-control form-control-sm" />`);
+                        table.cell(0, 5).data(`<input id="E" type="text" value="${element['pcAddrIllegOrCopy']}" class="form-control form-control-sm" />`);
+                        table.cell(0, 6).data(`<input id="F" type="text" value="${element['pcSigPrintedOrPrintIlleg']}" class="form-control form-control-sm" />`);
+                        table.cell(0, 7).data(`<input id="G" type="text" value="${element['pcNameTwiceNoSig']}" class="form-control form-control-sm" />`);
+                        table.cell(0, 8).data(`<input id="H" type="text" value="${element['pcHWSignForOther']}" class="form-control form-control-sm" />`);
+                        table.cell(0, 9).data(`<input id="J" type="text" value="${element['pcWomanSignMrsHusbandFname']}" class="form-control form-control-sm" />`);
+                        table.cell(0, 10).data(`<input id="K" type="text" value="${element['pcForgery']}" class="form-control form-control-sm" />`);
+                        table.cell(0, 11).data(`<input id="L" type="text" value="${element['pcIncomDeclCirc']}" class="form-control form-control-sm" />`);
+                        table.cell(0, 12).data(`<input id="M" type="text" value="${element['pcRubStampUsed']}" class="form-control form-control-sm" />`);
+                        table.cell(0, 13).data(`<input id="P" type="text" value="${element['pcPencilUsed']}" class="form-control form-control-sm" />`);
+                        table.cell(0, 14).data(`<input id="R" type="text" value="${element['pcDupSig']}" class="form-control form-control-sm" />`);
+                        table.cell(0, 15).data(`<input id="S" type="text" value="${element['pcWhiteOut']}" class="form-control form-control-sm" />`);
+                        table.cell(0, 16).data(`<input id="T" type="text" value="${element['pcOther']}" class="form-control form-control-sm" />`);
+                        table.cell(0, 17).data(`<button type="button" class="update btn btn-sm btn-primary float-left">Update</button>`);
+                            //$("#raw").val(element['circrawcount']),
+                            //$("#A").val(element['pcInitials']),
+                            //$("#B").val(element['pcpobox']),
+                            //$("#C").val(element['pcdiffcounty']),
+                            //$("#D").val(element['pcIncomAddr']),
+                            //    $("#E").val(element['pcAddrIllegOrCopy']),
+                            //    $("#F").val(element['pcSigPrintedOrPrintIlleg']),
+                            //    $("#G").val(element['pcNameTwiceNoSig']),
+                            //    $("#H").val(element['pcHWSignForOther']),
+                            //    $("#J").val(element['pcWomanSignMrsHusbandFname']),
+                            //    $("#K").val(element['pcForgery']),
+                            //    $("#L").val(element['pcIncomDeclCirc']),
+                            //    $("#M").val(element['pcRubStampUsed']),
+                            //    $("#P").val(element['pcPencilUsed']),
+                            //    $("#R").val(element['pcDupSig']),
+                            //    $("#S").val(element['pcWhiteOut']),
+                            //    $("#T").val(element['pcOther'])
+                    })
+                    $(".update").click(function () {
+                        var data = {
+                            'raw': $("#raw").val(),
+                            'A': $("#A").val(),
+                            'B': $("#B").val(),
+                            'C': $("#C").val(),
+                            'D': $("#D").val(),
+                            'E': $("#E").val(),
+                            'F': $("#F").val(),
+                            'G': $("#G").val(),
+                            'H': $("#H").val(),
+                            'J': $("#J").val(),
+                            'K': $("#K").val(),
+                            'L': $("#L").val(),
+                            'M': $("#M").val(),
+                            'P': $("#P").val(),
+                            'R': $("#R").val(),
+                            'S': $("#S").val(),
+                            'T': $("#T").val(),
+                            'enterid': $(".displayBatch").find(":selected").val(),
+                        }
+                        $.ajax({
+                            url: "/office/UpdateBatchEntry",
+                            type: "Get",
+                            data: data,
+                            success: function (res) {
+                                alert("successfully Update!")
+                            },
+                            error: function (error) {
+                                console.log(error);
+                                alert("Error Something Wronge!")
+                            }
+                        });
+                    })
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        })
+        
+    </script>
+}

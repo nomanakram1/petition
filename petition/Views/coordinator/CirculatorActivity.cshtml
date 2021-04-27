@@ -4,3 +4,97 @@
 @{
     Layout = "_AdminLayout";
 }
+<div class="content-wrapper">
+    <div class="content-body">
+        <div class="row">
+            <div class="col-12">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            KPM Circulator Activity Report
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4 mt-1">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="float-right text-right mt-1">
+                                            Choose a Coordinator:
+                                        </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <select class="form-control petition" id="basicSelect">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 mt-1">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="float-right text-right mt-1">
+                                            Choose a Petition:
+                                        </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <select class="form-control petition" id="basicSelect">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 mt-1">
+                                <button type="button" class="btn btn-sm btn-primary float-right float-md-left">List Batch</button>
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <table class="table" id="circulatorActivityReport">
+                                    <thead>
+                                        <tr>
+                                            <th>Circulator</th>
+                                            <th>Circ Count</th>
+                                            <th>Raw Count</th>
+                                            <th>A</th>
+                                            <th>B</th>
+                                            <th>C</th>
+                                            <th>D</th>
+                                            <th>E</th>
+                                            <th>F</th>
+                                            <th>G</th>
+                                            <th>H</th>
+                                            <th>J</th>
+                                            <th>K</th>
+                                            <th>L</th>
+                                            <th>M</th>
+                                            <th>P</th>
+                                            <th>R</th>
+                                            <th>S</th>
+                                            <th>T</th>
+                                            <th>Diff</th>
+                                            <th>Net</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        var table = $('#circulatorActivityReport');
+        table.DataTable({
+            responsive: true,
+            "info": false,
+
+        });
+
+    </script>
+}

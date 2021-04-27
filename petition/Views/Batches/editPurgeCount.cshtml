@@ -61,46 +61,41 @@
                                 </div>
 
                             </div>
-
                             <div class="row mt-1">
                                 <div class="col-12">
-                                    <table class="datatables-basic table">
+                                    <table class="table" id="batchlist">
                                         <thead>
                                             <tr>
                                                 <th></th>
-                                                <th></th>
-                                                <th>id</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Date</th>
-                                                <th>Salary</th>
-                                                <th>Status</th>
+                                                <th>Circulator</th>
+                                                <th>Circ New Reg</th>
+                                                <th>Initial Sigs</th>
+                                                <th>Submit Count</th>
+                                                <th>Raw Count</th>
+                                                <th>A</th>
+                                                <th>B</th>
+                                                <th>C</th>
+                                                <th>D</th>
+                                                <th>E</th>
+                                                <th>F</th>
+                                                <th>G</th>
+                                                <th>H</th>
+                                                <th>J</th>
+                                                <th>K</th>
+                                                <th>L</th>
+                                                <th>M</th>
+                                                <th>P</th>
+                                                <th>R</th>
+                                                <th>S</th>
+                                                <th>T</th>
+                                                <th>Total Sigs</th>
+                                                <th>Good</th>
+                                                <th>Bad</th>
+                                                <th>Pct (%)</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                                <td>abc</td>
-                                            </tr>
+                                        <tbody id="tablebody">
                                         </tbody>
                                     </table>
                                 </div>
@@ -116,6 +111,41 @@
 </div>
 @section Scripts {
     <script>
+        var table = $('#batchlist');
+
+        table.DataTable({
+            responsive: true,
+            "info": false,
+            columns: [
+                { data: '', searchable: false },
+                { data: 'Circulator', searchable: false },
+                { data: 'Circ New Reg', searchable: true },
+                { data: 'Initial Sigs' },
+                { data: 'Submit Count' },
+                { data: 'Raw Count' },
+                { data: 'A' },
+                { data: 'B' },
+                { data: 'C' },
+                { data: 'D' },
+                { data: 'E' },
+                { data: 'F' },
+                { data: 'G' },
+                { data: 'H' },
+                { data: 'J' },
+                { data: 'K' },
+                { data: 'L' },
+                { data: 'M' },
+                { data: 'P' },
+                { data: 'R' },
+                { data: 'S' },
+                { data: 'T' },
+                { data: 'Total Sigs' },
+                { data: 'Good' },
+                { data: 'Bad' },
+                { data: 'Pct (%)' },
+                { data: 'Action' },
+            ],
+        });
         $("#getbatchlist").click(function () {
             var data = {
                 'id': $(".cordcirculator").find(":selected").val(),
@@ -140,14 +170,46 @@
                 'id': parseInt($(".displayBatch").find(":selected").val()),
             }
             $.ajax({
-                url: "/batches/displayBatch",
+                url: "/batches/DisplayBathListForPrint",
                 type: "Get",
                 data: data,
                 success: function (res) {
-                    var list = $(".displayBatch");
+                    var table = $('#batchlist').DataTable();
+                    table.clear();
                     res.map(element => {
-                        list.append(`<option value="${element['batchId']}">${element['batchId']}</option>`);
+                        var obj = {
+                            "": '',
+                            "Circulator": element["circfullname"],
+                            "Circ New Reg": element["circNewReg"],
+                            "Initial Sigs": element["circinitsigs"],
+                            "Submit Count": element["submittedCount"],
+                            "Raw Count": element["circrawcount"],
+                            "A": element["pcInitials"],
+                            "B": element["pcPOBox"],
+                            "C": element["pcDiffCounty"],
+                            "D": element["pcIncomAddr"],
+                            "E": element["pcAddrIllegOrCopy"],
+                            "F": element["pcSigPrintedOrPrintIlleg"],
+                            "G": element["pcNameTwiceNoSig"],
+                            "H": element["pcHWSignForOther"],
+                            "J": element["pcWomanSignMrsHusbandFname"],
+                            "K": element["pcForgery"],
+                            "L": element["pcIncomDeclCirc"],
+                            "M": element["pcRubStampUsed"],
+                            "P": element["pcPencilUsed"],
+                            "R": element["pcDupSig"],
+                            "S": element["pcWhiteOut"],
+                            "T": element["pcOther"],
+                            "Total Sigs": element["totalSigs"],
+                            "Good": element["goodCount"],
+                            "Bad": element["badCount"],
+                            "Pct (%)": element["goodPercent"],
+                            "Action": element["batchID"],
+                        }
+                        table.row.add(obj).draw();
                     })
+                    table.responsive.recalc()
+
                 },
                 error: function (error) {
                     console.log(error);

@@ -16,7 +16,6 @@ namespace petition.Controllers
 {
     public class ManagerUsers : Controller
     {
-        private readonly IBatchDL batch;
         private readonly AppDbContext context;
         private readonly UserManager<ApplicationIdentityUser> _userManager;
         private readonly ILogger<HomeController> _logger;

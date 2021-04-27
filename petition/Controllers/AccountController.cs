@@ -84,7 +84,7 @@ namespace petition.Controllers
                     {
                         ModelState.AddModelError("", error.Description);
                     }
-                }catch (Exception ex)
+                }catch (Exception)
                 {
                     return View(model);
                 }

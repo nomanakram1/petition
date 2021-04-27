@@ -4,3 +4,190 @@
 @{
     Layout = "_AdminLayout";
 }
+<div class="content-wrapper">
+    <div class="content-body">
+        <div class="collapse-margin collapse-icon my-2" id="faq-payment-qna">
+            <div class="card">
+                <div class="card-header collapsed" id="paymentOne" data-toggle="collapse" role="button" data-target="#faq-payment-one" aria-expanded="false" aria-controls="faq-payment-one">
+                    <span class="lead collapse-title text-primary">
+                        Purge Codes
+                    </span>
+                </div>
+
+                <div id="faq-payment-one" class="collapse" aria-labelledby="paymentOne" data-parent="#faq-payment-qna" style="">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <ul class="list-group list-group-circle text-left">
+                                    <li class="list-group-item">
+                                        A =	Initials
+                                    </li>
+                                    <li class="list-group-item">
+                                        B =	P.O.Box
+                                    </li>
+                                    <li class="list-group-item">
+                                        C =	Different County
+                                    </li>
+                                    <li class="list-group-item">
+                                        D =	Incomplete Address
+                                    </li>
+                                    <li class="list-group-item">
+                                        E =	Address Illegible
+                                    </li>
+                                    <li class="list-group-item">
+                                        F =	Signature Printed or Printed Name Illegible
+                                    </li>
+                                    <li class="list-group-item">
+                                        G =	Printed Name Twice/No Signature
+                                    </li>
+                                    <li class="list-group-item">
+                                        H =	Husband/Wife Signing for One Another
+                                    </li>
+
+
+                                </ul>
+                            </div>
+                            <div class="col-sm-6">
+                                <ul class="list-group list-group-circle text-left">
+
+                                    <li class="list-group-item">
+                                        J =	A Woman Signing Mrs. (Husband's First Name)
+                                    </li>
+                                    <li class="list-group-item">
+                                        K =	Forgeries
+                                    </li>
+                                    <li class="list-group-item">
+                                        L =	Incomplete Declaration of Circulator
+                                    </li>
+                                    <li class="list-group-item">
+                                        M =	Validity
+                                    </li>
+                                    <li class="list-group-item">
+                                        P =	Pencil
+                                    </li>
+                                    <li class="list-group-item">
+                                        R =	Duplicate Signature
+                                    </li>
+                                    <li class="list-group-item">
+                                        S =	White Out
+                                    </li>
+                                    <li class="list-group-item">
+                                        T =	New Reg
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            Create / Edit Batch
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4 mt-1">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="float-right text-right mt-1">
+                                            Select a Batch:
+                                        </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <select class="form-control petition" id="basicSelect">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 mt-1">
+                                <button type="button" class="btn btn-sm btn-primary float-right float-md-left">Show Batch</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 mt-1">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="float-right text-right mt-1">
+                                            Select A Circulator:    
+                                        </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <select class="form-control petition" id="basicSelect">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 mt-1">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="float-right text-right mt-1">
+                                            New Registration:
+                                        </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control form-control-sm" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 mt-1">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="float-right text-right mt-1">
+                                            Signature Count:
+                                        </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text"  class="form-control form-control-sm" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-1">
+                                <button type="button" class="btn btn-sm btn-primary float-right">Add to Batch</button>
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <table class="table" id="coordBatchReport">
+                                    <thead>
+                                        <tr>
+                                            <th>Batch</th>
+                                            <th>Submitted Count</th>
+                                            <th>Circ Sigs</th>
+                                            <th>Raw</th>
+                                            <th>Purged</th>
+                                            <th>Total Diff</th>
+                                            <th>Net</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+    <script>
+        var table = $('#coordBatchReport');
+        table.DataTable({
+            responsive: true,
+            "info": false,
+
+        });
+
+    </script>
+}
