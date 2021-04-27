@@ -173,4 +173,9 @@
             $("#CoordinatorMyTotals").addClass("active");
             $("#CoordinatorMyTotals").parents(".has-sub").addClass("open");
         }
+    else
+            if (location.href.indexOf('KPMVoterSearch/KpmVoterSearch') != -1) {
+            $("#KPMVoterSearch").addClass("active");
+            $("#KPMVoterSearch").parents(".has-sub").addClass("open");
+        }
 })(window);

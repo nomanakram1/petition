@@ -265,7 +265,7 @@
                     </ul>
                 </li>
                 <li class="nav-item has-sub">
-                    <a class="d-flex align-items-center" href="#"><i data-feather='check-circle'></i><span class="menu-title text-truncate" data-i18n="Pages">Coordinator</span></a>
+                    <a class="d-flex align-items-center" href="#"><i data-feather='user-check'></i><span class="menu-title text-truncate" data-i18n="Pages">Coordinator</span></a>
                     <ul class="menu-content">
                         <li>
                             <a id="BatchSheets" class="d-flex align-items-center" asp-controller="Coordinator" asp-action="BatchSheets"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="Account Settings">Batch Sheets</span></a>
@@ -284,6 +284,11 @@
                         </li>
                     </ul>
                 </li>
+                <li id="KPMUsers" class=" nav-item">
+                    <a id="KPMVoterSearch" asp-controller="KPMVoterSearch" asp-action="KpmVoterSearch">
+                        <i data-feather='search'></i><span class="menu-title text-truncate" data-i18n="Pages">KPM Voter Search</span>
+                    </a>
+                </li>
                 <li class="nav-item has-sub">
                     <a class="d-flex align-items-center" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg><span>Dashboard</span></a>
                     <ul class="menu-content">
@@ -295,6 +300,7 @@
                         </li>
                     </ul>
                 </li>
+
 
                 <li id="KPMUsers" class=" nav-item">
                     <a href="/home/userList">
