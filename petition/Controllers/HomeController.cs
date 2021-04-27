@@ -163,7 +163,7 @@ namespace petition.Controllers
                     user.FirstName = model.firstName;
                     user.LastName = model.lastName;
                     var result = await _userManager.UpdateAsync(user);
-                }catch(Exception ex)
+                }catch(Exception)
                 {
                     return RedirectToAction("userList", "home");
                 }

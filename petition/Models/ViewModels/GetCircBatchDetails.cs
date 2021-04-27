@@ -7,17 +7,14 @@ using System.Threading.Tasks;
 namespace petition.Models.ViewModels
 {
     [Keyless]
-    public class DisplayBathListForPrint
+    public class GetCircBatchDetails
     {
-        public int BatchID { get; set; }
-        public int circid { get; set; }
-        public string circfullname { get; set; }
         public int circinitsigs { get; set; }
-        public int entryid { get; set; }        
+        public int entryid { get; set; }
         public int? circrawcount { get; set; }
         public int? pcInitials { get; set; }
-        public int? pcPOBox { get; set; }
-        public int? pcDiffCounty { get; set; }
+        public int? pcpobox { get; set; }
+        public int? pcdiffcounty { get; set; }
         public int? pcIncomAddr { get; set; }
         public int? pcAddrIllegOrCopy { get; set; }
         public int? pcSigPrintedOrPrintIlleg { get; set; }
@@ -31,12 +28,5 @@ namespace petition.Models.ViewModels
         public int? pcDupSig { get; set; }
         public int? pcWhiteOut { get; set; }
         public int? pcOther { get; set; }
-        public int CircNewReg { get; set; }
-        public int? BatchStatus { get; set; }
-        public int TotalSigs { get; set; }
-        public int BadCount { get; set; }
-        public int GoodCount { get; set; }
-        public double GoodPercent { get; set; }
-        public int SubmittedCount { get; set; }
     }
 }

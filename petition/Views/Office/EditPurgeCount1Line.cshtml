@@ -1,0 +1,140 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_AdminLayout";
+}
+<div class="content-wrapper">
+    <div class="content-body">
+        <!-- Basic Vertical form layout section start -->
+        <section id="basic-vertical-layouts">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                Edit Purge Count - 1 Line
+                            </h4>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-lg-12 col-xl-10 offset-xl-1">
+                                    <div class="row">
+                                        <div class="col-sm-6 mt-1">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="float-right text-right mt-1">
+                                                        Enter a Batch Number: :
+                                                    </label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="text" id="batchnumber" name="name" value="" class="form-control form-control-sm" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 mt-1">
+                                            <button type="button" id="Submit" class="getbatchlist btn btn-sm btn-primary float-left">Find a Batch</button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 mt-1">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="float-right text-right mt-1">
+                                                        Choose Line To Validate:
+                                                    </label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <select class="form-control displayBatch" id="basicSelect">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 mt-1">
+                                            <button type="button" id="Submit" class="btn btn-sm btn-primary float-left">Choose Line</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- Basic Vertical form layout section end -->
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(".getbatchlist").click(function () {
+            var data = {
+                'id': $("#batchnumber").val(),
+            }
+            $.ajax({
+                url: "/batches/displayBatch",
+                type: "Get",
+                data: data,
+                success: function (res) {
+                    var list = $(".displayBatch");
+                    var a = 1;
+                    res.map(element => {
+                        list.append(`<option value="${element['entryid']}">${element['firstname']} ${element['lastname']}-${element['circinitsigs']} Sigs-Line ${a}</option>`);
+                        a++;
+                    })
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        })
+        $("#displayBatch").click(function () {
+            var data = {
+                'id': parseInt($(".displayBatch").find(":selected").val()),
+            }
+            $.ajax({
+                url: "/batches/DisplayBathListForPrint",
+                type: "Get",
+                data: data,
+                success: function (res) {
+                    var table = $('#batchlist').DataTable();
+                    table.clear();
+                    res.map(element => {
+                        var obj = {
+                            "": '',
+                            "Circulator": element["kpmuserId"],
+                            "Circ Count": element["batchId"],
+                            "A": element["lastname"],
+                            "B": element["lastname"],
+                            "C": element["lastname"],
+                            "D": element["lastname"],
+                            "E": element["lastname"],
+                            "F": element["lastname"],
+                            "G": element["lastname"],
+                            "H": element["lastname"],
+                            "J": element["lastname"],
+                            "K": element["lastname"],
+                            "L": element["lastname"],
+                            "M": element["lastname"],
+                            "P": element["lastname"],
+                            "R": element["lastname"],
+                            "S": element["lastname"],
+                            "T": element["lastname"],
+                            "Diff": element["lastname"],
+                            "Net": element["lastname"],
+                        }
+                        table.row.add(obj).draw();
+                    })
+                    table.responsive.recalc()
+
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        })
+    </script>
+}
