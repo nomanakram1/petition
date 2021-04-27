@@ -114,13 +114,12 @@ namespace petition.Controllers
             try
             {
                 var result = context.Database.ExecuteSqlRaw(commandText);
+                return Ok();
             }
             catch (Exception)
             {
-                return RedirectToAction("createBatches", "batches");
+                return BadRequest();
             }
-            
-            return RedirectToAction("createBatches", "batches");
         }
         [HttpPost]
         public async Task<ActionResult> addcirculator(KpmUser user)
