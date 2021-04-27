@@ -107,14 +107,13 @@
                                             <select class="form-control form-control-sm cordcirculator" id="basicSelect">
                                                 @if (Model != null)
                                                 {
-                                                    @if (Model.users != null)
-                                                    {
-                                                        foreach (var u in Model.users)
-                                                        {
-                                                            <option value="@u.userId">@u.userName</option>
-                                                        }
-                                                    }
-                                                }
+                                    @if (Model.users != null)
+                                    {
+                                        foreach (var u in Model.users)
+                                        {
+                        <option value="@u.userId">@u.userName</option>
+}
+                }}
                                             </select>
                                         </div>
                                         <div class="col-md-4 mt-1 px-lg-0 px-xl-1">
@@ -137,13 +136,46 @@
                                     </div>
                                 </div>
 
-                                    </div>                                  
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <table class="table" id="batchlist">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Circulator</th>
+                                                <th>Circ New Reg</th>
+                                                <th>Initial Sigs</th>
+                                                <th>Submit Count</th>
+                                                <th>Raw Count</th>
+                                                <th>A</th>
+                                                <th>B</th>
+                                                <th>C</th>
+                                                <th>D</th>
+                                                <th>E</th>
+                                                <th>F</th>
+                                                <th>G</th>
+                                                <th>H</th>
+                                                <th>J</th>
+                                                <th>K</th>
+                                                <th>L</th>
+                                                <th>M</th>
+                                                <th>P</th>
+                                                <th>R</th>
+                                                <th>S</th>
+                                                <th>T</th>
+                                                <th>Total Sigs</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tablebody">
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
         <!-- Basic Vertical form layout section end -->

@@ -84,6 +84,7 @@ namespace petition.Models
         public DbSet<CoordBatchListSubmit> CoordBatchListSubmit { get; set; }
         public DbSet<GetValidatorData> GetValidatorData { get; set; }
         public DbSet<GetCircReportByPetitionCoordSubmitted> GetCircReportByPetitionCoordSubmitted { get; set; }
+        public DbSet<GetCircBatchDetails> GetCircBatchDetails { get; set; }
 
     }
 }
