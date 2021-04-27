@@ -4,6 +4,7 @@
 @{
     Layout = "_AdminLayout";
 }
+@model createBatchVM
 <div class="content-wrapper">
     <div class="content-body">
         <!-- Basic Vertical form layout section start -->
@@ -35,63 +36,71 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
+                                <div class="col-12">
+                                    <label>Choose a Petition before adding the batch</label>
+                                </div>
                                 <div class="col-sm-4 mt-1">
                                     <div class="row">
-                                        <div class="col-6">
-                                            <label class="float-right text-right mt-1">
-                                                Select a Coordinator:
-                                            </label>
+                                        <div class="col-5">
+                                            <label class="customHalfMargin text-right float-right">Select a Petition :</label>
                                         </div>
-                                        <div class="col-6">
-                                            <select class="form-control petition" id="basicSelect">
+                                        <div class="col-7">
+                                            <select class="form-control form-control-sm Slctpetition" id="basicSelect">
+                                                @if (Model.petitons != null)
+                                                {
+                                                    foreach (var p in Model.petitons)
+                                                    {
+                                                        <option value="@p.PetitionId">@p.Petitionname</option>
+                                                    }
+                                                }
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-4 mt-1">
                                     <div class="row">
-                                        <div class="col-6">
-                                            <label class="float-right text-right mt-1">
-                                                Select a Petition:
-                                            </label>
+                                        <div class="col-5">
+                                            <label class="customHalfMargin text-right float-right">Select a Coordinator :</label>
                                         </div>
-                                        <div class="col-6">
-                                            <select class="form-control petition" id="basicSelect">
+                                        <div class="col-7">
+                                            <select class="form-control form-control-sm cord" id="basicSelect">
+                                                @if (Model.users != null)
+                                                {
+                                                    foreach (var u in Model.users)
+                                                    {
+                                                        <option value="@u.userId">@u.userName</option>
+                                                    }
+                                                }
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-4 mt-1">
                                     <div class="row">
-                                        <div class="col-6">
-                                            <label class="float-right text-right mt-1">
-                                                Signature Value:
-                                            </label>
+                                        <div class="col-5">
+                                            <label class="customHalfMargin text-right float-right">Signature Value :</label>
                                         </div>
-                                        <div class="col-6">
-                                            <input type="text" name="name" value="" class="form-control form-control-sm" />
+                                        <div class="col-7">
+                                            <input type="text" id="sign" class="form-control form-control-sm" name="name" value="" />
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-4 mt-1">
+                                <div class="col-sm-4 mt-1 mt-1">
                                     <div class="row">
-                                        <div class="col-6">
-                                            <label class="float-right text-right mt-1">
-                                                Select Assigned Date :
-                                            </label>
+                                        <div class="col-5">
+                                            <label class="customHalfMargin text-right float-right">Select Assigned Date :</label>
                                         </div>
-                                        <div class="col-6">
-                                            <input type="text" id="fp-default" class="form-control flatpickr-basic bg-white" placeholder="YYYY-MM-DD" />
+                                        <div class="col-7">
+                                            <input type="text" id="fp-default" class="assdate form-control form-control-sm flatpickr-basic flatpickr-input" placeholder="2021-03-19" readonly="readonly">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12">
-                                    <button type="button" class="btn btn-sm btn-primary float-right">Add Batch</button>
+                                <div class="col-12 mt-1">
+                                    <button type="button" id="addbatch" class="btn btn-sm btn-primary float-right ml-1">Add Batch</button>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -100,56 +109,47 @@
                 <div class="col-12">
                     <div class="card h-100">
                         <div class="card-header">
-                            <h4 class="card-title">
-                                Review/Edit Batches
-                            </h4>
+                            <h4 class="card-title">Update Batches Status</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-4 mt-1">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label class="float-right text-right mt-1">
-                                                Select a Petition:
-                                            </label>
-                                        </div>
-                                        <div class="col-6">
-                                            <select class="form-control petition" id="basicSelect">
-                                            </select>
-                                        </div>
-                                    </div>
+                                <div class="col-sm-3">
+                                    <label class="form-label">Select a Petition</label>
+                                    <select class="form-control form-control-sm Selectpetition" id="basicSelect">
+                                        @if (Model.petitons != null)
+                                        {
+                                            foreach (var p in Model.petitons)
+                                            {
+                                                <option value="@p.PetitionId">@p.Petitionname</option>
+                                            }
+                                        }
+                                    </select>
                                 </div>
-                                <div class="col-sm-4 mt-1">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label class="float-right text-right mt-1">
-                                                Select a Coordinator:
-                                            </label>
-                                        </div>
-                                        <div class="col-6">
-                                            <select class="form-control petition" id="basicSelect">
-                                            </select>
-                                        </div>
-                                    </div>
+                                <div class="col-sm-3">
+                                    <label class="label">Select a Coordinator</label>
+                                    <select class="form-control form-control-sm coordinator" id="basicSelect">
+                                        @if (Model.users != null)
+                                        {
+                                            foreach (var u in Model.users)
+                                            {
+                                                <option value="@u.userId">@u.userName</option>
+                                            }
+                                        }
+                                    </select>
                                 </div>
-                                <div class="col-sm-4 mt-1">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                        <label class="custom-control-label" for="customCheck1">View All Batches</label>
-                                    </div>
-                                </div>
+                                <div class="col-sm-3">
+                                    <button type="button" id="List_batches" class="btn btn-sm btn-primary float-sm-left float-right mt-2">List Batches</button>
 
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <button type="button" class="btn btn-sm btn-primary float-right">List Batch</button>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+
+                            <div class="row mt-1">
                                 <div class="col-12">
-                                    <table class="table" id="batchesSubmitted">
+                                    <table class="table" id="batchlist">
                                         <thead>
                                             <tr>
+                                                <th></th>
+                                                <th>ID</th>
                                                 <th>Batch</th>
                                                 <th>Coordinator</th>
                                                 <th>Petition</th>
@@ -163,12 +163,11 @@
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="tablebody">
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -318,14 +317,191 @@
         <!-- Basic Vertical form layout section end -->
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit Batches</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-sm-6 mt-1">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label class="text-right float-right mt-1">
+                                            Sig Value :
+                                        </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="text" class="form-control" value="" placeholder="Sig Value" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mt-1">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label class="text-right float-right mt-1">
+                                            Date Received :
+                                        </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="text" class="form-control flatpickr-basic bg-white" placeholder="YYYY-MM-DD" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mt-1">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label class="text-right float-right mt-1">
+                                            Sub Count :
+                                        </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="text" class="form-control" value="" placeholder="Sub Count" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mt-1">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label class="text-right float-right mt-1">
+                                            CB Date :
+                                        </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="text" class="form-control flatpickr-basic bg-white" placeholder="YYYY-MM-DD" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mt-1">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label class="text-right float-right mt-1">
+                                            CB Count :
+                                        </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="text" class="form-control" value="" placeholder="CB Count" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts {
     <script>
         var table = $('#batchesSubmitted');
         table.DataTable({
             responsive: true,
             "info": false,
-           
+
         });
-       
+        $("#addbatch").click(function () {
+            var petetionId = $(".Slctpetition").find(":selected").val();
+            petetionId = parseInt(petetionId);
+            var data = {
+                'kpmuserId': $(".cord").find(":selected").val(),
+                'kpmuserName': $('.cord').find(":selected").text(),
+                'petitionId': petetionId,
+                'sigValue': parseInt($('#sign').val()),
+                'dateAssgBatch': $('.assdate').val(),
+            }
+            console.log(JSON.stringify(data));
+            $.ajax({
+                url: "/batches/addBatches",
+                type: "Post",
+                data: data,
+                success: function (res) {
+                    window.location = "/Coordinator/ManageBatches"
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+        var table = $('#batchlist');
+
+        table.DataTable({
+            responsive: true,
+            "info": false,
+            columns: [
+                { data: '', searchable: false },
+                { data: 'ID', visible: false, searchable: false },
+                { data: 'Batch' },
+                { data: 'Coordinator' },
+                { data: 'Petition', "bSortable": true },
+                { data: 'Date Submitted' },
+                { data: 'Sig Value' },
+                { data: 'Date Received', "bSortable": false },
+                { data: 'Submitted Count', "bSortable": false },
+                { data: 'CB Date', "bSortable": false },
+                { data: 'CB Count', "bSortable": false },
+                { data: 'Total Sigs', "bSortable": false },
+                { data: 'Actions', "bSortable": false },
+            ],
+            order: [1, "desc"],
+        });
+        $("#List_batches").click(function () {
+            console.log("addfunction");
+            var petetionId = $(".Selectpetition").find(":selected").val();
+            petetionId = parseInt(petetionId);
+            var data = {
+                'kpmuserId': $(".coordinator").find(":selected").val(),
+                'petitionId': petetionId,
+            }
+            console.log(JSON.stringify(data));
+            $.ajax({
+                url: "/batches/getBatches",
+                type: "Post",
+                data: data,
+                success: function (res) {
+                    var table = $('#batchlist').DataTable();
+                    table.clear();
+                    res.map(element => {
+                        var obj = {
+                            "": '',
+                            "ID": element["kpmuserId"],
+                            "Batch": element["batchId"],
+                            "Coordinator": element["lastname"],
+                            "Petition": element["lastname"],
+                            "Date Submitted": element["dateSubmitted"],
+                            "Sig Value": element["sigValue"],
+                            "Date Received": element["dateReceivedBatch"],
+                            "Submitted Count": element["submittedCount"],
+                            "CB Date": element["chargeBackDate"],
+                            "CB Count": element["chargeBackCount"],
+                            "Total Sigs": element["sigAmount"],
+                            "Actions": `<button type="button" id="editUser" data-toggle="modal" data-target="#exampleModalCenter">
+                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                                             </button>
+                                             <a href="/Batches/DeleteBatche/?Id=${element["batchId"]}">
+                                                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                             </a>`,
+                        }
+                        table.row.add(obj).draw();
+                    })
+                    table.responsive.recalc()
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
     </script>
 }
