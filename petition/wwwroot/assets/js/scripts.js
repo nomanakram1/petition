@@ -177,5 +177,10 @@
             if (location.href.indexOf('KPMVoterSearch/KpmVoterSearch') != -1) {
             $("#KPMVoterSearch").addClass("active");
             $("#KPMVoterSearch").parents(".has-sub").addClass("open");
+                                                                                                                                            }
+    else
+            if (location.href.indexOf('VoterSearch/Votersearch') != -1) {
+            $("#VoterUsers").addClass("active");
+            $("#VoterUsers").parents(".has-sub").addClass("open");
         }
 })(window);
